@@ -1,21 +1,31 @@
-.grid {
-    border: 1px solid black;
+@import "../../../../colors.scss";
+
+.grid-content {
+  background-color: $anthraciteGrey;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .grid {
+    margin: 20px;
     height: 100%;
+    width: 70%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
+    grid-gap: 20px;
 
     div {
-        border: 1px solid blue;
+      background-color: white;
+      height: calc(((100vw - 15vw * 2) - 80px) / 3);
 
-        &.test {
-            grid-column: 2;
-            grid-row: 1 / 3;
-        }
-
-        // &.hey {
-        //     grid-column: 2 / 4;
-        //     grid-row: 3;
-        // }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
+  }
 }
