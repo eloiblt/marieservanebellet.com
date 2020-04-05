@@ -1,3 +1,10 @@
+@import "../../../../colors.scss";
+
 .home {
-    background-color: rgb(28, 28, 28);
+  background-color: $anthraciteGrey;
+  padding: 10px;
+
+  p {
+    color: white;
+  }
 }

@@ -1,0 +1,65 @@
+@import "../../../../colors.scss";
+
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: 7%;
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  h1 {
+    margin: 0px;
+    font-size: 30px;
+    margin-left: 20px;
+  }
+
+  .onglets {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    height: 100%;
+
+    .onglet {
+      cursor: pointer;
+      font-size: 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 130px;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: $anthraciteGrey;
+        color: white;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) and (orientation: portrait) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+
+    h1 {
+      margin: 0px;
+    }
+
+    .onglets {
+      display: flex;
+      flex-direction: column;
+      margin-left: unset;
+
+      .onglet {
+        &:hover {
+          background-color: white;
+          color: $anthraciteGrey;
+        }
+      }
+    }
+  }
+}
