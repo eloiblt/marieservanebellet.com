@@ -1,21 +1,4 @@
-.grid {
-    border: 1px solid black;
+.main-container {
+    width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-
-    div {
-        border: 1px solid blue;
-
-        &.test {
-            grid-column: 2;
-            grid-row: 1 / 3;
-        }
-
-        // &.hey {
-        //     grid-column: 2 / 4;
-        //     grid-row: 3;
-        // }
-    }
 }

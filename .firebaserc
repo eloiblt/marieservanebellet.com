@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "marieservanebellet": {
+      "hosting": {
+        "front": [
+          "marieservanebellet"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "marieservanebellet"
+  }
+}
