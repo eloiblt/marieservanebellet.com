@@ -1,23 +1,41 @@
 .footer {
   padding: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  flex-direction: column;
 
-  p {
-    cursor: pointer;
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      cursor: pointer;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      margin: 0px 10px;
+    }
   }
 
-  img {
-    width: 50px;
-    height: 50px;
-    margin: 0px 10px;
+  .footer-bottom {
+    align-self: flex-end;
+    font-size: 10px;
   }
+}
 
-  div {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
+@media screen and (max-width: 500px) {
+  .footer {
+    .footer-top {
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .footer-bottom {
+      font-size: 10px;
+    }
   }
 }

@@ -28,10 +28,30 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: white;
-      color: $anthraciteGrey;
-      font-size: 25px;
+      display: flex;
+      flex-direction: column;
       padding: 16px 32px;
+      background-color: white;
+
+      p {
+        color: $anthraciteGrey;
+        font-size: 25px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home {
+    .ambiance-painting {
+      .welcome {
+        padding: 8px 16px;
+
+        p {
+          font-size: 15px;
+        }
+      }
     }
   }
 }
