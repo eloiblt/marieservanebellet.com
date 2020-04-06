@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PicturesComponent implements OnInit {
 
+  public url: string;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showImage(url: string) {
+    this.url = url;
+    console.log(url);
+  }
 }
