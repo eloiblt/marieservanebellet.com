@@ -6,12 +6,34 @@
 
   .ambiance-painting {
     width: 100%;
-    height: 600px;
+    padding-top: 42.85%;
+    position: relative;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .img-amb-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .welcome {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+      background-color: white;
+      color: $anthraciteGrey;
+      font-size: 25px;
+      padding: 16px 32px;
+      border-radius: 10px;
     }
   }
 }
