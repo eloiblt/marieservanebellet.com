@@ -1,35 +1,34 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as express from 'express';
-import * as bodyParser from "body-parser";
-
+import * as cors from 'cors';
+import * as constants from './config/constants';
+import paintingRouter from './routes/paintingRouter';
+import { authenticateJWT } from './middlewares/authenticate'
 
 admin.initializeApp({
-  credential: admin.credential.cert(require("../admin.json")),
-  databaseURL: "https://marieservanebellet-api.firebaseio.com"
+  credential: admin.credential.cert(require('../admin.json')),
+  databaseURL: constants.dataBaseUrl
 });
-const db = admin.firestore();
 
 const app = express();
+app.use(express.json());
 
-app.use(bodyParser.json());
+let authenticate;
+if (process.env.FUNCTIONS_EMULATOR) {
+  console.log('Development environnement')
+  app.use(cors()); // allow *
+  authenticate = (req: any, res: any, next: any) => next();
+} else {
+  app.use(cors(constants.corsOptions)); // allow front only
+  authenticate = authenticateJWT;
+}
 
+export const db = admin.firestore();
 export const webApi = functions.https.onRequest(app);
 
-app.get('/warmup', (request, response) => {
-  response.send('Warming up friend.');
-});
+app.use('/paintings', authenticate, paintingRouter);
 
-app.get('/helllo', (request, response) => {
-  response.send('Warming up friend.');
-});
-
-app.get('/a', (request, response) => {
-  db.collection('peintures').get().then((querySnapshot) => {
-    let array: any[] = [];
-    querySnapshot.forEach((doc) => {
-      array = [...array, { id: doc.id, obj: doc.data() }];
-    });
-    response.send(array);
-  }, err => console.log(err));
+app.get('/env', (req, res) => {
+  res.send(constants);
 });
