@@ -10,8 +10,8 @@
     display: flex;
     flex-direction: column;
 
-    app-footer {
-      margin-top: auto;
+    .main-content {
+      flex: 1;
     }
   }
 }

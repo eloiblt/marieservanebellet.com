@@ -11,10 +11,6 @@ export class AppComponent {
 
   title = 'front';
 
-  get visible() {
-    return !(this.router.url === '/adminManagement');
-  }
-
   constructor(private paintingService: PaintingApiService, private router: Router) {
     this.paintingService.getAllPaintings().subscribe(res => {
       console.log(res);
