@@ -1,18 +1,20 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as express from 'express';
-import * as bodyParser from "body-parser";
+import * as cors from 'cors';
+import * as constants from './config/constants';
 
+console.log(constants);
 
 admin.initializeApp({
-  credential: admin.credential.cert(require("../admin.json")),
-  databaseURL: "https://marieservanebellet-api.firebaseio.com"
+  credential: admin.credential.cert(require('../admin.json')),
+  databaseURL: constants.dataBaseUrl
 });
 const db = admin.firestore();
 
 const app = express();
-
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors(constants.corsOptions));
 
 export const webApi = functions.https.onRequest(app);
 
@@ -20,8 +22,8 @@ app.get('/warmup', (request, response) => {
   response.send('Warming up friend.');
 });
 
-app.get('/helllo', (request, response) => {
-  response.send('Warming up friend.');
+app.get('/env', (request, response) => {
+  response.send(constants);
 });
 
 app.get('/a', (request, response) => {
