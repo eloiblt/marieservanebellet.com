@@ -1,16 +1,5 @@
-import * as functions from 'firebase-functions';
-
-let corsFront = '';
-if (process.env.FUNCTIONS_EMULATOR) {
-  corsFront = 'http://localhost:4200';
-} else {
-  corsFront = functions.config().env.corsFront;
-}
-
-export default corsFront;
-export const dataBaseUrl = functions.config().env.db;
-
+export const dataBaseUrl = 'https://marieservanebellet-api.firebaseio.com';
 export const corsOptions = {
-  origin: corsFront,
+  origin: 'https://marieservanebellet.com/',
   optionsSuccessStatus: 200
 };

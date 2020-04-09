@@ -4,8 +4,6 @@ import * as express from 'express';
 import * as cors from 'cors';
 import * as constants from './config/constants';
 
-console.log(constants);
-
 admin.initializeApp({
   credential: admin.credential.cert(require('../admin.json')),
   databaseURL: constants.dataBaseUrl
@@ -14,7 +12,12 @@ const db = admin.firestore();
 
 const app = express();
 app.use(express.json());
-app.use(cors(constants.corsOptions));
+
+if (process.env.FUNCTIONS_EMULATOR) {
+  app.use(cors()); // allow *
+} else {
+  app.use(cors(constants.corsOptions)); // allow front only
+}
 
 export const webApi = functions.https.onRequest(app);
 
