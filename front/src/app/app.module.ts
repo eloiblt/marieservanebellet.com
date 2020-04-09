@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
 import { NavigationModule } from './modules/navigation/navigation.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -12,10 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     HomeModule,
     NavigationModule,
-    HttpClientModule
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

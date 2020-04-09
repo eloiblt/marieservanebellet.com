@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { environment } from './../environments/environment';
 import { PaintingApiService } from './services/api/painting-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,11 @@ export class AppComponent {
 
   title = 'front';
 
-  constructor(private paintingService: PaintingApiService) {
+  get visible() {
+    return !(this.router.url === '/adminManagement');
+  }
+
+  constructor(private paintingService: PaintingApiService, private router: Router) {
     this.paintingService.getAllPaintings().subscribe(res => {
       console.log(res);
     }, err => {
