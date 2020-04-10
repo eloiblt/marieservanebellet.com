@@ -15,7 +15,9 @@ router.get('', (req, res) => {
 });
 
 router.post('', authenticateJWT, (req, res) => {
-  db.collection('paintings').doc(req.body.id).set(req.body.content)
+  db.collection('paintings')
+    .doc(req.body.id)
+    .set(req.body.content)
     .then(doc => res.sendStatus(200))
     .catch(err => res.sendStatus(500));
 });

@@ -2,7 +2,7 @@
   <div class="inputs">
     <h1>Connexion</h1>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <label for="mail">mail</label>
+      <label for="mail">Mail</label>
       <input id="mail" type="text" formControlName="mail" />
 
       <div class="errors" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
