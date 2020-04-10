@@ -6,10 +6,12 @@ export class Painting {
   technique!: string;
   gridColumn!: string;
   gridrow!: string;
+  categoryId!: number;
   category!: CategoryPainting;
   shape!: EShapePainting;
   spec!: ESpecPainting; // ambiance // menu
   date!: string;
+  url!: string;
 }
 
 export class CategoryPainting {

@@ -6,7 +6,6 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class GenericApiService<T> {
   protected apiUrl = environment.apiUrl + '/';
-  protected optionsApplicationJson = { headers: { 'Content-Type': 'application/json' } };
   protected controllerName = '';
 
   constructor(protected http: HttpClient) {

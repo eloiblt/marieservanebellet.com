@@ -3,4 +3,63 @@
 .admin-management {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .admin-management-content {
+    margin: 10px;
+
+    .painting-row {
+      display: flex;
+      align-items: center;
+
+      .fields {
+        width: 98%;
+        display: flex;
+        align-items: center;
+
+        h2,
+        input {
+          flex: 1;
+
+          &:not(:last-of-type) {
+            margin-right: 10px;
+          }
+        }
+
+        input {
+          min-width: 1px;
+          border: 1px solid $anthraciteGrey;
+          border-radius: 3px;
+          height: 30px;
+          text-indent: 5px;
+        }
+      }
+
+      .icon {
+        width: 2%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          cursor: pointer;
+          opacity: 0.4;
+
+          &.active {
+            opacity: 1;
+            color: green;
+          }
+        }
+      }
+
+      &.headers {
+        margin-bottom: 10px;
+      }
+    }
+
+    .scrollable-paintings {
+      overflow: auto;
+    }
+  }
 }

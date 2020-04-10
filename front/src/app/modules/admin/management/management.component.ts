@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Painting } from 'src/app/model/model';
+import { PaintingApiService } from 'src/app/services/api/painting-api.service';
 
 @Component({
   selector: 'app-management',
@@ -7,8 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementComponent implements OnInit {
 
-  constructor() { }
+  public newPainting: Painting;
+
+  constructor(private paintingApiService: PaintingApiService) { }
 
   ngOnInit(): void {
+    this.newPainting = new Painting();
+  }
+
+  createNewPainting() {
+    console.log(this.newPainting);
+    this.paintingApiService.create(this.newPainting).subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  canCreate() {
+    return this.newPainting.id &&
+      this.newPainting.title &&
+      this.newPainting.technique &&
+      this.newPainting.gridColumn &&
+      this.newPainting.gridrow &&
+      this.newPainting.categoryId &&
+      this.newPainting.shape &&
+      this.newPainting.spec &&
+      this.newPainting.date &&
+      this.newPainting.url;
   }
 }

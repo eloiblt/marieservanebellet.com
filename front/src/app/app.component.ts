@@ -8,14 +8,4 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  title = 'front';
-
-  constructor(private paintingService: PaintingApiService, private router: Router) {
-    this.paintingService.get().subscribe(res => {
-      console.log(res);
-    }, err => {
-      console.log(err);
-    });
-  }
 }
