@@ -16,3 +16,8 @@ export class CategoryPainting {
   id: number;
   title: string;
 }
+
+export class User {
+  mail: string;
+  password: string;
+}

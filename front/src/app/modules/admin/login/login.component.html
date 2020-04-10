@@ -1,15 +1,15 @@
 <div class="admin-login">
   <div class="inputs">
     <h1>Connexion</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label for="email">Email</label>
-      <input id="email" type="text" formControlName="email" />
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <label for="mail">mail</label>
+      <input id="mail" type="text" formControlName="mail" />
 
-      <div class="errors" *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email.errors.required">
+      <div class="errors" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+        <div *ngIf="mail.errors.required">
           Le mail est requis
         </div>
-        <div *ngIf="email.errors.email">
+        <div *ngIf="mail.errors.mail">
           Le mail est invalide
         </div>
       </div>
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <button type="submit" [disabled]="password.invalid || email.invalid">Se connecter</button>
+      <button type="submit" [disabled]="password.invalid || mail.invalid">Se connecter</button>
     </form>
   </div>
 </div>

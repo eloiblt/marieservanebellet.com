@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'front';
 
   constructor(private paintingService: PaintingApiService, private router: Router) {
-    this.paintingService.getAllPaintings().subscribe(res => {
+    this.paintingService.get().subscribe(res => {
       console.log(res);
     }, err => {
       console.log(err);

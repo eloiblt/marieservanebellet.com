@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GenericApiService } from './generic-api.service';
-import { Painting } from 'src/app/model/model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaintingApiService extends GenericApiService<Painting> {
+export class LoginApiService extends GenericApiService<any> {
   constructor(http: HttpClient) {
     super(http);
-    this.controllerName = 'paintings';
+    this.controllerName = 'login';
+  }
+
+  login(data: string): Observable<any> {
+    const endPoint = '';
+
+    return this.http.post(this.apiUrl + this.controllerName + endPoint, data);
   }
 }
