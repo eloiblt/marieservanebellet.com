@@ -18,7 +18,7 @@ router.post('', (req, res) => {
         bcrypt.compare(req.body.password, user.password)
           .then(rt => {
             if (rt) {
-              const token = jwt.sign({ mail: user.mail, password: user.password }, jwtSecret, { expiresIn: '600' });
+              const token = jwt.sign({ mail: user.mail, password: user.password }, "qdfqdf", { expiresIn: '600' });
               res.send({ user: user, token: token });
             } else {
               res.status(401).send();
