@@ -4,6 +4,7 @@ import { HomeComponent } from './modules/home/home/home.component';
 import { ManagementComponent } from './modules/admin/management/management.component';
 import { LoginComponent } from './modules/admin/login/login.component';
 import { AuthGuardService } from './services/AuthGuard.service';
+import { NotfoundComponent } from './modules/navigation/notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
+    path: 'adminLogin',
     component: LoginComponent,
     pathMatch: 'full'
   },
@@ -21,6 +22,10 @@ const routes: Routes = [
     component: ManagementComponent,
     pathMatch: 'full',
     canActivate: [AuthGuardService]
+  },
+  {
+    path: '**',
+    component: NotfoundComponent
   }
 ];
 
