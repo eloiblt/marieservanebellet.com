@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="admin-login">
+  <div class="inputs">
+    <h1>Connexion</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="email">Email</label>
+      <input id="email" type="text" formControlName="email" />
+
+      <div class="errors" *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors.required">
+          Le mail est requis
+        </div>
+        <div *ngIf="email.errors.email">
+          Le mail est invalide
+        </div>
+      </div>
+
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" formControlName="password" />
+
+      <div class="errors" *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors.required">
+          Le mot de passe est requis
+        </div>
+        <div *ngIf="password.errors.minlength">
+          Le mot de passe doit comporter au moins 8 caractères
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="password.invalid || email.invalid">Se connecter</button>
+    </form>
+  </div>
+</div>
