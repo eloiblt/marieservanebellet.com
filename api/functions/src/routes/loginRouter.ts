@@ -3,6 +3,7 @@ import { db } from '../index';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { User } from '../models/model';
+import { jwtSecret } from '../config/constants';
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.post('', (req, res) => {
         bcrypt.compare(req.body.password, user.password)
           .then(rt => {
             if (rt) {
-              const token = jwt.sign({ mail: user.mail, password: user.password }, "qdfqdf", { expiresIn: '600' });
+              const token = jwt.sign({ mail: user.mail, password: user.password }, jwtSecret, { expiresIn: '1h' });
               res.send({ user: user, token: token });
             } else {
               res.status(401).send();
