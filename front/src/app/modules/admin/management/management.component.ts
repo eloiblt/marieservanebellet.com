@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Painting } from 'src/app/model/model';
+import { Painting, CategoryPainting } from 'src/app/model/model';
 import { PaintingApiService } from 'src/app/services/api/painting-api.service';
-import { ToastrService } from 'ngx-toastr';
+import { CategoryPaintingApiService } from 'src/app/services/api/categoryPainting-api.service';
 
 @Component({
   selector: 'app-management',
@@ -12,15 +12,17 @@ export class ManagementComponent implements OnInit {
 
   public newPainting: Painting;
   public paintings: Painting[];
+  public categoryPaintings: CategoryPainting[];
 
   constructor(
     private paintingApiService: PaintingApiService,
-    private toastr: ToastrService
+    private categoryPaintingApiService: CategoryPaintingApiService
   ) { }
 
   ngOnInit(): void {
     this.newPainting = new Painting();
     this.getPaintings();
+    this.getCategoryPaintings();
   }
 
   getPaintings() {
@@ -31,9 +33,17 @@ export class ManagementComponent implements OnInit {
     });
   }
 
+  getCategoryPaintings() {
+    this.categoryPaintingApiService.get().subscribe(res => {
+      this.categoryPaintings = res;
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+  }
+
   createNewPainting() {
     if (this.canCreate()) {
-      console.log(this.newPainting);
       this.paintingApiService.create(this.newPainting).subscribe(res => {
         this.newPainting = new Painting();
       }, err => {
@@ -56,6 +66,7 @@ export class ManagementComponent implements OnInit {
       this.newPainting.gridColumn &&
       this.newPainting.gridrow &&
       this.newPainting.categoryId &&
+      this.categoryPaintings.find(c => c.id === this.newPainting.categoryId) &&
       this.newPainting.shape &&
       this.newPainting.spec &&
       this.newPainting.date &&

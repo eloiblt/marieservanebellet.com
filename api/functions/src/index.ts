@@ -5,6 +5,7 @@ import * as cors from 'cors';
 import * as constants from './config/constants';
 import paintingRouter from './routes/paintingRouter';
 import loginRouter from './routes/loginRouter';
+import categoryPaintings from './routes/categoryPaintingRouter';
 // import { authenticateJWT } from './middlewares/authenticate'
 
 admin.initializeApp({
@@ -30,6 +31,7 @@ export const webApi = functions.https.onRequest(app);
 
 app.use('/login', loginRouter);
 app.use('/paintings', paintingRouter);
+app.use('/categoryPaintings', categoryPaintings);
 
 app.get('/env', (req, res) => {
   res.send(constants);
