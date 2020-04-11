@@ -1,6 +1,6 @@
 <div class="admin-management">
   <div class="admin-management-content">
-    <div class="painting-row headers">
+    <div class="painting-row">
       <div class="fields">
         <h2>Id</h2>
         <h2>Titre</h2>
@@ -15,6 +15,21 @@
       </div>
     </div>
     <div class="scrollable-paintings">
+      <div class="painting-row" *ngFor="let p of paintings">
+        <div class="fields">
+          <input type="number" (change)="update(p)" [(ngModel)]="p.id" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.title" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.technique" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.gridrow" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.gridColumn" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.spec" />
+          <input type="number" (change)="update(p)" [(ngModel)]="p.categoryId" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.shape" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.date" />
+          <input type="text" (change)="update(p)" [(ngModel)]="p.url" />
+        </div>
+      </div>
+
       <div class="painting-row">
         <div class="fields">
           <input type="number" [(ngModel)]="newPainting.id" />

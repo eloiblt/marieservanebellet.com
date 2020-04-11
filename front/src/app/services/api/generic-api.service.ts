@@ -23,7 +23,7 @@ export class GenericApiService<T> {
       .get<T>(this.apiUrl + this.controllerName + endPoint);
   }
 
-  update(id: any, obj: any, ): Observable<any> {
+  update(id: any, obj: any): Observable<any> {
     const endPoint = '/' + id;
 
     return this.http

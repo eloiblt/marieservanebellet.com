@@ -12,6 +12,7 @@
     .painting-row {
       display: flex;
       align-items: center;
+      margin-bottom: 10px;
 
       .fields {
         width: 98%;
@@ -51,10 +52,6 @@
             color: green;
           }
         }
-      }
-
-      &.headers {
-        margin-bottom: 10px;
       }
     }
 
