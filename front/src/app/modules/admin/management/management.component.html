@@ -12,39 +12,44 @@
         <h2>Forme</h2>
         <h2>Date</h2>
         <h2>URL</h2>
+        <h2>Taille</h2>
       </div>
     </div>
-    <div class="scrollable-paintings">
-      <div class="painting-row" *ngFor="let p of paintings">
-        <div class="fields">
-          <input type="number" (change)="update(p)" [(ngModel)]="p.id" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.title" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.technique" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.gridrow" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.gridColumn" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.spec" />
-          <input type="number" (change)="update(p)" [(ngModel)]="p.categoryId" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.shape" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.date" />
-          <input type="text" (change)="update(p)" [(ngModel)]="p.url" />
+    <div class="paintings">
+      <div class="scrollable-paintings">
+        <div class="painting-row" *ngFor="let p of paintings">
+          <div class="fields">
+            <input type="number" (change)="update(p)" [(ngModel)]="p.id" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.title" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.technique" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.gridrow" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.gridColumn" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.spec" />
+            <input type="number" (change)="update(p)" [(ngModel)]="p.categoryId" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.shape" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.date" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.url" />
+            <input type="text" (change)="update(p)" [(ngModel)]="p.size" />
+          </div>
         </div>
-      </div>
 
-      <div class="painting-row">
-        <div class="fields">
-          <input type="number" [(ngModel)]="newPainting.id" />
-          <input type="text" [(ngModel)]="newPainting.title" />
-          <input type="text" [(ngModel)]="newPainting.technique" />
-          <input type="text" [(ngModel)]="newPainting.gridrow" />
-          <input type="text" [(ngModel)]="newPainting.gridColumn" />
-          <input type="text" [(ngModel)]="newPainting.spec" />
-          <input type="number" [(ngModel)]="newPainting.categoryId" />
-          <input type="text" [(ngModel)]="newPainting.shape" />
-          <input type="text" [(ngModel)]="newPainting.date" />
-          <input type="text" [(ngModel)]="newPainting.url" />
-        </div>
-        <div class="icon">
-          <i class="fas fa-check" (click)="createNewPainting()" [ngClass]='{"active": canCreate()}'></i>
+        <div class="painting-row">
+          <div class="fields">
+            <input type="number" [(ngModel)]="newPainting.id" />
+            <input type="text" [(ngModel)]="newPainting.title" />
+            <input type="text" [(ngModel)]="newPainting.technique" />
+            <input type="text" [(ngModel)]="newPainting.gridrow" />
+            <input type="text" [(ngModel)]="newPainting.gridColumn" />
+            <input type="text" [(ngModel)]="newPainting.spec" />
+            <input type="number" [(ngModel)]="newPainting.categoryId" />
+            <input type="text" [(ngModel)]="newPainting.shape" />
+            <input type="text" [(ngModel)]="newPainting.date" />
+            <input type="text" [(ngModel)]="newPainting.url" />
+            <input type="text" [(ngModel)]="newPainting.size" />
+          </div>
+          <div class="icon">
+            <i class="fas fa-check" (click)="createNewPainting()" [ngClass]='{"active": canCreate()}'></i>
+          </div>
         </div>
       </div>
     </div>

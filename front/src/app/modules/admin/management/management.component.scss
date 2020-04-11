@@ -7,12 +7,14 @@
   flex-direction: column;
 
   .admin-management-content {
-    margin: 10px;
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
     .painting-row {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
 
       .fields {
         width: 98%;
@@ -53,10 +55,24 @@
           }
         }
       }
+
+      &:not(:last-of-type) {
+        margin-bottom: 10px;
+      }
     }
 
-    .scrollable-paintings {
-      overflow: auto;
+    .paintings {
+      flex: 1;
+      position: relative;
+
+      .scrollable-paintings {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: auto;
+      }
     }
   }
 }

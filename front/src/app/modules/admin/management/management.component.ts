@@ -28,6 +28,10 @@ export class ManagementComponent implements OnInit {
   getPaintings() {
     this.paintingApiService.get().subscribe(res => {
       this.paintings = res;
+      this.newPainting.id = 1;
+      while (this.paintings.find(p => p.id === this.newPainting.id)) {
+        this.newPainting.id++;
+      }
     }, err => {
       console.log(err);
     });
@@ -36,7 +40,6 @@ export class ManagementComponent implements OnInit {
   getCategoryPaintings() {
     this.categoryPaintingApiService.get().subscribe(res => {
       this.categoryPaintings = res;
-      console.log(res);
     }, err => {
       console.log(err);
     });
@@ -46,6 +49,7 @@ export class ManagementComponent implements OnInit {
     if (this.canCreate()) {
       this.paintingApiService.create(this.newPainting).subscribe(res => {
         this.newPainting = new Painting();
+        this.getPaintings();
       }, err => {
         console.log(err);
       });
@@ -70,6 +74,7 @@ export class ManagementComponent implements OnInit {
       this.newPainting.shape &&
       this.newPainting.spec &&
       this.newPainting.date &&
-      this.newPainting.url;
+      this.newPainting.url &&
+      this.newPainting.size;
   }
 }

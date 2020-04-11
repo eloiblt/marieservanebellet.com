@@ -11,6 +11,7 @@ export class Painting {
   spec: ESpecPainting;   // ambiance // menu
   date: string;
   url: string;
+  size: string;
 }
 
 export class CategoryPainting {
