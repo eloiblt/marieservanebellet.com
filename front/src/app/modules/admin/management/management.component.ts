@@ -20,12 +20,26 @@ export class ManagementComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.newPicture = new Picture();
-    this.getPaintings();
+    this.initNewPicture();
+    this.getPictures();
     this.getCategoryPictures();
   }
 
-  getPaintings() {
+  initNewPicture() {
+    this.newPicture = new Picture();
+    this.newPicture.title = '';
+    this.newPicture.technique = '';
+    this.newPicture.gridColumn = '';
+    this.newPicture.gridrow = '';
+    this.newPicture.categoryId = null;
+    this.newPicture.shape = '';
+    this.newPicture.spec = '';
+    this.newPicture.date = '';
+    this.newPicture.url = '';
+    this.newPicture.size = '';
+  }
+
+  getPictures() {
     this.paintingApiService.get().subscribe(res => {
       this.pictures = res;
       this.newPicture.id = 1;
@@ -48,8 +62,8 @@ export class ManagementComponent implements OnInit {
   createNewPicture() {
     if (this.canCreate()) {
       this.paintingApiService.create(this.newPicture).subscribe(res => {
-        this.newPicture = new Picture();
-        this.getPaintings();
+        this.initNewPicture();
+        this.getPictures();
       }, err => {
         console.log(err);
       });
@@ -66,15 +80,7 @@ export class ManagementComponent implements OnInit {
   canCreate() {
     return this.newPicture.id &&
       this.newPicture.title &&
-      this.newPicture.technique &&
-      this.newPicture.gridColumn &&
-      this.newPicture.gridrow &&
-      this.newPicture.categoryId &&
-      this.categoryPictures.find(c => c.id === this.newPicture.categoryId) &&
-      this.newPicture.shape &&
-      this.newPicture.spec &&
-      this.newPicture.date &&
-      this.newPicture.url &&
-      this.newPicture.size;
+      (this.newPicture.categoryId ? this.categoryPictures.find(c => c.id === this.newPicture.categoryId) : true) &&
+      this.newPicture.url;
   }
 }

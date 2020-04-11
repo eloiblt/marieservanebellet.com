@@ -1,5 +1,3 @@
-import { EShapePicture, ESpecPicture } from './enum';
-
 export class Picture {
   id: number;
   title: string;
@@ -7,8 +5,8 @@ export class Picture {
   gridColumn: string;
   gridrow: string;
   categoryId: number;
-  shape: EShapePicture;
-  spec: ESpecPicture;   // ambiance // menu
+  shape: string;
+  spec: string;   // ambiance // menu
   date: string;
   url: string;
   size: string;
