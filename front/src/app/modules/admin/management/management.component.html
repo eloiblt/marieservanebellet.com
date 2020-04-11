@@ -17,7 +17,7 @@
     </div>
     <div class="paintings">
       <div class="scrollable-paintings">
-        <div class="painting-row" *ngFor="let p of paintings">
+        <div class="painting-row" *ngFor="let p of pictures">
           <div class="fields">
             <input type="number" (change)="update(p)" [(ngModel)]="p.id" />
             <input type="text" (change)="update(p)" [(ngModel)]="p.title" />
@@ -35,20 +35,20 @@
 
         <div class="painting-row">
           <div class="fields">
-            <input type="number" [(ngModel)]="newPainting.id" />
-            <input type="text" [(ngModel)]="newPainting.title" />
-            <input type="text" [(ngModel)]="newPainting.technique" />
-            <input type="text" [(ngModel)]="newPainting.gridrow" />
-            <input type="text" [(ngModel)]="newPainting.gridColumn" />
-            <input type="text" [(ngModel)]="newPainting.spec" />
-            <input type="number" [(ngModel)]="newPainting.categoryId" />
-            <input type="text" [(ngModel)]="newPainting.shape" />
-            <input type="text" [(ngModel)]="newPainting.date" />
-            <input type="text" [(ngModel)]="newPainting.url" />
-            <input type="text" [(ngModel)]="newPainting.size" />
+            <input type="number" [(ngModel)]="newPicture.id" />
+            <input type="text" [(ngModel)]="newPicture.title" />
+            <input type="text" [(ngModel)]="newPicture.technique" />
+            <input type="text" [(ngModel)]="newPicture.gridrow" />
+            <input type="text" [(ngModel)]="newPicture.gridColumn" />
+            <input type="text" [(ngModel)]="newPicture.spec" />
+            <input type="number" [(ngModel)]="newPicture.categoryId" />
+            <input type="text" [(ngModel)]="newPicture.shape" />
+            <input type="text" [(ngModel)]="newPicture.date" />
+            <input type="text" [(ngModel)]="newPicture.url" />
+            <input type="text" [(ngModel)]="newPicture.size" />
           </div>
           <div class="icon">
-            <i class="fas fa-check" (click)="createNewPainting()" [ngClass]='{"active": canCreate()}'></i>
+            <i class="fas fa-check" (click)="createNewPicture()" [ngClass]='{"active": canCreate()}'></i>
           </div>
         </div>
       </div>

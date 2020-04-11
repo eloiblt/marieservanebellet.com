@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Painting, CategoryPainting } from 'src/app/model/model';
-import { PaintingApiService } from 'src/app/services/api/painting-api.service';
-import { CategoryPaintingApiService } from 'src/app/services/api/categoryPainting-api.service';
+import { Picture, CategoryPicture as CategoryPicture } from 'src/app/model/model';
+import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
+import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
 
 @Component({
   selector: 'app-management',
@@ -10,45 +10,45 @@ import { CategoryPaintingApiService } from 'src/app/services/api/categoryPaintin
 })
 export class ManagementComponent implements OnInit {
 
-  public newPainting: Painting;
-  public paintings: Painting[];
-  public categoryPaintings: CategoryPainting[];
+  public newPicture: Picture;
+  public pictures: Picture[];
+  public categoryPictures: CategoryPicture[];
 
   constructor(
-    private paintingApiService: PaintingApiService,
-    private categoryPaintingApiService: CategoryPaintingApiService
+    private paintingApiService: PicturesApiService,
+    private categoryPaintingApiService: CategoryPicturesApiService
   ) { }
 
   ngOnInit(): void {
-    this.newPainting = new Painting();
+    this.newPicture = new Picture();
     this.getPaintings();
-    this.getCategoryPaintings();
+    this.getCategoryPictures();
   }
 
   getPaintings() {
     this.paintingApiService.get().subscribe(res => {
-      this.paintings = res;
-      this.newPainting.id = 1;
-      while (this.paintings.find(p => p.id === this.newPainting.id)) {
-        this.newPainting.id++;
+      this.pictures = res;
+      this.newPicture.id = 1;
+      while (this.pictures.find(p => p.id === this.newPicture.id)) {
+        this.newPicture.id++;
       }
     }, err => {
       console.log(err);
     });
   }
 
-  getCategoryPaintings() {
+  getCategoryPictures() {
     this.categoryPaintingApiService.get().subscribe(res => {
-      this.categoryPaintings = res;
+      this.categoryPictures = res;
     }, err => {
       console.log(err);
     });
   }
 
-  createNewPainting() {
+  createNewPicture() {
     if (this.canCreate()) {
-      this.paintingApiService.create(this.newPainting).subscribe(res => {
-        this.newPainting = new Painting();
+      this.paintingApiService.create(this.newPicture).subscribe(res => {
+        this.newPicture = new Picture();
         this.getPaintings();
       }, err => {
         console.log(err);
@@ -56,7 +56,7 @@ export class ManagementComponent implements OnInit {
     }
   }
 
-  update(p: Painting) {
+  update(p: Picture) {
     this.paintingApiService.update(p.id, p).subscribe(res => {
     }, err => {
       console.log(err);
@@ -64,17 +64,17 @@ export class ManagementComponent implements OnInit {
   }
 
   canCreate() {
-    return this.newPainting.id &&
-      this.newPainting.title &&
-      this.newPainting.technique &&
-      this.newPainting.gridColumn &&
-      this.newPainting.gridrow &&
-      this.newPainting.categoryId &&
-      this.categoryPaintings.find(c => c.id === this.newPainting.categoryId) &&
-      this.newPainting.shape &&
-      this.newPainting.spec &&
-      this.newPainting.date &&
-      this.newPainting.url &&
-      this.newPainting.size;
+    return this.newPicture.id &&
+      this.newPicture.title &&
+      this.newPicture.technique &&
+      this.newPicture.gridColumn &&
+      this.newPicture.gridrow &&
+      this.newPicture.categoryId &&
+      this.categoryPictures.find(c => c.id === this.newPicture.categoryId) &&
+      this.newPicture.shape &&
+      this.newPicture.spec &&
+      this.newPicture.date &&
+      this.newPicture.url &&
+      this.newPicture.size;
   }
 }

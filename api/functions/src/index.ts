@@ -3,9 +3,9 @@ import * as admin from 'firebase-admin';
 import * as express from 'express';
 import * as cors from 'cors';
 import * as constants from './config/constants';
-import paintingRouter from './routes/paintingRouter';
+import picturesRouter from './routes/picturesRouter';
 import loginRouter from './routes/loginRouter';
-import categoryPaintings from './routes/categoryPaintingRouter';
+import categoryPictures from './routes/categoryPaintingRouter';
 // import { authenticateJWT } from './middlewares/authenticate'
 
 admin.initializeApp({
@@ -30,8 +30,8 @@ export const db = admin.firestore();
 export const webApi = functions.https.onRequest(app);
 
 app.use('/login', loginRouter);
-app.use('/paintings', paintingRouter);
-app.use('/categoryPaintings', categoryPaintings);
+app.use('/pictures', picturesRouter);
+app.use('/categoryPictures', categoryPictures);
 
 app.get('/env', (req, res) => {
   res.send(constants);

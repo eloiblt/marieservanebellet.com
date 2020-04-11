@@ -1,6 +1,6 @@
 import { EShapePainting, ESpecPainting } from "./enum";
 
-export class Painting {
+export class Picture {
   id!: number;
   title!: string;
   technique!: string;
@@ -14,7 +14,7 @@ export class Painting {
   size!: string;
 }
 
-export class CategoryPainting {
+export class CategoryPictures {
   id!: number;
   title!: string;
 }

@@ -1,20 +1,20 @@
-import { EShapePainting, ESpecPainting } from './enum';
+import { EShapePicture, ESpecPicture } from './enum';
 
-export class Painting {
+export class Picture {
   id: number;
   title: string;
   technique: string;
   gridColumn: string;
   gridrow: string;
   categoryId: number;
-  shape: EShapePainting;
-  spec: ESpecPainting;   // ambiance // menu
+  shape: EShapePicture;
+  spec: ESpecPicture;   // ambiance // menu
   date: string;
   url: string;
   size: string;
 }
 
-export class CategoryPainting {
+export class CategoryPicture {
   id: number;
   title: string;
 }
