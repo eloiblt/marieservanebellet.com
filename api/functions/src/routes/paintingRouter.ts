@@ -5,13 +5,14 @@ import { authenticateJWT } from '../middlewares/authenticate';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  db.collection('paintings').get()
+  db.collection('paintings')
+    .get()
     .then(doc => {
       let array: any[] = [];
       doc.forEach(d => array = [...array, { id: d.id, ...d.data() }]);
       res.send(array)
     })
-    .catch(err => res.sendStatus(500));
+    .catch(err => res.status(500).send());
 });
 
 router.post('/', authenticateJWT, (req, res) => {
@@ -19,8 +20,8 @@ router.post('/', authenticateJWT, (req, res) => {
   db.collection('paintings')
     .doc(id.toString())
     .set(content)
-    .then(doc => res.sendStatus(200))
-    .catch(err => res.sendStatus(500));
+    .then(doc => res.status(200).send(req.body))
+    .catch(err => res.status(500).send());
 });
 
 router.put('/:id', authenticateJWT, (req, res) => {
@@ -28,8 +29,8 @@ router.put('/:id', authenticateJWT, (req, res) => {
   db.collection('paintings')
     .doc(req.params.id.toString())
     .update(req.body)
-    .then(doc => res.sendStatus(200))
-    .catch(err => res.sendStatus(500));
+    .then(doc => res.status(200).send({ id: req.params.id, ...req.body }))
+    .catch(err => res.status(500).send());
 });
 
 export default router;

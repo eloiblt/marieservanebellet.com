@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Painting } from 'src/app/model/model';
 import { PaintingApiService } from 'src/app/services/api/painting-api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-management',
@@ -12,7 +13,10 @@ export class ManagementComponent implements OnInit {
   public newPainting: Painting;
   public paintings: Painting[];
 
-  constructor(private paintingApiService: PaintingApiService) { }
+  constructor(
+    private paintingApiService: PaintingApiService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.newPainting = new Painting();
@@ -28,18 +32,18 @@ export class ManagementComponent implements OnInit {
   }
 
   createNewPainting() {
-    console.log(this.newPainting);
-    this.paintingApiService.create(this.newPainting).subscribe(res => {
-      this.newPainting = new Painting();
-    }, err => {
-      console.log(err);
-    });
+    if (this.canCreate()) {
+      console.log(this.newPainting);
+      this.paintingApiService.create(this.newPainting).subscribe(res => {
+        this.newPainting = new Painting();
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
   update(p: Painting) {
-    console.log('update');
     this.paintingApiService.update(p.id, p).subscribe(res => {
-      console.log(res);
     }, err => {
       console.log(err);
     });

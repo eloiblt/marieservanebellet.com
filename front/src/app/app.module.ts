@@ -7,6 +7,8 @@ import { NavigationModule } from './modules/navigation/navigation.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminModule } from './modules/admin/admin.module';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     HomeModule,
     NavigationModule,
     AdminModule,
