@@ -47,17 +47,38 @@
 
         i {
           cursor: pointer;
-          opacity: 0.4;
 
-          &.active {
-            opacity: 1;
-            color: green;
+          &.fa-check {
+            opacity: 0.4;
+
+            &.active {
+              opacity: 1;
+              color: green;
+            }
+          }
+
+          &.fa-minus-circle {
+            display: none;
+
+            &:hover {
+              color: red;
+            }
           }
         }
       }
 
       &:not(:last-of-type) {
         margin-bottom: 10px;
+      }
+
+      &:hover {
+        .icon i.fa-minus-circle {
+          display: block;
+        }
+
+        .fields input {
+          font-weight: bold;
+        }
       }
     }
 

@@ -30,7 +30,7 @@ router.post('', (req, res) => {
             res.status(401).send();
           });
       } else {
-        res.sendStatus(401);
+        res.status(401).send();
       }
     })
     .catch(err => {

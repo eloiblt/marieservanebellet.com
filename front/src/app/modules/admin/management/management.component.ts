@@ -83,4 +83,12 @@ export class ManagementComponent implements OnInit {
       (this.newPicture.categoryId ? this.categoryPictures.find(c => c.id === this.newPicture.categoryId) : true) &&
       this.newPicture.url;
   }
+
+  delete(p: Picture) {
+    this.paintingApiService.delete(p.id).subscribe(res => {
+      this.getPictures();
+    }, err => {
+      console.log(err);
+    });
+  }
 }

@@ -27,11 +27,18 @@ router.post('/', authenticateJWT, (req, res) => {
 });
 
 router.put('/:id', authenticateJWT, (req, res) => {
-  console.log('update');
   db.collection('pictures')
     .doc(req.params.id.toString())
     .update(req.body)
     .then(doc => res.status(200).send({ id: req.params.id, ...req.body }))
+    .catch(err => res.status(500).send());
+});
+
+router.delete('/:id', authenticateJWT, (req, res) => {
+  db.collection('pictures')
+    .doc(req.params.id.toString())
+    .delete()
+    .then(doc => res.status(200).send())
     .catch(err => res.status(500).send());
 });
 

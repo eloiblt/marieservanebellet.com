@@ -31,6 +31,9 @@
             <input type="text" (change)="update(p)" [(ngModel)]="p.url" />
             <input type="text" (change)="update(p)" [(ngModel)]="p.size" />
           </div>
+          <div class="icon">
+            <i class="fas fa-minus-circle" (click)="delete(p)"></i>
+          </div>
         </div>
 
         <div class="painting-row">
