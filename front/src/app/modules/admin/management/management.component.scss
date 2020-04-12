@@ -3,4 +3,97 @@
 .admin-management {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .admin-management-content {
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .painting-row {
+      display: flex;
+      align-items: center;
+
+      .fields {
+        width: 98%;
+        display: flex;
+        align-items: center;
+
+        h2,
+        input {
+          flex: 1;
+
+          &:not(:last-of-type) {
+            margin-right: 10px;
+          }
+        }
+
+        input {
+          min-width: 1px;
+          border: 1px solid $anthraciteGrey;
+          border-radius: 3px;
+          height: 30px;
+          text-indent: 5px;
+        }
+      }
+
+      .icon {
+        width: 2%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          cursor: pointer;
+
+          &.fa-check {
+            opacity: 0.4;
+
+            &.active {
+              opacity: 1;
+              color: green;
+            }
+          }
+
+          &.fa-minus-circle {
+            display: none;
+
+            &:hover {
+              color: red;
+            }
+          }
+        }
+      }
+
+      &:not(:last-of-type) {
+        margin-bottom: 10px;
+      }
+
+      &:hover {
+        .icon i.fa-minus-circle {
+          display: block;
+        }
+
+        .fields input {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .paintings {
+      flex: 1;
+      position: relative;
+
+      .scrollable-paintings {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: auto;
+      }
+    }
+  }
 }

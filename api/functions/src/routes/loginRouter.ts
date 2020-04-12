@@ -20,7 +20,7 @@ router.post('', (req, res) => {
           .then(rt => {
             if (rt) {
               const token = jwt.sign({ mail: user.mail, password: user.password }, jwtSecret, { expiresIn: '1h' });
-              res.send({ user: user, token: token });
+              res.status(200).send({ user: user, token: token });
             } else {
               res.status(401).send();
             }
@@ -30,7 +30,7 @@ router.post('', (req, res) => {
             res.status(401).send();
           });
       } else {
-        res.sendStatus(401);
+        res.status(401).send();
       }
     })
     .catch(err => {

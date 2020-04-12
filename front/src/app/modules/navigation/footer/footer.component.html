@@ -1,10 +1,10 @@
-<div class="footer">
+<div class="footer" *ngIf="logo">
   <div class="footer-top">
     <p>Contact</p>
-    <img src="../../../../assets/images/signature.jpg" alt="Signature">
+    <img src="{{ logo.url }}" alt="{{ logo.title }}">
     <p>A propos</p>
   </div>
   <div class="footer-bottom">
-    Made with ❤️ by Eloi Bellet
+    Made with ❤️ by Eloi Blt
   </div>
 </div>

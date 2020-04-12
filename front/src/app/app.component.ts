@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PaintingApiService } from './services/api/painting-api.service';
+import { PicturesApiService } from './services/api/pictures-api.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,14 +8,4 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  title = 'front';
-
-  constructor(private paintingService: PaintingApiService, private router: Router) {
-    this.paintingService.get().subscribe(res => {
-      console.log(res);
-    }, err => {
-      console.log(err);
-    });
-  }
 }

@@ -26,6 +26,10 @@
         </div>
       </div>
 
+      <div class="error-http" *ngIf="error">
+        Erreur de login ou mot de passe
+      </div>
+
       <button type="submit" [disabled]="password.invalid || mail.invalid">Se connecter</button>
     </form>
   </div>

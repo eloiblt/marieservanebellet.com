@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
+import { Picture } from 'src/app/model/model';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  public logo: Picture;
+
+  constructor(private pictureApiService: PicturesApiService) { }
 
   ngOnInit(): void {
+    this.pictureApiService.getBySpec('Logo').subscribe(res => {
+      this.logo = res[0];
+    }, err => {
+      console.log(err);
+    });
   }
 
 }
