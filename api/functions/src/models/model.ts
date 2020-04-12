@@ -14,7 +14,7 @@ export class Picture {
 
 export class CategoryPictures {
   id!: number;
-  title!: string;
+  name!: string;
 }
 
 export class User {

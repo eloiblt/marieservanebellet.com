@@ -1,16 +1,9 @@
 <div class="menu-container">
   <div class="menu-content">
-    <div class="unite">
+    <div class="unite" *ngFor="let p of picturesMenu">
       <div class="img-container">
-        <img src="../../.../../../../assets/images/2.jpg" alt="Picture">
-        <div class="middle">Paysages anglais</div>
-      </div>
-    </div>
-
-    <div class="unite">
-      <div class="img-container">
-        <img src="../../.../../../../assets/images/3.jpg" alt="Picture">
-        <div class="middle">Bretagne</div>
+        <img src="{{p.url}}" alt="Picture">
+        <div class="middle">{{ getMenuName(p.categoryId) }}</div>
       </div>
     </div>
   </div>

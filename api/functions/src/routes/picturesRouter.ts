@@ -17,6 +17,18 @@ router.get('/', (req, res) => {
     .catch(err => res.status(500).send());
 });
 
+router.get('/getBySpec', (req, res) => {
+  db.collection('pictures')
+    .where("spec", "==", req.query.spec)
+    .get()
+    .then(doc => {
+      let array: any[] = [];
+      doc.forEach(d => array = [...array, { id: parseInt(d.id, 10), ...d.data() } as Picture]);
+      res.status(200).send(array)
+    })
+    .catch(err => res.status(500).send());
+});
+
 router.post('/', authenticateJWT, (req, res) => {
   const { id, ...content } = req.body;
   db.collection('pictures')

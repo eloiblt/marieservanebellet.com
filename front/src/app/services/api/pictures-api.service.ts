@@ -13,4 +13,10 @@ export class PicturesApiService extends GenericApiService<Picture> {
     super(http, toastService);
     this.controllerName = 'pictures';
   }
+
+  getBySpec(spec: string): Observable<Picture[]> {
+    const endPoint = '/getBySpec?spec=' + spec;
+
+    return this.http.get<Picture[]>(this.apiUrl + this.controllerName + endPoint);
+  }
 }
