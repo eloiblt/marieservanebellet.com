@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { forkJoin } from 'rxjs';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
@@ -13,6 +13,8 @@ export class MenuComponent implements OnInit {
 
   public picturesMenu: Picture[];
   public categoryPictures: CategoryPicture[];
+  @Output()
+  selectedCategory: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private pictureApiService: PicturesApiService,
@@ -35,6 +37,10 @@ export class MenuComponent implements OnInit {
 
   getMenuName(categoryid: number) {
     return this.categoryPictures.find(c => c.id === categoryid).name;
+  }
+
+  select(categoryid: number) {
+    this.selectedCategory.emit(this.categoryPictures.find(c => c.id === categoryid));
   }
 
 }

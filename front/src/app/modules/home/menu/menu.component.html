@@ -3,7 +3,7 @@
     <div class="unite" *ngFor="let p of picturesMenu">
       <div class="img-container">
         <img src="{{p.url}}" alt="Picture">
-        <div class="middle">{{ getMenuName(p.categoryId) }}</div>
+        <div class="middle" (click)="select(p.categoryId)">{{ getMenuName(p.categoryId) }}</div>
       </div>
     </div>
   </div>

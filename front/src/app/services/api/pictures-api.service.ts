@@ -19,4 +19,10 @@ export class PicturesApiService extends GenericApiService<Picture> {
 
     return this.http.get<Picture[]>(this.apiUrl + this.controllerName + endPoint);
   }
+
+  getByCategory(categoryId: number): Observable<Picture[]> {
+    const endPoint = '/getByCategory?categoryId=' + categoryId;
+
+    return this.http.get<Picture[]>(this.apiUrl + this.controllerName + endPoint);
+  }
 }

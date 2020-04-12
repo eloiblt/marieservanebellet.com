@@ -1,21 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { CategoryPicture, Picture } from 'src/app/model/model';
+import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 
 @Component({
   selector: 'app-pictures',
   templateUrl: './pictures.component.html',
   styleUrls: ['./pictures.component.scss']
 })
-export class PicturesComponent implements OnInit {
+export class PicturesComponent implements OnInit, OnChanges {
 
-  public url: string;
+  @Input()
+  selectedCategory: CategoryPicture;
 
-  constructor() { }
+  public pictures: Picture[] = [];
+  public clickedPicture: Picture;
+
+  constructor(
+    private pictureApiService: PicturesApiService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  showImage(url: string) {
-    this.url = url;
-    console.log(url);
+  ngOnChanges() {
+    if (this.selectedCategory) {
+      this.pictureApiService.getByCategory(this.selectedCategory.id).subscribe(res => {
+        this.pictures = res;
+      }, err => {
+        console.log(err);
+      });
+    }
   }
+
+  showImage(p: Picture) {
+    this.clickedPicture = p;
+  }
+
 }

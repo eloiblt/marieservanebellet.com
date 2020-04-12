@@ -1,7 +1,7 @@
 <div class="home">
-  <div class="ambiance-painting">
+  <div class="ambiance-painting" *ngIf="ambiancePicture">
     <div class="img-amb-container">
-      <img src="../../../../assets/images/Bandeau page d'accueil 1.jpg" alt="Image d'ambiance">
+      <img src="{{ ambiancePicture.url }}" alt="Image d'ambiance">
     </div>
     <div class="welcome">
       <p>Bienvenue sur la galerie de</p>
@@ -9,5 +9,6 @@
     </div>
   </div>
 
-  <app-menu></app-menu>
+  <app-menu *ngIf="!selectedCategory" (selectedCategory)="setCategory($event)"></app-menu>
+  <app-pictures *ngIf="selectedCategory" [selectedCategory]="selectedCategory"></app-pictures>
 </div>
