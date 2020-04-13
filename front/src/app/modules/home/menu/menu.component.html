@@ -1,4 +1,4 @@
-<div class="menu-container">
+<div class="menu-container" *ngIf="!loading">
   <div class="menu-content">
     <div class="unite" *ngFor="let p of picturesMenu">
       <div class="img-container">
@@ -8,3 +8,5 @@
     </div>
   </div>
 </div>
+
+<ngx-loading [show]="loading"></ngx-loading>

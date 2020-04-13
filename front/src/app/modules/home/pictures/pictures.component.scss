@@ -1,12 +1,32 @@
 @import "../../../../colors.scss";
 
 .grid-content {
-  background-color: $anthraciteGrey;
   height: 100%;
-  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .go-back {
+    width: 100%;
+    margin: 20px 0px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    i,
+    p {
+      color: white;
+    }
+
+    i {
+      margin-right: 10px;
+    }
+
+    p:hover {
+      text-decoration: underline;
+    }
+  }
 
   .grid {
     .unite {
@@ -64,8 +84,12 @@
 
 @media screen and (min-width: 500px) {
   .grid-content {
+    .go-back {
+      width: 80%;
+    }
+
     .grid {
-      margin: 20px;
+      margin-bottom: 20px;
       height: 100%;
       width: 80%;
       display: grid;
@@ -128,7 +152,7 @@
 
   img {
     width: 100%;
-    height: 95%;
+    height: 90%;
     object-fit: contain;
     transition: 0.3s;
   }
@@ -166,7 +190,7 @@
   }
 
   .label {
-    height: 5%;
+    height: 10%;
     align-self: center;
     display: flex;
     justify-content: center;
@@ -180,11 +204,13 @@
 
 @media screen and (max-width: 500px) {
   .grid-content {
+    padding: 10px;
+
     .grid {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px;
+      width: 100%;
 
       .unite {
         margin-bottom: 10px;

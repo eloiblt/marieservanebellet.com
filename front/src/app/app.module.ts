@@ -9,6 +9,7 @@ import { AdminModule } from './modules/admin/admin.module';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     HomeModule,
     NavigationModule,
     AdminModule,
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

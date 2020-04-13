@@ -1,14 +1,16 @@
 <div class="home">
-  <div class="ambiance-painting" *ngIf="ambiancePicture">
+  <div class="ambiance-painting" *ngIf="!loading">
     <div class="img-amb-container">
       <img src="{{ ambiancePicture.url }}" alt="Image d'ambiance">
     </div>
     <div class="welcome">
-      <p>Bienvenue sur la galerie de</p>
-      <p>Marie Servane Bellet</p>
+      <p>Huiles sur bois</p>
     </div>
   </div>
 
-  <app-menu *ngIf="!selectedCategory" (selectedCategory)="setCategory($event)"></app-menu>
-  <app-pictures *ngIf="selectedCategory" [selectedCategory]="selectedCategory"></app-pictures>
+  <ngx-loading [show]="loading"></ngx-loading>
+
+  <div class="gallery">
+    <app-gallery></app-gallery>
+  </div>
 </div>

@@ -1,0 +1,5 @@
+<div class="gallery-container">
+  <app-menu *ngIf="!selectedCategory" (selectedCategory)="setCategory($event)"></app-menu>
+  <app-pictures *ngIf="selectedCategory" [selectedCategory]="selectedCategory" (clearCategory)="clearCategory()">
+  </app-pictures>
+</div>

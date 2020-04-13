@@ -1,11 +1,15 @@
-<div class="grid-content">
-  <div class="grid" *ngIf="pictures">
+<div class="grid-content" *ngIf="!loading">
+  <div class="go-back" (click)="backMenu()">
+    <i class="fas fa-arrow-left"></i>
+    <p> Choisir une autre catégorie</p>
+  </div>
+  <div class="grid">
 
     <div *ngFor="let p of pictures"
       [ngClass]="{'unite': true, 'rectangle': p.gridColumn === '1 / 3', 'vertical': p.gridrow === '1 / 3'}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
       <div class="img-container">
-        <img src="{{p.url}}" alt="{{ p.title }}">
+        <img src="{{p.url}}" alt="{{ p.title }}" loading="eager">
         <div class="middle" (click)="showImage(p)">Aperçu</div>
       </div>
       <div class="label">
@@ -16,6 +20,8 @@
 
   </div>
 </div>
+
+<ngx-loading [show]="loading"></ngx-loading>
 
 <div *ngIf="clickedPicture" (click)="clickedPicture = null" class="modal">
   <span (click)="clickedPicture = null" class="close">&times;</span>
