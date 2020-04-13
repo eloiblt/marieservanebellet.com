@@ -1,16 +1,14 @@
 @import "../../../../colors.scss";
 
 .grid-content {
-  background-color: $anthraciteGrey;
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   .go-back {
-    width: 80%;
+    width: 100%;
     margin: 20px 0px;
     cursor: pointer;
     display: flex;
@@ -86,6 +84,10 @@
 
 @media screen and (min-width: 500px) {
   .grid-content {
+    .go-back {
+      width: 80%;
+    }
+
     .grid {
       margin-bottom: 20px;
       height: 100%;
@@ -202,11 +204,13 @@
 
 @media screen and (max-width: 500px) {
   .grid-content {
+    padding: 10px;
+
     .grid {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px;
+      width: 100%;
 
       .unite {
         margin-bottom: 10px;

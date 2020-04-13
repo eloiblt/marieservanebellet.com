@@ -2,7 +2,9 @@
 
 .home {
   width: 100%;
-  background-color: $anthraciteGrey;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   .ambiance-painting {
     width: 100%;
@@ -39,6 +41,10 @@
         text-align: center;
       }
     }
+  }
+
+  .gallery {
+    flex: 1;
   }
 }
 

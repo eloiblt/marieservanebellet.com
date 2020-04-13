@@ -4,14 +4,13 @@
       <img src="{{ ambiancePicture.url }}" alt="Image d'ambiance">
     </div>
     <div class="welcome">
-      <p>Bienvenue sur la galerie de</p>
-      <p>Marie Servane Bellet</p>
+      <p>Huiles sur bois</p>
     </div>
   </div>
 
   <ngx-loading [show]="loading"></ngx-loading>
 
-  <app-menu *ngIf="!selectedCategory" (selectedCategory)="setCategory($event)"></app-menu>
-  <app-pictures *ngIf="selectedCategory" [selectedCategory]="selectedCategory" (clearCategory)="clearCategory()">
-  </app-pictures>
+  <div class="gallery">
+    <app-gallery></app-gallery>
+  </div>
 </div>

@@ -9,7 +9,6 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 })
 export class HomeComponent implements OnInit {
 
-  public selectedCategory: CategoryPicture;
   public ambiancePicture: Picture;
   public loading = true;
 
@@ -26,14 +25,6 @@ export class HomeComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-  }
-
-  setCategory(c: CategoryPicture) {
-    this.selectedCategory = c;
-  }
-
-  clearCategory() {
-    this.selectedCategory = null;
   }
 
 }
