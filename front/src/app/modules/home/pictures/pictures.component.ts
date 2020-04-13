@@ -1,66 +1,42 @@
-import { Component, OnInit, Input, OnChanges, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { CategoryPicture, Picture } from 'src/app/model/model';
-import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Picture } from 'src/app/model/model';
 
 @Component({
   selector: 'app-pictures',
   templateUrl: './pictures.component.html',
   styleUrls: ['./pictures.component.scss']
 })
-export class PicturesComponent implements OnInit, OnChanges {
+export class PicturesComponent implements OnInit {
 
   @Input()
-  selectedCategory: CategoryPicture;
+  paintings: Picture[];
   @Output()
   clearCategory: EventEmitter<any> = new EventEmitter();
 
   public pictures: Picture[] = [];
   public clickedPicture: Picture;
-  public loading = true;
 
-  constructor(
-    private pictureApiService: PicturesApiService
-  ) { }
+  public imagesLoaded = false;
+  public cptImagesLoaded = 0;
+
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-
-  ngOnChanges() {
-    if (this.selectedCategory) {
-      this.pictureApiService.getByCategory(this.selectedCategory.id).subscribe(res => {
-        this.pictures = res;
-        console.log(res);
-        this.loadImages();
-      }, err => {
-        console.log(err);
-      });
-    }
   }
 
   showImage(p: Picture) {
     this.clickedPicture = p;
   }
 
-  loadImages() {
-    let cpt = 0;
-
-    this.pictures.map(p => p.url).forEach(url => {
-      const img = new Image();
-
-      img.onload = () => {
-        cpt++;
-        if (cpt === this.pictures.length) {
-          this.loading = false;
-        }
-      };
-
-      img.src = url;
-    });
-  }
-
   backMenu() {
     this.clearCategory.emit();
+  }
+
+  imageLoaded() {
+    this.cptImagesLoaded++;
+    if (this.cptImagesLoaded === this.paintings.length) {
+      this.imagesLoaded = true;
+    }
   }
 
 }
