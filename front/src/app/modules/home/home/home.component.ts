@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryPicture, Picture } from 'src/app/model/model';
+import { Picture } from 'src/app/model/model';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 
 @Component({
@@ -10,21 +10,26 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 export class HomeComponent implements OnInit {
 
   public ambiancePicture: Picture;
-  public loading = true;
+  public dataReceived = false;
+  public imagesLoaded = false;
+
+  get loading() {
+    return !(this.dataReceived && this.imagesLoaded);
+  }
 
   constructor(private pictureApiService: PicturesApiService) { }
 
   ngOnInit(): void {
     this.pictureApiService.getBySpec('Ambiance').subscribe(res => {
       this.ambiancePicture = res[0];
-      const img = new Image();
-      img.onload = () => {
-        this.loading = false;
-      };
-      img.src = this.ambiancePicture.url;
+      this.dataReceived = true;
     }, err => {
       console.log(err);
     });
+  }
+
+  imageLoaded() {
+    this.imagesLoaded = true;
   }
 
 }

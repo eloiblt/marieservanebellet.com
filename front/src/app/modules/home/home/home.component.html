@@ -1,16 +1,16 @@
-<div class="home">
-  <div class="ambiance-painting" *ngIf="!loading">
+<div class="home" *ngIf="dataReceived" [ngStyle]="!imagesLoaded ? {'display': 'none'} : ''">
+  <div class="ambiance-painting">
     <div class="img-amb-container">
-      <img src="{{ ambiancePicture.url }}" alt="Image d'ambiance">
+      <img src="{{ ambiancePicture.url }}" (load)="imageLoaded()" alt="Image d'ambiance">
     </div>
     <div class="welcome">
       <p>Huiles sur bois</p>
     </div>
   </div>
 
-  <ngx-loading [show]="loading"></ngx-loading>
-
   <div class="gallery">
     <app-gallery></app-gallery>
   </div>
 </div>
+
+<ngx-loading [show]="loading"></ngx-loading>

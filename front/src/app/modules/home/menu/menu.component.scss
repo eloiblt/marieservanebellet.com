@@ -99,3 +99,17 @@
     }
   }
 }
+
+@media screen and (max-width: 350px) {
+  .menu-container {
+    .menu-content {
+      .unite {
+        .img-container {
+          .middle {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}
