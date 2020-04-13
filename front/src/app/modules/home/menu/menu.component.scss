@@ -86,3 +86,17 @@
     }
   }
 }
+
+@media screen and (max-width: 400px) {
+  .menu-container {
+    .menu-content {
+      .unite {
+        .img-container {
+          .middle {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

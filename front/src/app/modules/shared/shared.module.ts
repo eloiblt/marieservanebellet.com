@@ -8,7 +8,7 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
   imports: [
     CommonModule,
     NgxLoadingModule.forRoot({
-      animationType: ngxLoadingAnimationTypes.rectangleBounce
+      animationType: ngxLoadingAnimationTypes.pulse
     }),
   ],
   exports: [

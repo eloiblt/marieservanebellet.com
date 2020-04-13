@@ -32,4 +32,8 @@ export class HomeComponent implements OnInit {
     this.selectedCategory = c;
   }
 
+  clearCategory() {
+    this.selectedCategory = null;
+  }
+
 }

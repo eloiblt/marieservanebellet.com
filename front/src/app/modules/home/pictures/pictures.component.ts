@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CategoryPicture, Picture } from 'src/app/model/model';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 
@@ -11,6 +11,8 @@ export class PicturesComponent implements OnInit, OnChanges {
 
   @Input()
   selectedCategory: CategoryPicture;
+  @Output()
+  clearCategory: EventEmitter<any> = new EventEmitter();
 
   public pictures: Picture[] = [];
   public clickedPicture: Picture;
@@ -55,6 +57,10 @@ export class PicturesComponent implements OnInit, OnChanges {
 
       img.src = url;
     });
+  }
+
+  backMenu() {
+    this.clearCategory.emit();
   }
 
 }

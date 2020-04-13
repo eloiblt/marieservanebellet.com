@@ -1,4 +1,8 @@
 <div class="grid-content" *ngIf="!loading">
+  <div class="go-back" (click)="backMenu()">
+    <i class="fas fa-arrow-left"></i>
+    <p> Choisir une autre catégorie</p>
+  </div>
   <div class="grid">
 
     <div *ngFor="let p of pictures"
