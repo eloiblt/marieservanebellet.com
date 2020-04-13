@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
 
   public picturesMenu: Picture[];
   public categoryPictures: CategoryPicture[];
+  public loading = true;
   @Output()
   selectedCategory: EventEmitter<any> = new EventEmitter();
 
@@ -31,6 +32,7 @@ export class MenuComponent implements OnInit {
       categoryPictures: this.categoryPictureApiService.get()
     }).subscribe(res => {
       this.picturesMenu = res.picturesMenu;
+      this.loadImages();
       this.categoryPictures = res.categoryPictures;
     });
   }
@@ -41,6 +43,23 @@ export class MenuComponent implements OnInit {
 
   select(categoryid: number) {
     this.selectedCategory.emit(this.categoryPictures.find(c => c.id === categoryid));
+  }
+
+  loadImages() {
+    let cpt = 0;
+
+    this.picturesMenu.map(p => p.url).forEach(url => {
+      const img = new Image();
+
+      img.onload = () => {
+        cpt++;
+        if (cpt === this.picturesMenu.length) {
+          this.loading = false;
+        }
+      };
+
+      img.src = url;
+    });
   }
 
 }

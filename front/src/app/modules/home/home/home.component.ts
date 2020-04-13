@@ -11,12 +11,18 @@ export class HomeComponent implements OnInit {
 
   public selectedCategory: CategoryPicture;
   public ambiancePicture: Picture;
+  public loading = true;
 
   constructor(private pictureApiService: PicturesApiService) { }
 
   ngOnInit(): void {
     this.pictureApiService.getBySpec('Ambiance').subscribe(res => {
       this.ambiancePicture = res[0];
+      const img = new Image();
+      img.onload = () => {
+        this.loading = false;
+      };
+      img.src = this.ambiancePicture.url;
     }, err => {
       console.log(err);
     });
