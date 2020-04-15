@@ -1,13 +1,32 @@
 import express from 'express';
+import cors from 'cors';
+import * as constants from './config/constants';
+// import picturesRouter from './routes/picturesRouter';
+// import loginRouter from './routes/loginRouter';
+// import categoryPictures from './routes/categoryPaintingRouter';
 
 const app = express();
-const port = 3000;
-app.get('/', (req, res) => {
-  res.send('The sedulous hyena ate the antelope!');
-});
+app.use(express.json());
+
+if (process.env.NODE_ENV === "development") {
+  console.log('Development environnement')
+  app.use(cors()); // allow *
+} else {
+  app.use(cors({
+    origin: constants.frontUrl,
+    optionsSuccessStatus: 200
+  })); // allow front only
+}
+
+const port = 80;
 app.listen(port, err => {
-  if (err) {
-    return console.error(err);
-  }
   return console.log(`server is listening on ${port}`);
+});
+
+// app.use('/login', loginRouter);
+// app.use('/pictures', picturesRouter);
+// app.use('/categoryPictures', categoryPictures);
+
+app.get('/env', (req, res) => {
+  res.send(constants);
 });
