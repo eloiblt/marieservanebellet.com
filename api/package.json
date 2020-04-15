@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "devstart": "tsc && cross-env NODE_ENV=development nodemon ./dist/app.js",
-    "start": "tsc && cross-env NODE_ENV=production nodemon ./dist/app.js",
-    "lint": "tslint --project tsconfig.json",
-    "deploy": "firebase deploy --only functions"
+    "start": "npm i && tsc && cross-env NODE_ENV=production nodemon ./dist/app.js",
+    "lint": "tslint --project tsconfig.json"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
