@@ -14,7 +14,7 @@ export class GalleryComponent implements OnInit {
   public selectedCategory: CategoryPicture;
   public pictures: Picture[];
   public categoryPictures: CategoryPicture[];
-  public dataReceived = false;
+  public loading = true;
   public picturesMenu: Picture[];
   public paintingsByCategory: Picture[];
 
@@ -34,7 +34,7 @@ export class GalleryComponent implements OnInit {
     }).subscribe(res => {
       this.pictures = res.pictures;
       this.categoryPictures = res.categoryPictures;
-      this.dataReceived = true;
+      this.loading = false;
 
       this.picturesMenu = this.pictures.filter(p => p.spec === 'Menu');
     });

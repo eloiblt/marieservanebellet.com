@@ -1,7 +1,7 @@
-<div class="footer" *ngIf="logo">
+<div class="footer" *ngIf="!loading">
   <div class="footer-top">
     <p>Contact</p>
-    <img src="{{ logo.url }}" alt="{{ logo.title }}">
+    <img src="{{picturesPath + logo.url }}" alt="{{ logo.title }}">
     <p>A propos</p>
   </div>
   <div class="footer-bottom">

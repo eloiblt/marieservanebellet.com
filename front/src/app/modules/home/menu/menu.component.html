@@ -1,12 +1,10 @@
-<div class="menu-container" [ngStyle]="!imagesLoaded ? {'display': 'none'} : ''">
+<div class="menu-container">
   <div class="menu-content">
     <div class="unite" *ngFor="let p of picturesMenu">
       <div class="img-container">
-        <img src="{{p.url}}" alt="{{p.title}}" (load)="imageLoaded()">
+        <img src="{{picturesPath + p.url}}" alt="{{p.title}}">
         <div class="middle" (click)="select(p.categoryId)">{{ getMenuName(p.categoryId) }}</div>
       </div>
     </div>
   </div>
 </div>
-
-<ngx-loading [show]="!imagesLoaded"></ngx-loading>

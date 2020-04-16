@@ -11,7 +11,7 @@ import loginRouter from './routes/loginRouter';
 import categoryPictures from './routes/categoryPicturesRouter';
 
 // DB connection
-mongoose.connect("mongodb://eloiblt:Belo1073mo!@92.222.75.34:27017/marieservanebellet", {
+mongoose.connect(constants.dataBaseUrl, {
   authSource: "admin",
   useNewUrlParser: true,
   useUnifiedTopology: true

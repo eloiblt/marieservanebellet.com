@@ -16,8 +16,7 @@ export class PicturesComponent implements OnInit {
   public pictures: Picture[] = [];
   public clickedPicture: Picture;
 
-  public imagesLoaded = false;
-  public cptImagesLoaded = 0;
+  public picturesPath = '../../../../assets/pictures/';
 
   constructor() { }
 
@@ -30,13 +29,6 @@ export class PicturesComponent implements OnInit {
 
   backMenu() {
     this.clearCategory.emit();
-  }
-
-  imageLoaded() {
-    this.cptImagesLoaded++;
-    if (this.cptImagesLoaded === this.paintings.length) {
-      this.imagesLoaded = true;
-    }
   }
 
 }

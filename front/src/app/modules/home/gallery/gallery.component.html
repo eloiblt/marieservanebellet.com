@@ -1,4 +1,4 @@
-<div class="gallery-container" *ngIf="dataReceived">
+<div class="gallery-container" *ngIf="!loading">
   <app-menu *ngIf="!selectedCategory" [picturesMenu]="picturesMenu" [categoryPictures]="categoryPictures"
     (selectedCategory)="setCategory($event)">
   </app-menu>
@@ -6,4 +6,4 @@
   </app-pictures>
 </div>
 
-<ngx-loading [show]="!dataReceived"></ngx-loading>
+<ngx-loading [show]="loading"></ngx-loading>
