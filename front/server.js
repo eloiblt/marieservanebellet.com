@@ -1,5 +1,4 @@
 const fs = require('fs');
-const http = require('http');
 const https = require('https');
 const express = require('express');
 
@@ -32,12 +31,7 @@ app.get('*', function (req, res, next) {
   res.sendFile(__dirname + '/dist/index.html');
 });
 
-const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
-
-httpServer.listen(80, () => {
-  console.log('HTTP Server running on port 80');
-});
 
 httpsServer.listen(443, () => {
   console.log('HTTPS Server running on port 443');
