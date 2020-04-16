@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "development") {
   httpServer.listen(3000, () => {
     console.log('HTTP Server is listening on 3000');
   });
-} else {
+} else if (process.env.NODE_ENV === "production") {
   app.use(cors({
     origin: constants.frontUrl,
     optionsSuccessStatus: 200
