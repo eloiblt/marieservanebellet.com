@@ -1,69 +1,61 @@
-// import * as express from 'express';
-// import { db } from '../index';
-// import { authenticateJWT } from '../middlewares/authenticate';
-// import { Picture } from '../models/model';
+import * as express from 'express';
+import { Picture, PictureCollection } from '../models/model';
+import { authenticateJWT } from '../middlewares/authenticate';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.get('/', (req, res) => {
-//   db.collection('pictures')
-//     .orderBy("categoryId")
-//     .get()
-//     .then(doc => {
-//       let array: any[] = [];
-//       doc.forEach(d => array = [...array, { id: parseInt(d.id, 10), ...d.data() } as Picture]);
-//       res.status(200).send(array);
-//     })
-//     .catch(err => res.status(500).send());
-// });
+router.get('/', (req, res) => {
+  PictureCollection.find().lean()
+    .then(docs => {
+      const pictures: Picture[]  = docs.map(d => {
+        const { _id, ...picture } = d;
+        return picture as Picture;
+      });
+      res.status(200).send(pictures);
+    })
+    .catch(err => res.status(500).send());
+});
 
-// router.get('/getBySpec', (req, res) => {
-//   db.collection('pictures')
-//     .where("spec", "==", req.query.spec)
-//     .get()
-//     .then(doc => {
-//       let array: any[] = [];
-//       doc.forEach(d => array = [...array, { id: parseInt(d.id, 10), ...d.data() } as Picture]);
-//       res.status(200).send(array)
-//     })
-//     .catch(err => res.status(500).send());
-// });
+router.get('/getBySpec', (req, res) => {
+  PictureCollection.find({ spec: req.query.spec }).lean()
+    .then(docs => {
+      const pictures: Picture[] = docs.map(d => {
+        const { _id, ...picture } = d;
+        return picture as Picture;
+      });
+      res.status(200).send(pictures);
+    })
+    .catch(err => res.status(500).send());
+});
 
-// router.get('/getByCategory', (req, res) => {
-//   db.collection('pictures')
-//     .where("categoryId", "==", parseInt(req.query.categoryId, 10))
-//     .get()
-//     .then(doc => {
-//       let array: any[] = [];
-//       doc.forEach(d => array = [...array, { id: parseInt(d.id, 10), ...d.data() } as Picture]);
-//       res.status(200).send(array)
-//     })
-//     .catch(err => res.status(500).send());
-// });
+router.get('/getByCategory', (req, res) => {
+  PictureCollection.find({ categoryId: req.query.categoryId }).lean()
+    .then(docs => {
+      const pictures = docs.map(d => {
+        const { _id, ...picture } = d;
+        return picture as Picture;
+      });
+      res.status(200).send(pictures);
+    })
+    .catch(err => res.status(500).send());
+});
 
-// router.post('/', authenticateJWT, (req, res) => {
-//   const { id, ...content } = req.body;
-//   db.collection('pictures')
-//     .doc(id.toString())
-//     .set(content)
-//     .then(doc => res.status(200).send(req.body))
-//     .catch(err => res.status(500).send());
-// });
+router.post('/', authenticateJWT, (req, res) => {
+  PictureCollection.create(req.body)
+    .then(docs => res.status(200).send(req.body))
+    .catch(err => res.status(500).send());
+});
 
-// router.put('/:id', authenticateJWT, (req, res) => {
-//   db.collection('pictures')
-//     .doc(req.params.id.toString())
-//     .update(req.body)
-//     .then(doc => res.status(200).send({ id: req.params.id, ...req.body }))
-//     .catch(err => res.status(500).send());
-// });
+router.put('/:id', authenticateJWT, (req, res) => {
+  PictureCollection.updateOne({ id: req.body.id }, req.body)
+    .then(docs => res.status(200).send({ id: req.params.id, ...req.body }))
+    .catch(err => res.status(500).send());
+});
 
-// router.delete('/:id', authenticateJWT, (req, res) => {
-//   db.collection('pictures')
-//     .doc(req.params.id.toString())
-//     .delete()
-//     .then(doc => res.status(200).send())
-//     .catch(err => res.status(500).send());
-// });
+router.delete('/:id', authenticateJWT, (req, res) => {
+  PictureCollection.deleteOne({ id: req.params.id })
+    .then(docs => res.status(200).send())
+    .catch(err => res.status(500).send());
+});
 
-// export default router;
+export default router;
