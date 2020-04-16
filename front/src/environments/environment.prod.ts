@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://europe-west1-marieservanebellet-api.cloudfunctions.net/webApi'
+  apiUrl: 'https://marieservanebellet.com:3000'
 };
