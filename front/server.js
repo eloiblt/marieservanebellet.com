@@ -4,6 +4,7 @@ const https = require('https');
 const express = require('express');
 
 const app = express();
+app.use(express.json());
 
 // Certificate
 const privateKey = fs.readFileSync('../../.certbot/config/live/marieservanebellet.com/privkey.pem', 'utf8');
@@ -17,6 +18,10 @@ const credentials = {
 };
 
 app.use(express.static(__dirname + '/dist'));
+
+app.get('*', function (req, res, next) {
+  res.sendfile(__dirname + '/dist/index.html');
+});
 
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);

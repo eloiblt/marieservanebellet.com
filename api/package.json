@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "devstart": "tsc && cross-env NODE_ENV=development nodemon ./dist/app.js",
-    "start": "npm i && tsc && cross-env NODE_ENV=production forever start ./dist/app.js",
+    "start": "tsc && cross-env NODE_ENV=development nodemon ./dist/app.js",
+    "deploy": "forever stop dist/app.js && git pull && npm i && tsc && cross-env NODE_ENV=production forever start dist/app.js",
     "lint": "tslint --project tsconfig.json"
   },
   "dependencies": {
