@@ -15,7 +15,7 @@ export function authenticateJWT(req: any, res: any, next: any) {
       next();
     });
   } else {
-    console.log('pas le header, dégage !')
+    console.log('Unauthorized tentative');
     res.status(401).send();
   }
 }
