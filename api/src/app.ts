@@ -18,9 +18,8 @@ if (process.env.NODE_ENV === "development") {
   })); // allow front only
 }
 
-const port = 443;
-app.listen(port, err => {
-  return console.log(`server is listening on ${port}`);
+app.listen(3000, err => {
+  return console.log('server is listening on 3000');
 });
 
 // app.use('/login', loginRouter);
@@ -28,6 +27,5 @@ app.listen(port, err => {
 // app.use('/categoryPictures', categoryPictures);
 
 app.get('/env', (req, res) => {
-  console.log('here');
   res.send(constants);
 });

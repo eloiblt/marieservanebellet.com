@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "devstart": "ng serve",
-    "start": "npm i && ng build --prod && forever start server.js",
+    "start": "ng serve",
     "build": "ng build --prod",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "forever stop server.js && git pull && npm i && npx ng build --prod && forever start server.js"
   },
   "private": true,
   "dependencies": {
@@ -51,7 +51,6 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3",
     "@angular-devkit/architect": "~0.900",
-    "firebase-tools": "^8.0.0",
     "fuzzy": "^0.1.3",
     "inquirer": "^6.2.2",
     "inquirer-autocomplete-prompt": "^1.0.1"
