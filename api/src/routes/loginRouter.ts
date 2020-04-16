@@ -14,12 +14,12 @@ router.post('', (req, res) => {
         return user as User;
       });
       if (docs.length === 1) {
-        const user = users[0];
-        bcrypt.compare(req.body.password, user.password)
+        const currentUser = users[0];
+        bcrypt.compare(req.body.password, currentUser.password)
           .then(rt => {
             if (rt) {
-              const token = jwt.sign({ mail: user.mail, password: user.password }, jwtSecret, { expiresIn: '1h' });
-              res.status(200).send({ user: this.user, token: this.token });
+              const newToken = jwt.sign({ mail: currentUser.mail, password: currentUser.password }, jwtSecret, { expiresIn: '1h' });
+              res.status(200).send({ user: currentUser, token: newToken });
             } else {
               res.status(401).send();
             }

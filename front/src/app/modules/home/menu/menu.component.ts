@@ -15,8 +15,7 @@ export class MenuComponent implements OnInit {
   @Input()
   picturesMenu: Picture[];
 
-  public imagesLoaded = false;
-  public cptImagesLoaded = 0;
+  public picturesPath = '../../../../assets/pictures/';
 
   constructor() { }
 
@@ -29,13 +28,6 @@ export class MenuComponent implements OnInit {
 
   select(categoryid: number) {
     this.selectedCategory.emit(this.categoryPictures.find(c => c.id === categoryid));
-  }
-
-  imageLoaded() {
-    this.cptImagesLoaded++;
-    if (this.cptImagesLoaded === this.picturesMenu.length) {
-      this.imagesLoaded = true;
-    }
   }
 
 }

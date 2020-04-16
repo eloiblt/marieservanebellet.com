@@ -1,7 +1,7 @@
-<div class="home" *ngIf="dataReceived" [ngStyle]="!imagesLoaded ? {'display': 'none'} : ''">
+<div class="home" *ngIf="!loading">
   <div class="ambiance-painting">
     <div class="img-amb-container">
-      <img src="{{ ambiancePicture.url }}" (load)="imageLoaded()" alt="Image d'ambiance">
+      <img src="{{picturesPath + ambiancePicture.url }}" alt="Image d'ambiance">
     </div>
     <div class="welcome">
       <p>Huiles sur bois</p>

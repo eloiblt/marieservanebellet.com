@@ -10,26 +10,18 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 export class HomeComponent implements OnInit {
 
   public ambiancePicture: Picture;
-  public dataReceived = false;
-  public imagesLoaded = false;
-
-  get loading() {
-    return !(this.dataReceived && this.imagesLoaded);
-  }
+  public loading = true;
+  public picturesPath = '../../../assets/pictures/';
 
   constructor(private pictureApiService: PicturesApiService) { }
 
   ngOnInit(): void {
     this.pictureApiService.getBySpec('Ambiance').subscribe(res => {
       this.ambiancePicture = res[0];
-      this.dataReceived = true;
+      this.loading = false;
     }, err => {
       console.log(err);
     });
-  }
-
-  imageLoaded() {
-    this.imagesLoaded = true;
   }
 
 }
