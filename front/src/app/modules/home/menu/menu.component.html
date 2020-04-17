@@ -1,8 +1,8 @@
-<div class="menu-container">
+<div class="menu-container" *ngIf="!loading">
   <div class="menu-content">
     <div class="unite" *ngFor="let p of picturesMenu">
-      <div class="img-container">
-        <img src="{{picturesPath + p.url}}" alt="{{p.title}}">
+      <div class="img-container" [ngClass]="{'show': show}">
+        <img src="{{picturesPath + p.url}}" (load)="loaded()" alt="{{p.title}}">
         <div class="middle" (click)="select(p.categoryId)">{{ getMenuName(p.categoryId) }}</div>
       </div>
     </div>

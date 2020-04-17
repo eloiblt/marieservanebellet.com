@@ -4,13 +4,39 @@ import { HomeComponent } from './modules/home/home.component';
 import { ManagementComponent } from './modules/admin/management/management.component';
 import { LoginComponent } from './modules/admin/login/login.component';
 import { AuthGuardService } from './services/authGuard.service';
-import { NotfoundComponent } from './modules/navigation/notfound/notfound.component';
+import { PicturesComponent } from './modules/home/pictures/pictures.component';
+import { MenuComponent } from './modules/home/menu/menu.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'gallery',
+    pathMatch: 'prefix'
+  },
+  {
+    path: 'gallery',
     component: HomeComponent,
-    pathMatch: 'full'
+    children: [
+      {
+        path: '',
+        component: MenuComponent
+      },
+      {
+        path: 'saint-malo',
+        component: PicturesComponent,
+        data: { categoryId: 1 }
+      },
+      {
+        path: 'angleterre',
+        component: PicturesComponent,
+        data: { categoryId: 2 }
+      },
+      {
+        path: 'ambiances',
+        component: PicturesComponent,
+        data: { categoryId: 3 }
+      }
+    ]
   },
   {
     path: 'adminLogin',
@@ -25,7 +51,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotfoundComponent
+    redirectTo: 'gallery',
   }
 ];
 

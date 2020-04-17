@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -10,10 +11,12 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.pulse
     }),
+    RouterModule
   ],
   exports: [
     CommonModule,
-    NgxLoadingModule
+    NgxLoadingModule,
+    RouterModule
   ],
 })
 export class SharedModule { }

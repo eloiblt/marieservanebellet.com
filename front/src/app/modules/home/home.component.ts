@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   public ambiancePicture: Picture;
   public loading = true;
   public picturesPath = '../../../assets/pictures/';
+  public show = false;
 
   constructor(private pictureApiService: PicturesApiService) { }
 
@@ -22,6 +23,10 @@ export class HomeComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  loaded() {
+    this.show = true;
   }
 
 }

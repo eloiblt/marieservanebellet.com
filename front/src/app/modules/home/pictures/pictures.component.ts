@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Picture } from 'src/app/model/model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pictures',
@@ -18,9 +19,12 @@ export class PicturesComponent implements OnInit {
 
   public picturesPath = '../../../../assets/pictures/';
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.data);
   }
 
   showImage(p: Picture) {
