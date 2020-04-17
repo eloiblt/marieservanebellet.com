@@ -79,7 +79,6 @@ export class ManagementComponent implements OnInit {
 
   canCreate() {
     return this.newPicture.id &&
-      this.newPicture.title &&
       (this.newPicture.categoryId ? this.categoryPictures.find(c => c.id === this.newPicture.categoryId) : true) &&
       this.newPicture.url;
   }

@@ -15,6 +15,7 @@ export class PicturesComponent implements OnInit {
   public loading = true;
   public picturesPath = '../../../../assets/pictures/';
   public show = false;
+  public showModal = false;
   public cptLoaded = 0;
 
   constructor(
@@ -49,6 +50,11 @@ export class PicturesComponent implements OnInit {
     if (this.cptLoaded === this.pictures.length) {
       this.show = true;
     }
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.clickedPicture = null;
   }
 
 }

@@ -105,7 +105,12 @@
       grid-gap: 20px;
 
       .unite {
-        padding-top: calc(100% * 1.1);
+        $labelSize: 1.1;
+        &.hideLabel {
+          $labelSize: 1;
+        }
+
+        padding-top: calc(100% * #{$labelSize});
 
         .img-container {
           position: absolute;
@@ -125,12 +130,12 @@
 
         &.rectangle {
           // hauteur = 2 fois largeur - 20px divisé par deux, + 1/10 pour légende
-          padding-top: calc((100% - 20px) * 1 / 2 * 1.1);
+          padding-top: calc((100% - 20px) * 1 / 2 * #{$labelSize});
         }
 
         &.vertical {
           // hauteur = 2 fois (largeur + legende), + 20px
-          padding-top: calc(100% * 1.1 * 2 + 20px);
+          padding-top: calc(100% * #{$labelSize} * 2 + 20px);
 
           .img-container {
             bottom: 5%;
@@ -138,6 +143,12 @@
 
           .label {
             top: 95%;
+          }
+        }
+
+        &.hideLabel {
+          .img-container {
+            bottom: 0;
           }
         }
       }
@@ -191,6 +202,18 @@
     object-fit: contain;
     transition: 0.3s;
     margin: 10px;
+    opacity: 0;
+    transition: opacity 0.7s;
+
+    &.show {
+      opacity: 1;
+    }
+  }
+
+  &.hideLabel {
+    img {
+      height: 100%;
+    }
   }
 
   img,
