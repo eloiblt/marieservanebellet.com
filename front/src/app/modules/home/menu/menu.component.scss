@@ -40,6 +40,7 @@
           font-size: 16px;
           padding: 16px 32px;
           cursor: pointer;
+          text-align: center;
         }
 
         &:hover img {
@@ -57,7 +58,7 @@
 @media screen and (min-width: 500px) {
   .menu-container {
     .menu-content {
-      width: 50%;
+      width: 75%;
       margin: 10px 0px;
 
       .unite {
@@ -85,34 +86,6 @@
 
         &:not(:last-of-type) {
           margin-bottom: 30px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .menu-container {
-    .menu-content {
-      .unite {
-        .img-container {
-          .middle {
-            font-size: 14px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .menu-container {
-    .menu-content {
-      .unite {
-        .img-container {
-          .middle {
-            font-size: 11px;
-          }
         }
       }
     }
