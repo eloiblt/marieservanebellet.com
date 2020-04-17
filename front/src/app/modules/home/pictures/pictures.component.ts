@@ -27,7 +27,6 @@ export class PicturesComponent implements OnInit {
     this.pictureApiService.getByCategory(this.route.snapshot.data.categoryId).subscribe(res => {
       this.pictures = res;
       this.loading = false;
-      console.log(res);
     }, err => {
       console.log(err);
     });

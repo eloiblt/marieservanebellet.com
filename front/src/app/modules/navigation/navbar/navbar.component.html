@@ -1,14 +1,19 @@
-<div class="navbar">
-  <h1>Marie Servane Bellet</h1>
+<div class="navbar" *ngIf="!loading">
+  <div class="logo-left" [routerLink]="['/']">
+    <img src="{{ picturesPath + logo.url }}" alt="{{ logo.title }}">
+    <h2>Marie-Servane Bellet</h2>
+  </div>
   <div class="onglets">
     <div class="onglet" [routerLink]="['/ambiances']">
       Ambiances
     </div>
-    <div class="onglet">
+    <div class="onglet" [routerLink]="['/about']">
       A propos
     </div>
-    <div class="onglet">
+    <div class="onglet" [routerLink]="['/contact']">
       Contact
     </div>
   </div>
 </div>
+
+<ngx-loading [show]="loading"></ngx-loading>

@@ -1,10 +1,5 @@
 <div class="footer" *ngIf="!loading">
-  <div class="footer-top">
-    <p>Contact</p>
-    <img src="{{picturesPath + logo.url }}" alt="{{ logo.title }}">
-    <p>A propos</p>
-  </div>
-  <div class="footer-bottom">
-    Made with ❤️ by Eloi Blt
-  </div>
+  <p [routerLink]="['/contact']">Contact</p>
+  <img src="{{picturesPath + logo.url }}" alt="{{ logo.title }}">
+  <p [routerLink]="['/about']">A propos</p>
 </div>
