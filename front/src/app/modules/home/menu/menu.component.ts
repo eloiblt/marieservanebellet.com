@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
   public loading = true;
   public picturesPath = '../../../../assets/pictures/';
   public show = false;
-  public cptShow = 0;
+  public cptLoaded = 0;
 
   constructor(
     private pictureApiService: PicturesApiService,
@@ -59,9 +59,8 @@ export class MenuComponent implements OnInit {
   }
 
   loaded() {
-    console.log('loaded');
-    this.cptShow++;
-    if (this.cptShow === this.picturesMenu.length) {
+    this.cptLoaded++;
+    if (this.cptLoaded === this.picturesMenu.length) {
       this.show = true;
     }
   }
