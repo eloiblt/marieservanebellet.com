@@ -3,20 +3,17 @@ import { PicturesComponent } from './pictures/pictures.component';
 import { HomeComponent } from './home.component';
 import { MenuComponent } from './menu/menu.component';
 import { SharedModule } from '../shared/shared.module';
-import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
     PicturesComponent,
     HomeComponent,
-    MenuComponent,
-    GalleryComponent
+    MenuComponent
   ],
   exports: [
     PicturesComponent,
     HomeComponent,
-    MenuComponent,
-    GalleryComponent
+    MenuComponent
   ],
   imports: [
     SharedModule,
