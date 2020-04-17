@@ -25,8 +25,4 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  loaded() {
-    this.show = true;
-  }
-
 }

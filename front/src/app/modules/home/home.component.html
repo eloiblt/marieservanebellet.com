@@ -2,7 +2,7 @@
 
   <div class="ambiance-painting">
     <div class="img-amb-container" [ngClass]="{'show': show}">
-      <img src="{{picturesPath + ambiancePicture.url }}" (load)="loaded()" alt="Image d'ambiance">
+      <img src="{{picturesPath + ambiancePicture.url }}" (load)="show = true" alt="Image d'ambiance">
     </div>
     <div class="welcome">
       <p>Huiles sur bois</p>
