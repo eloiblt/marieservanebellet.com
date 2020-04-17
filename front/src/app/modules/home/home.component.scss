@@ -18,7 +18,7 @@
       left: 0;
       right: 0;
       opacity: 0;
-      transition: opacity .7s;
+      transition: opacity 0.7s;
 
       img {
         width: 100%;
@@ -50,6 +50,7 @@
   }
 
   .content {
+    background-color: $anthraciteGrey;
     flex: 1;
   }
 }
