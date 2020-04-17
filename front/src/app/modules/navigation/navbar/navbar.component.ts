@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   public logo: Picture;
   public loading = true;
   public picturesPath = '../../../../assets/pictures/';
+  public showMenu = false;
 
   constructor(
     private pictureApiService: PicturesApiService

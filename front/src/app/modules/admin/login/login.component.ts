@@ -36,8 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value);
-
     this.loginApiService.login(this.loginForm.value).subscribe(res => {
       localStorage.setItem('user', JSON.stringify(res));
       this.router.navigate(['adminManagement']);

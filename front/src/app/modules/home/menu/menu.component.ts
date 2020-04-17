@@ -45,14 +45,11 @@ export class MenuComponent implements OnInit {
   }
 
   select(categoryid: number) {
-    console.log(this.categoryPictures.find(c => c.id === categoryid).name);
     switch (this.categoryPictures.find(c => c.id === categoryid).name) {
       case 'Paysages anglais':
-        console.log('angleterre');
         this.router.navigate(['/gallery/angleterre']);
         break;
       case 'Saint-Malo':
-        console.log('saint-malo');
         this.router.navigate(['/gallery/saint-malo']);
         break;
     }
