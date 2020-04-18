@@ -1,4 +1,7 @@
 <div class="menu-container" *ngIf="!loading">
+  <div class="menu-loader" *ngIf="!show">
+    <ngx-loading [show]="!show" [config]="{ backdropBackgroundColour: '#1c1c1c'}"></ngx-loading>
+  </div>
   <div class="menu-content">
     <div class="unite" *ngFor="let p of picturesMenu">
       <div class="img-container" [ngClass]="{'show': show}">
