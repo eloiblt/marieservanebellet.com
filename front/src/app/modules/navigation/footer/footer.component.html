@@ -1,7 +1,7 @@
 <div class="footer">
   <div [ngClass]="{'footer-content': true, 'show': show}">
     <p [routerLink]="['/contact']">Contact</p>
-    <img src="{{ logoPath }}" (load)="show = true" alt="Logo">
+    <img src="{{ logoPath }}" (load)="show = true" alt="Logo" [routerLink]="['/']">
     <p [routerLink]="['/about']">A propos</p>
   </div>
 

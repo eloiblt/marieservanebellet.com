@@ -2,5 +2,93 @@
 
 .about-container {
   width: 100%;
-  height: 100%;
+  background-color: $anthraciteGrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .about {
+    display: flex;
+    align-items: center;
+
+    .about-txt {
+      p {
+        color: white;
+        margin-bottom: 10px;
+        text-align: justify;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .about-container {
+    height: 100%;
+
+    .about {
+      width: 50%;
+      height: 75%;
+      display: flex;
+      align-items: center;
+
+      .photo {
+        margin-right: 30px;
+
+        img {
+          width: 300px;
+          height: 300px;
+        }
+      }
+
+      .about-txt {
+        p {
+          color: white;
+          margin-bottom: 10px;
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .about-container {
+    .about {
+      width: 75%;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .about-container {
+    .about {
+      width: 95%;
+
+      .photo {
+        img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about-container {
+    .about {
+      width: 100%;
+      flex-direction: column;
+      margin: 10px;
+
+      .photo {
+        margin-bottom: 10px;
+
+        img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+  }
 }
