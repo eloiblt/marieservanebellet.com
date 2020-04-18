@@ -1,7 +1,7 @@
 <div class="navbar">
   <div class="nav-top">
     <i class="fas fa-bars" (click)="showMenu = !showMenu"></i>
-    <div [ngClass]="{'logo-left': true, 'show': show}" [routerLink]="['/']">
+    <div [ngClass]="{'logo-left': true, 'show': show}" (click)="showMenu = false" [routerLink]="['/']">
       <img src="{{ logoPath }}" (load)="show = true" alt="Logo">
       <h2>Marie-Servane Bellet</h2>
     </div>
