@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
+  public photoPath = '../../../../assets/pictures/photo.jpg';
+
   constructor() { }
 
   ngOnInit(): void {
