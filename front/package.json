@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "deploy": "forever stop server.js && git pull && npm i && npx ng build --prod && forever start server.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
