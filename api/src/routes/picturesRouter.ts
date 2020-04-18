@@ -5,9 +5,9 @@ import { authenticateJWT } from '../middlewares/authenticate';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  PictureCollection.find().lean()
+  PictureCollection.find().sort('categoryId').lean()
     .then(docs => {
-      const pictures: Picture[]  = docs.map(d => {
+      const pictures: Picture[] = docs.map(d => {
         const { _id, ...picture } = d;
         return picture as Picture;
       });

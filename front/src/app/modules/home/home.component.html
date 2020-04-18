@@ -1,12 +1,12 @@
 <div class="home">
   <div class="ambiance-painting">
-    <div *ngIf="!loading" class="img-amb-container" [ngClass]="{'show': show}">
-      <img src="{{picturesPath + ambiancePicture.url }}" (load)="show = true" alt="Image d'ambiance">
+    <div class="img-amb-container" [ngClass]="{'show': show}">
+      <img src="{{ ambiancePicturesPath }}" (load)="show = true" alt="Image d'ambiance">
     </div>
     <div class="welcome" [ngClass]="{'show': show}">
       <p>Huiles sur bois</p>
     </div>
-    <ngx-loading [show]="loading || !show"></ngx-loading>
+    <ngx-loading [show]="!show"></ngx-loading>
   </div>
 
   <div class="content">

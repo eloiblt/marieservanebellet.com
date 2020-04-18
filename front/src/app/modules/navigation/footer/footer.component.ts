@@ -9,19 +9,12 @@ import { Picture } from 'src/app/model/model';
 })
 export class FooterComponent implements OnInit {
 
-  public logo: Picture;
-  public loading = true;
-  public picturesPath = '../../../../assets/pictures/';
+  public logoPath = '../../../../assets/pictures/logo.jpg';
+  public show = false;
 
   constructor(private pictureApiService: PicturesApiService) { }
 
   ngOnInit(): void {
-    this.pictureApiService.getBySpec('Logo').subscribe(res => {
-      this.logo = res[0];
-      this.loading = false;
-    }, err => {
-      console.log(err);
-    });
   }
 
 }

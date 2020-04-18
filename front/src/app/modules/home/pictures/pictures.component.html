@@ -9,7 +9,7 @@
 
   <div *ngIf="!loading" [ngClass]="{'grid': true, 'show': show}">
     <div *ngFor="let p of pictures"
-      [ngClass]="{'unite': true, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
+      [ngClass]="{'unite': true, 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
       <div class="img-container">
         <img src="{{picturesPath + p.url}}" (load)="loaded()" alt="{{ p.title }}">
@@ -29,6 +29,6 @@
     [ngClass]="{'show': showModal}">
   <div class="label" *ngIf="clickedPicture.title">
     <p>{{ clickedPicture.title }}</p>
-    <p>{{ clickedPicture.date }}</p>
+    <p>{{ clickedPicture.size }} - {{ clickedPicture.date }}</p>
   </div>
 </div>

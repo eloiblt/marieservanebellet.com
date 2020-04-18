@@ -156,6 +156,22 @@
             top: 95.1%;
           }
         }
+
+        &.hide-label {
+          padding-top: 100%;
+
+          .img-container {
+            bottom: 0;
+          }
+
+          &.rectangle {
+            padding-top: calc((100% - 20px) * 1 / 2);
+          }
+
+          &.vertical {
+            padding-top: calc(100% * 2 + 20px);
+          }
+        }
       }
     }
   }
