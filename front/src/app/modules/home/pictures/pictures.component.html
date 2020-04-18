@@ -9,7 +9,7 @@
 
   <div [ngClass]="{'grid': true, 'show': show}">
     <div *ngFor="let p of pictures"
-      [ngClass]="{'unite': true, 'hideLabel': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
+      [ngClass]="{'unite': true, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
       <div class="img-container">
         <img src="{{picturesPath + p.url}}" (load)="loaded()" alt="{{ p.title }}">

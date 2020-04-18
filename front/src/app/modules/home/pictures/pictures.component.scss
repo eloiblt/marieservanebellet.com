@@ -10,10 +10,12 @@
   .grid-top-container {
     position: relative;
     width: 100%;
+    display: flex;
+    justify-content: center;
 
     .go-back {
       width: 100%;
-      margin: 10px 0px 20px 0px;
+
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -102,8 +104,11 @@
 
 @media screen and (min-width: 500px) {
   .grid-content {
-    .go-back {
-      width: 80%;
+    .grid-top-container {
+      .go-back {
+        width: 80%;
+        margin: 20px 0px;
+      }
     }
 
     .grid {
@@ -116,12 +121,7 @@
       grid-gap: 20px;
 
       .unite {
-        $labelSize: 1.1;
-        &.hideLabel {
-          $labelSize: 1;
-        }
-
-        padding-top: calc(100% * #{$labelSize});
+        padding-top: calc(100% * (10 / 9)); // 9 + 1/9 = 1
 
         .img-container {
           position: absolute;
@@ -140,26 +140,20 @@
         }
 
         &.rectangle {
-          // hauteur = 2 fois largeur - 20px divisé par deux, + 1/10 pour légende
-          padding-top: calc((100% - 20px) * 1 / 2 * #{$labelSize});
+          // hauteur = 2 fois largeur - 20px divisé par deux, + 1/9 pour légende
+          padding-top: calc((100% - 20px) * 1 / 2 * (10 / 9));
         }
 
         &.vertical {
           // hauteur = 2 fois (largeur + legende), + 20px
-          padding-top: calc(100% * #{$labelSize} * 2 + 20px);
+          padding-top: calc(100% * (10 / 9) * 2 + 20px);
 
           .img-container {
-            bottom: 5%;
+            bottom: 4.9%;
           }
 
           .label {
-            top: 95%;
-          }
-        }
-
-        &.hideLabel {
-          .img-container {
-            bottom: 0;
+            top: 95.1%;
           }
         }
       }
@@ -170,6 +164,12 @@
 @media screen and (max-width: 500px) {
   .grid-content {
     padding: 10px;
+
+    .grid-top-container {
+      .go-back {
+        margin: 10px 0px 20px 0px;
+      }
+    }
 
     .grid {
       display: flex;
