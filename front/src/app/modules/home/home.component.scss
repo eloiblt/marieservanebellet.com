@@ -33,12 +33,16 @@
 
     .welcome {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      bottom: 10px;
       display: flex;
       flex-direction: column;
       padding: 16px 32px;
       background-color: white;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      width: fit-content;
 
       p {
         color: $anthraciteGrey;
