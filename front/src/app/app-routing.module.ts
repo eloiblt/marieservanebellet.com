@@ -6,6 +6,8 @@ import { LoginComponent } from './modules/admin/login/login.component';
 import { AuthGuardService } from './services/authGuard.service';
 import { PicturesComponent } from './modules/home/pictures/pictures.component';
 import { MenuComponent } from './modules/home/menu/menu.component';
+import { ContactComponent } from './modules/home/contact/contact.component';
+import { AboutComponent } from './modules/home/about/about.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,16 @@ const routes: Routes = [
         data: { categoryId: 3 }
       }
     ]
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    pathMatch: 'full'
   },
   {
     path: 'adminLogin',

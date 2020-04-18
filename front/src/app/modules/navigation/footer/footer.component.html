@@ -1,5 +1,9 @@
-<div class="footer" *ngIf="!loading">
-  <p [routerLink]="['/contact']">Contact</p>
-  <img src="{{picturesPath + logo.url }}" alt="{{ logo.title }}">
-  <p [routerLink]="['/about']">A propos</p>
+<div class="footer">
+  <div [ngClass]="{'footer-content': true, 'show': show}">
+    <p [routerLink]="['/contact']">Contact</p>
+    <img src="{{ logoPath }}" (load)="show = true" alt="Logo">
+    <p [routerLink]="['/about']">A propos</p>
+  </div>
+
+  <ngx-loading [show]="!show"></ngx-loading>
 </div>

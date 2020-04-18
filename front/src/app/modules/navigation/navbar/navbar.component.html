@@ -1,11 +1,12 @@
-<div class="navbar" *ngIf="!loading">
-
+<div class="navbar">
   <div class="nav-top">
     <i class="fas fa-bars" (click)="showMenu = !showMenu"></i>
-    <div class="logo-left" [routerLink]="['/']">
-      <img src="{{ picturesPath + logo.url }}" alt="{{ logo.title }}">
+    <div [ngClass]="{'logo-left': true, 'show': show}" [routerLink]="['/']">
+      <img src="{{ logoPath }}" (load)="show = true" alt="Logo">
       <h2>Marie-Servane Bellet</h2>
     </div>
+
+    <ngx-loading [show]="!show"></ngx-loading>
   </div>
 
   <div [ngClass]="{'onglets': true, 'showMenu': showMenu}">
@@ -20,5 +21,3 @@
     </div>
   </div>
 </div>
-
-<ngx-loading [show]="loading"></ngx-loading>

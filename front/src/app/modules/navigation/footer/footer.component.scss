@@ -1,18 +1,29 @@
 .footer {
   padding: 10px;
-  display: flex;
-  align-items: center;
   background-color: white;
-  justify-content: center;
+  position: relative;
 
-  p {
-    cursor: pointer;
-  }
+  .footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: opacity 0.7s;
 
-  img {
-    width: 50px;
-    height: 50px;
-    margin: 0px 10px;
+    p {
+      cursor: pointer;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      margin: 0px 10px;
+    }
+
+    &.show {
+      opacity: 1;
+    }
   }
 }
 
