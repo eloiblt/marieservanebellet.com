@@ -1,7 +1,7 @@
 <div class="about-container">
   <div class="about">
-    <div class="photo">
-      <img src="{{ photoPath }}" alt="Photo">
+    <div class="photo" [ngClass]="{'photo': true, 'show': show}">
+      <img src="{{ photoPath }}" (load)="show = true" alt="Photo">
     </div>
     <div class="about-txt">
       <p>Native des Côtes d’Armor, fille et petite-fille de peintres amateurs, j’ai été bercée dans mon enfance par le

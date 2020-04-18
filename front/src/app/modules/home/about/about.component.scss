@@ -11,6 +11,15 @@
     display: flex;
     align-items: center;
 
+    .photo {
+      opacity: 0;
+      transition: opacity 0.7s;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
     .about-txt {
       p {
         color: white;
