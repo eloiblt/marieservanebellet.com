@@ -9,7 +9,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     NgxLoadingModule.forRoot({
-      animationType: ngxLoadingAnimationTypes.pulse
+      animationType: ngxLoadingAnimationTypes.pulse,
+      primaryColour: 'white'
     }),
     RouterModule
   ],

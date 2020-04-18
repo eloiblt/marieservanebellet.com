@@ -4,7 +4,7 @@
     <div class="img-amb-container" [ngClass]="{'show': show}">
       <img src="{{picturesPath + ambiancePicture.url }}" (load)="show = true" alt="Image d'ambiance">
     </div>
-    <div class="welcome">
+    <div class="welcome" *ngIf="show">
       <p>Huiles sur bois</p>
     </div>
   </div>
