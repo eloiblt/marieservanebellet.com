@@ -1,13 +1,13 @@
-<div class="grid-content" *ngIf="!loading">
+<div class="grid-content">
   <div class="grid-top-container">
     <div [ngClass]="{'go-back': true, 'show': show}" (click)="backMenu()">
       <i class="fas fa-arrow-left"></i>
       <p> Choisir une autre catégorie</p>
     </div>
-    <ngx-loading [show]="!show" [config]="{ backdropBackgroundColour: '#1c1c1c'}"></ngx-loading>
+    <ngx-loading [show]="loading || !show" [config]="{ backdropBackgroundColour: '#1c1c1c'}"></ngx-loading>
   </div>
 
-  <div [ngClass]="{'grid': true, 'show': show}">
+  <div *ngIf="!loading" [ngClass]="{'grid': true, 'show': show}">
     <div *ngFor="let p of pictures"
       [ngClass]="{'unite': true, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
@@ -22,8 +22,6 @@
     </div>
   </div>
 </div>
-
-<ngx-loading [show]="loading"></ngx-loading>
 
 <div *ngIf="clickedPicture" (click)="closeModal()" [ngClass]="{'modal': true, 'hideLabel': !clickedPicture.title}">
   <span (click)="closeModal()" class="close">&times;</span>

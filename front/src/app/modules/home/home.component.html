@@ -1,17 +1,15 @@
-<div class="home" *ngIf="!loading">
-
+<div class="home">
   <div class="ambiance-painting">
-    <div class="img-amb-container" [ngClass]="{'show': show}">
+    <div *ngIf="!loading" class="img-amb-container" [ngClass]="{'show': show}">
       <img src="{{picturesPath + ambiancePicture.url }}" (load)="show = true" alt="Image d'ambiance">
     </div>
-    <div class="welcome" *ngIf="show">
+    <div class="welcome" [ngClass]="{'show': show}">
       <p>Huiles sur bois</p>
     </div>
+    <ngx-loading [show]="loading || !show"></ngx-loading>
   </div>
 
   <div class="content">
     <router-outlet></router-outlet>
   </div>
 </div>
-
-<ngx-loading [show]="loading"></ngx-loading>
