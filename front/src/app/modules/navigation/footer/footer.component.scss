@@ -2,6 +2,7 @@
   padding: 10px;
   background-color: white;
   position: relative;
+  height: 50px;
 
   .footer-content {
     width: 100%;
@@ -15,11 +16,23 @@
       cursor: pointer;
     }
 
-    img {
+    .logo {
       width: 50px;
       height: 50px;
       margin: 0px 10px;
       cursor: pointer;
+    }
+
+    .insta {
+      position: absolute;
+      right: 25px;
+      top: 25px;
+
+      img {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
     }
 
     &.show {
@@ -31,10 +44,23 @@
 @media screen and (max-width: 500px) {
   .footer {
     padding: 5px;
+    height: 30px;
 
-    img {
-      width: 20px;
-      height: 20px;
+    .footer-content {
+      .logo {
+        width: 30px;
+        height: 30px;
+      }
+
+      .insta {
+        right: 10px;
+        top: 10px;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
     }
   }
 }

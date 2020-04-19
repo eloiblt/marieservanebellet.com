@@ -10,11 +10,16 @@ import { Picture } from 'src/app/model/model';
 export class FooterComponent implements OnInit {
 
   public logoPath = '../../../../assets/pictures/logo.jpg';
+  public instaPath = '../../../../assets/pictures/instagram-logo.jpg';
   public show = false;
 
   constructor(private pictureApiService: PicturesApiService) { }
 
   ngOnInit(): void {
+  }
+
+  redirectInstagram() {
+    window.open('https://www.instagram.com/marieservaneblt/', '_blank');
   }
 
 }
