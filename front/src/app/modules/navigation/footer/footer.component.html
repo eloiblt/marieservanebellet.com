@@ -1,8 +1,12 @@
 <div class="footer">
   <div [ngClass]="{'footer-content': true, 'show': show}">
     <p [routerLink]="['/contact']">Contact</p>
-    <img src="{{ logoPath }}" (load)="show = true" alt="Logo" [routerLink]="['/']">
+    <img class="logo" src="{{ logoPath }}" (load)="show = true" alt="Logo" [routerLink]="['/']">
     <p [routerLink]="['/about']">A propos</p>
+
+    <div class="insta" (click)="redirectInstagram()">
+      <img src="{{ instaPath }}" alt="Instagram">
+    </div>
   </div>
 
   <ngx-loading [show]="!show"></ngx-loading>
