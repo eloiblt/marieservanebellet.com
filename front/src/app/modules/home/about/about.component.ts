@@ -13,6 +13,7 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    document.getElementById('top').scrollTo(0, 0);
   }
 
 }

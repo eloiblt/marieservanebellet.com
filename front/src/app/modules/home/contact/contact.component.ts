@@ -19,6 +19,7 @@ export class ContactComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    document.getElementById('top').scrollTo(0, 0);
     this.contactForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
