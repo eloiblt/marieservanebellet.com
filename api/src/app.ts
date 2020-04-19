@@ -12,6 +12,8 @@ import picturesRouter from './routes/picturesRouter';
 import loginRouter from './routes/loginRouter';
 import categoryPicturesRouter from './routes/categoryPicturesRouter';
 import contactRouter from './routes/contactRouter';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
@@ -27,6 +29,11 @@ db.once('connected', () => console.log("Connected to database"));
 
 const app = express();
 app.use(express.json());
+app.use(helmet());
+app.use(rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 300 // limit each IP to 100 requests per windowMs
+}));
 
 if (process.env.NODE_ENV === "development") {
   console.log('Development environnement');
