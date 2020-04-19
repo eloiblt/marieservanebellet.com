@@ -26,6 +26,9 @@ import { SharedModule } from './modules/shared/shared.module';
     AdminModule,
     SharedModule
   ],
+  exports: [
+    AppRoutingModule
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],

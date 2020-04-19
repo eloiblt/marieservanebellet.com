@@ -70,3 +70,12 @@
     }
   }
 }
+
+@media screen and (max-width: 500px) {
+  .contact-container {
+    .contact {
+      width: 100%;
+      margin: 10px;
+    }
+  }
+}
