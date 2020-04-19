@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "tsc && cross-env NODE_ENV=development nodemon ./dist/app.js",
-    "deploy": "forever stop dist/app.js && git pull && npm i && tsc && cross-env NODE_ENV=production forever start dist/app.js",
     "lint": "tslint --project tsconfig.json"
   },
   "dependencies": {
