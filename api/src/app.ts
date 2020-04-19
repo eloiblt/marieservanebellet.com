@@ -10,7 +10,8 @@ import * as https from 'https';
 import * as constants from './config/constants';
 import picturesRouter from './routes/picturesRouter';
 import loginRouter from './routes/loginRouter';
-import categoryPictures from './routes/categoryPicturesRouter';
+import categoryPicturesRouter from './routes/categoryPicturesRouter';
+import contactRouter from './routes/contactRouter';
 
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
@@ -61,7 +62,8 @@ if (process.env.NODE_ENV === "development") {
 
 app.use('/login', loginRouter);
 app.use('/pictures', picturesRouter);
-app.use('/categoryPictures', categoryPictures);
+app.use('/categoryPictures', categoryPicturesRouter);
+app.use('/contact', contactRouter);
 
 app.get('/status', (req, res) => {
   res.send('Hello world !');

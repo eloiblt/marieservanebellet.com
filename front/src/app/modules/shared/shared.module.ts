@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,12 +13,16 @@ import { RouterModule } from '@angular/router';
       animationType: ngxLoadingAnimationTypes.pulse,
       primaryColour: 'white'
     }),
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     CommonModule,
     NgxLoadingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule { }
