@@ -1,37 +1,47 @@
 .footer {
   padding: 10px;
   background-color: white;
-  position: relative;
-  height: 50px;
+  height: 75px;
 
   .footer-content {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     opacity: 0;
     transform: opacity 0.7s;
 
-    p {
-      cursor: pointer;
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      p {
+        cursor: pointer;
+      }
+
+      .logo {
+        width: 50px;
+        height: 50px;
+        margin: 0px 10px;
+        cursor: pointer;
+      }
     }
 
-    .logo {
-      width: 50px;
-      height: 50px;
-      margin: 0px 10px;
-      cursor: pointer;
-    }
-
-    .insta {
-      position: absolute;
-      right: 25px;
-      top: 25px;
+    .footer-bottom {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       img {
+        margin-top: 5px;
         width: 20px;
         height: 20px;
         cursor: pointer;
+        margin-right: 2px;
       }
     }
 
@@ -44,18 +54,17 @@
 @media screen and (max-width: 500px) {
   .footer {
     padding: 5px;
-    height: 30px;
+    height: 55px;
 
     .footer-content {
-      .logo {
-        width: 30px;
-        height: 30px;
+      .footer-top {
+        .logo {
+          width: 30px;
+          height: 30px;
+        }
       }
 
-      .insta {
-        right: 10px;
-        top: 10px;
-
+      .footer-bottom {
         img {
           width: 20px;
           height: 20px;
