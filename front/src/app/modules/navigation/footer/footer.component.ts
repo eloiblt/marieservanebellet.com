@@ -11,7 +11,7 @@ export class FooterComponent implements OnInit {
 
   public logoPath = '../../../../assets/pictures/logo.jpg';
   public instaPath = '../../../../assets/pictures/instagram-logo.jpg';
-  public show = false;
+  public show = 0;
 
   constructor(private pictureApiService: PicturesApiService) { }
 

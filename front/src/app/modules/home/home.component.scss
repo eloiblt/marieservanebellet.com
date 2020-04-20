@@ -8,7 +8,7 @@
 
   .ambiance-painting {
     width: 100%;
-    padding-top: 42.85%;
+    padding-top: calc(75% / 2);
     position: relative;
 
     .img-amb-container {
@@ -70,6 +70,7 @@
     .ambiance-painting {
       .welcome {
         padding: 8px 16px;
+        top: 60%;
 
         p {
           font-size: 15px;

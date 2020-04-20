@@ -1,11 +1,13 @@
 <div class="footer">
-  <div [ngClass]="{'footer-content': true, 'show': show}">
-    <p [routerLink]="['/contact']">Contact</p>
-    <img class="logo" src="{{ logoPath }}" (load)="show = true" alt="Logo" [routerLink]="['/']">
-    <p [routerLink]="['/about']">A propos</p>
+  <div [ngClass]="{'footer-content': true, 'show': show === 2}">
+    <div class="footer-top">
+      <p [routerLink]="['/contact']">Contact</p>
+      <img class="logo" src="{{ logoPath }}" (load)="show = show + 1" alt="Logo" [routerLink]="['/']">
+      <p [routerLink]="['/about']">A propos</p>
+    </div>
 
-    <div class="insta" (click)="redirectInstagram()">
-      <img src="{{ instaPath }}" alt="Instagram">
+    <div class="footer-bottom" (click)="redirectInstagram()">
+      <img src="{{ instaPath }}" (load)="show = show + 1" alt="Instagram">
     </div>
   </div>
 
