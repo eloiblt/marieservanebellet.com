@@ -3,18 +3,15 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 declare var gtag;
 import { environment } from '../environments/environment';
-import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(
-    router: Router,
-    private title: Title,
-    private meta: Meta
+    router: Router
   ) {
     if (environment.production) {
       const script = document.createElement('script');
@@ -36,14 +33,5 @@ export class AppComponent implements OnInit {
         });
       }
     );
-  }
-
-  ngOnInit() {
-    this.title.setTitle('Marie-Servane Bellet');
-    this.meta.updateTag({ name: 'author', content: 'Eloi Bellet' });
-    this.meta.updateTag({ name: 'keywords', content: 'Peintures, Peintures à l`\'huile, Ecosse, Saint- Malo, Bretagne, Ile de Skye' });
-    this.meta.updateTag({
-      name: 'description', content: 'Peintures à l\'huile, lumières et paysages'
-    });
   }
 }
