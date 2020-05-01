@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Picture } from 'src/app/model/model';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 })
 export class HomeComponent implements OnInit {
 
-  public ambiancePicturesPath = '../../../assets/pictures/Bandeau page d\'accueil 5.jpg';
+  public ambiancePicturesPath = '../../../assets/pictures/Bandeau page d\'accueil 6.png';
   public show = false;
 
   constructor(private pictureApiService: PicturesApiService) { }
