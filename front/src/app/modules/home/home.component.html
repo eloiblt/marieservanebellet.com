@@ -3,9 +3,6 @@
     <div class="img-amb-container" [ngClass]="{'show': show}">
       <img src="{{ ambiancePicturesPath }}" (load)="show = true" alt="Image d'ambiance">
     </div>
-    <div class="welcome" [ngClass]="{'show': show}">
-      <p>Huiles sur bois</p>
-    </div>
     <ngx-loading [show]="!show"></ngx-loading>
   </div>
 
