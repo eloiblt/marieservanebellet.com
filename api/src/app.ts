@@ -1,5 +1,6 @@
-import cors from 'cors';
 import * as dotenv from "dotenv";
+dotenv.config();
+import cors from 'cors';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import fs from 'fs';
@@ -13,7 +14,6 @@ import categoryPicturesRouter from './routes/categoryPicturesRouter';
 import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
-dotenv.config();
 
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
