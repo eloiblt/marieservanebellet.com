@@ -1,19 +1,19 @@
-import * as dotenv from "dotenv";
-dotenv.config();
-import express from 'express';
 import cors from 'cors';
+import * as dotenv from "dotenv";
+import express from 'express';
+import rateLimit from 'express-rate-limit';
 import fs from 'fs';
-import mongoose from 'mongoose';
-import * as path from 'path';
+import helmet from 'helmet';
 import * as http from 'http';
 import * as https from 'https';
+import mongoose from 'mongoose';
+import * as path from 'path';
 import * as constants from './config/constants';
-import picturesRouter from './routes/picturesRouter';
-import loginRouter from './routes/loginRouter';
 import categoryPicturesRouter from './routes/categoryPicturesRouter';
 import contactRouter from './routes/contactRouter';
-import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
+import loginRouter from './routes/loginRouter';
+import picturesRouter from './routes/picturesRouter';
+dotenv.config();
 
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
@@ -51,9 +51,9 @@ if (process.env.NODE_ENV === "development") {
   })); // allow front only
 
   // Certificate
-  const privateKey = fs.readFileSync(path.join(__dirname, '../../../.certbot/config/live/marieservanebellet.com/privkey.pem'), 'utf8');
-  const certificate = fs.readFileSync(path.join(__dirname, '../../../.certbot/config/live/marieservanebellet.com/cert.pem'), 'utf8');
-  const chain = fs.readFileSync(path.join(__dirname, '../../../.certbot/config/live/marieservanebellet.com/chain.pem'), 'utf8');
+  const privateKey = fs.readFileSync(path.join(__dirname, '../../../../../etc/letsencrypt/live/marieservanebellet.com/privkey.pem'), 'utf8');
+  const certificate = fs.readFileSync(path.join(__dirname, '../../../../../etc/letsencrypt/live/marieservanebellet.com/cert.pem'), 'utf8');
+  const chain = fs.readFileSync(path.join(__dirname, '../../../../../etc/letsencrypt/live/marieservanebellet.com/chain.pem'), 'utf8');
 
   const credentials = {
     key: privateKey,
