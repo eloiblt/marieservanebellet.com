@@ -15,8 +15,6 @@ import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
 
-console.log('constants : ', constants);
-
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
   authSource: "admin",
@@ -75,5 +73,5 @@ app.use('/categoryPictures', categoryPicturesRouter);
 app.use('/contact', contactRouter);
 
 app.get('/status', (req, res) => {
-  res.send('Hello world !');
+  res.send('API ON');
 });
