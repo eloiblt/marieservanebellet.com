@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   public picturesMenu: Picture[];
   public categoryPictures: CategoryPicture[];
   public loading = true;
-  public picturesPath = '../../../../assets/pictures/';
+  public picturesPath = 'https://marieservanebellet.com:5001/';
   public show = false;
   public cptLoaded = 0;
 

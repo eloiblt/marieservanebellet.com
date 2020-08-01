@@ -9,8 +9,8 @@ import { Picture } from 'src/app/model/model';
 })
 export class FooterComponent implements OnInit {
 
-  public logoPath = '../../../../assets/pictures/logo.jpg';
-  public instaPath = '../../../../assets/pictures/instagram-logo.jpg';
+  public logoPath = 'https://marieservanebellet.com:5001/logo.jpg';
+  public instaPath = 'https://marieservanebellet.com:5001/instagram-logo.jpg';
   public show = 0;
 
   constructor(private pictureApiService: PicturesApiService) { }
