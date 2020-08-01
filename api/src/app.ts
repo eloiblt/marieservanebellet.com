@@ -15,6 +15,8 @@ import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
 
+console.log('constants : ', constants);
+
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
   authSource: "admin",
@@ -51,9 +53,9 @@ if (process.env.NODE_ENV === "development") {
   })); // allow front only
 
   // Certificate
-  const privateKey = fs.readFileSync(path.join(__dirname, '../../../../../etc/letsencrypt/live/marieservanebellet.com/privkey.pem'), 'utf8');
-  const certificate = fs.readFileSync(path.join(__dirname, '../../../../../etc/letsencrypt/live/marieservanebellet.com/cert.pem'), 'utf8');
-  const chain = fs.readFileSync(path.join(__dirname, '../../../../../etc/letsencrypt/live/marieservanebellet.com/chain.pem'), 'utf8');
+  const privateKey = fs.readFileSync(path.join(__dirname, '../../../../../../etc/letsencrypt/live/marieservanebellet.com/privkey.pem'), 'utf8');
+  const certificate = fs.readFileSync(path.join(__dirname, '../../../../../../etc/letsencrypt/live/marieservanebellet.com/cert.pem'), 'utf8');
+  const chain = fs.readFileSync(path.join(__dirname, '../../../../../../etc/letsencrypt/live/marieservanebellet.com/chain.pem'), 'utf8');
 
   const credentials = {
     key: privateKey,
