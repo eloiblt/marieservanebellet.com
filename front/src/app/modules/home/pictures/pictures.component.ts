@@ -13,7 +13,7 @@ export class PicturesComponent implements OnInit {
   public pictures: Picture[] = [];
   public clickedPicture: Picture;
   public loading = true;
-  public picturesPath = '../../../../assets/pictures/';
+  public picturesPath = 'https://marieservanebellet.com:5001/';
   public show = false;
   public showModal = false;
   public cptLoaded = 0;

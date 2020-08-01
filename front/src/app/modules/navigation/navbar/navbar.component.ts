@@ -10,7 +10,7 @@ import { Picture } from 'src/app/model/model';
 })
 export class NavbarComponent implements OnInit {
 
-  public logoPath = '../../../../assets/pictures/logo.jpg';
+  public logoPath = 'https://marieservanebellet.com:5001/logo.jpg';
   public showMenu = false;
   public show = false;
 
