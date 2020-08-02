@@ -4,6 +4,7 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +17,7 @@ export class MenuComponent implements OnInit {
   public categoryPictures: CategoryPicture[];
   public loading = true;
   public picturesPath = 'https://marieservanebellet.com:5001/';
-  public show = false;
+  public show = [];
   public cptLoaded = 0;
 
   constructor(
@@ -26,10 +27,7 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getData();
-  }
-
-  getData() {
+    this.show = [];
     forkJoin({
       pictures: this.pictureApiService.getBySpec('Menu'),
       categoryPictures: this.categoryPictureApiService.get()
@@ -44,11 +42,12 @@ export class MenuComponent implements OnInit {
     return this.categoryPictures.find(c => c.id === categoryid).name;
   }
 
-  loaded() {
-    this.cptLoaded++;
-    if (this.cptLoaded === this.picturesMenu.length) {
-      this.show = true;
-    }
+  loaded(id: number) {
+    this.show = [...this.show, id];
+  }
+
+  isLoaded(id: number) {
+    return this.show.includes(id);
   }
 
 }
