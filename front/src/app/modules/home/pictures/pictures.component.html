@@ -1,18 +1,17 @@
 <div class="grid-content">
   <div class="grid-top-container">
-    <div [ngClass]="{'go-back': true, 'show': show}" (click)="backMenu()">
+    <div [ngClass]="{'go-back': true, 'show': show}" [routerLink]="['/gallerie']">
       <i class="fas fa-arrow-left"></i>
       <p> Choisir une autre catégorie</p>
     </div>
-    <ngx-loading [show]="loading || !show" [config]="{ backdropBackgroundColour: '#1c1c1c'}"></ngx-loading>
   </div>
 
-  <div *ngIf="!loading" [ngClass]="{'grid': true, 'show': show}">
+  <div *ngIf="!loading" [ngClass]="{'grid': true }">
     <div *ngFor="let p of pictures"
-      [ngClass]="{'unite': true, 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
+      [ngClass]="{'unite': true, 'show': isLoaded(p.id), 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
       <div class="img-container">
-        <img src="{{picturesPath + p.url}}" (load)="loaded()" alt="{{ p.title }}">
+        <img src="{{picturesPath + p.url}}" (load)="loaded(p.id)" alt="{{ p.title }}">
         <div class="middle" (click)="showImage(p)">Aperçu</div>
       </div>
       <div class="label" *ngIf="p.title">

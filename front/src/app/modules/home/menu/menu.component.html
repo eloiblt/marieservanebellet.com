@@ -1,11 +1,8 @@
 <div class="menu-container">
-  <div class="menu-loader" *ngIf="!show || loading">
-    <ngx-loading [show]="loading || !show" [config]="{ backdropBackgroundColour: '#1c1c1c'}"></ngx-loading>
-  </div>
   <div class="menu-content" *ngIf="!loading">
     <div class="unite" *ngFor="let p of picturesMenu">
-      <div class="img-container" [ngClass]="{'show': show}">
-        <img src="{{picturesPath + p.url}}" (load)="loaded()" alt="{{p.title}}">
+      <div class="img-container" [ngClass]="{'show': isLoaded(p.id)}">
+        <img src="{{picturesPath + p.url}}" (load)="loaded(p.id)" alt="{{p.title}}">
         <div class="middle" [routerLink]="['/gallerie/peintures/' + p.categoryId]">
           {{ getMenuName(p.categoryId) }}</div>
       </div>

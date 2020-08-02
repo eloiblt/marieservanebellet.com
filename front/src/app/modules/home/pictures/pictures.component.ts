@@ -14,7 +14,7 @@ export class PicturesComponent implements OnInit {
   public clickedPicture: Picture;
   public loading = true;
   public picturesPath = 'https://marieservanebellet.com:5001/';
-  public show = false;
+  public show = [];
   public showModal = false;
   public cptLoaded = 0;
 
@@ -25,11 +25,14 @@ export class PicturesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pictureApiService.getByCategory(Number(this.route.snapshot.paramMap.get('id'))).subscribe(res => {
-      this.pictures = res;
-      this.loading = false;
-    }, err => {
-      console.log(err);
+    this.show = [];
+    this.route.params.subscribe(params => {
+      this.pictureApiService.getByCategory(Number(params['id'])).subscribe(res => {
+        this.pictures = res;
+        this.loading = false;
+      }, err => {
+        console.log(err);
+      });
     });
   }
 
@@ -37,19 +40,16 @@ export class PicturesComponent implements OnInit {
     this.clickedPicture = p;
   }
 
-  backMenu() {
-    this.router.navigate(['/gallerie']);
-  }
-
   isRectangleOrVertical(grid: string) {
     return grid.includes('/');
   }
 
-  loaded() {
-    this.cptLoaded++;
-    if (this.cptLoaded === this.pictures.length) {
-      this.show = true;
-    }
+  loaded(id: number) {
+    this.show = [...this.show, id];
+  }
+
+  isLoaded(id: number) {
+    return this.show.includes(id);
   }
 
   closeModal() {
