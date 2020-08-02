@@ -2,12 +2,12 @@
   <div [ngClass]="{'footer-content': true, 'show': show === 2}">
     <div class="footer-top">
       <p [routerLink]="['/contact']">Contact</p>
-      <img class="logo" src="{{ logoPath }}" (load)="show = show + 1" alt="Logo" [routerLink]="['/']">
+      <img class="logo" src="{{ logoPath }}" loading="lazy" (load)="show = show + 1" alt="Logo" [routerLink]="['/']">
       <p [routerLink]="['/about']">A propos</p>
     </div>
 
     <div class="footer-bottom" (click)="redirectInstagram()">
-      <img src="{{ instaPath }}" (load)="show = show + 1" alt="Instagram">
+      <img src="{{ instaPath }}" loading="lazy" (load)="show = show + 1" alt="Instagram">
     </div>
   </div>
 </div>
