@@ -5,12 +5,10 @@
       <img src="{{ logoPath }}" (load)="show = true" alt="Logo">
       <h2>Marie-Servane Bellet</h2>
     </div>
-
-    <ngx-loading [show]="!show"></ngx-loading>
   </div>
 
   <div [ngClass]="{'onglets': true, 'showMenu': showMenu}">
-    <div class="onglet" (click)="showMenu = false" [routerLink]="['/ambiances']">
+    <div class="onglet" (click)="showMenu = false" [routerLink]="['/gallerie/peintures/3']">
       Ambiances
     </div>
     <div class="onglet" (click)="showMenu = false" [routerLink]="['/about']">

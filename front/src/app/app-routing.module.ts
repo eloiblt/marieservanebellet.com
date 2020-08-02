@@ -12,11 +12,11 @@ import { AboutComponent } from './modules/home/about/about.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'gallery',
+    redirectTo: 'gallerie',
     pathMatch: 'prefix'
   },
   {
-    path: 'gallery',
+    path: 'gallerie',
     component: HomeComponent,
     children: [
       {
@@ -24,19 +24,8 @@ const routes: Routes = [
         component: MenuComponent
       },
       {
-        path: 'saint-malo',
-        component: PicturesComponent,
-        data: { categoryId: 1 }
-      },
-      {
-        path: 'angleterre',
-        component: PicturesComponent,
-        data: { categoryId: 2 }
-      },
-      {
-        path: 'ambiances',
-        component: PicturesComponent,
-        data: { categoryId: 3 }
+        path: 'peintures/:id',
+        component: PicturesComponent
       }
     ]
   },
@@ -63,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'gallery',
+    redirectTo: 'gallerie',
   }
 ];
 
