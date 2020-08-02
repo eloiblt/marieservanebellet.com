@@ -25,7 +25,7 @@ export class PicturesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pictureApiService.getByCategory(this.route.snapshot.data.categoryId).subscribe(res => {
+    this.pictureApiService.getByCategory(Number(this.route.snapshot.paramMap.get('id'))).subscribe(res => {
       this.pictures = res;
       this.loading = false;
     }, err => {
@@ -38,7 +38,7 @@ export class PicturesComponent implements OnInit {
   }
 
   backMenu() {
-    this.router.navigate(['/gallery']);
+    this.router.navigate(['/gallerie']);
   }
 
   isRectangleOrVertical(grid: string) {

@@ -44,17 +44,6 @@ export class MenuComponent implements OnInit {
     return this.categoryPictures.find(c => c.id === categoryid).name;
   }
 
-  select(categoryid: number) {
-    switch (this.categoryPictures.find(c => c.id === categoryid).name) {
-      case 'Paysages anglais':
-        this.router.navigate(['/gallery/angleterre']);
-        break;
-      case 'Saint-Malo':
-        this.router.navigate(['/gallery/saint-malo']);
-        break;
-    }
-  }
-
   loaded() {
     this.cptLoaded++;
     if (this.cptLoaded === this.picturesMenu.length) {
