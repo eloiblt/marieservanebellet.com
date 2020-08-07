@@ -61,7 +61,7 @@ router.delete('/:id', authenticateJWT, (req, res) => {
 
 router.post('/peinture', authenticateJWT, (req: any, res) => {
   if (process.env.NODE_ENV === "development") {
-    res.send("Opération non permise en développement");
+    res.status(200).send("Opération non permise en développement");
   } else {
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
@@ -71,7 +71,7 @@ router.post('/peinture', authenticateJWT, (req: any, res) => {
 
     sampleFile.mv(path.join(__dirname, './../../../../pictures/public/', sampleFile.name), err => {
       if (err) throw err;
-      res.send('File uploaded!');
+      res.status(200).send('File uploaded!');
     });
   }
 });
