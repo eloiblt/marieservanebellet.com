@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Picture } from 'src/app/model/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
+import { basePicturePath } from '../../../helpers/constants';
 
 @Component({
   selector: 'app-pictures',
@@ -13,7 +14,7 @@ export class PicturesComponent implements OnInit {
   public pictures: Picture[] = [];
   public clickedPicture: Picture;
   public loading = true;
-  public picturesPath = 'https://marieservanebellet.com:5001/';
+  public basePicturePath = basePicturePath;
   public show = [];
   public showModal = false;
   public cptLoaded = 0;

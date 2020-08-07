@@ -60,13 +60,15 @@
   .menu-container {
     .menu-content {
       width: 75%;
-      margin: 10px 0px;
+      margin-top: 10px;
+      flex-wrap: wrap;
 
       .unite {
-        width: 50%;
+        width: calc((100% - 10px) / 2);
         padding-top: calc((100% - 10px) / 2);
+        margin-bottom: 10px;
 
-        &:not(:last-of-type) {
+        &:nth-child(odd) {
           margin-right: 10px;
         }
       }

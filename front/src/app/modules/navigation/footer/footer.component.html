@@ -1,8 +1,9 @@
 <div class="footer">
   <div [ngClass]="{'footer-content': true, 'show': show === 2}">
-    <div class="footer-top">
+    <div class="footer-top" *ngIf="logo">
       <p [routerLink]="['/contact']">Contact</p>
-      <img class="logo" src="{{ logoPath }}" loading="lazy" (load)="show = show + 1" alt="Logo" [routerLink]="['/']">
+      <img class="logo" src="{{ basePicturePath + logo.url }}" loading="lazy" (load)="show = show + 1" alt="Logo"
+        [routerLink]="['/']">
       <p [routerLink]="['/about']">A propos</p>
     </div>
 
