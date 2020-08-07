@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Picture, CategoryPicture as CategoryPicture } from 'src/app/model/model';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
@@ -12,6 +12,7 @@ import { ToastService } from '../../../services/toast.service';
 })
 export class ManagementComponent implements OnInit {
 
+  @ViewChild('upload', { static: false }) public upload: ElementRef;
   public newPicture: Picture;
   public pictures: Picture[];
   public newCategoryPicture: CategoryPicture;
@@ -28,14 +29,18 @@ export class ManagementComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initNewPicture();
-    this.getPictures();
-    this.getCategoryPictures();
+    this.reset();
     this.specifications = [
       { name: 'Menu' },
       { name: 'Bandeau' },
       { name: 'Logo' }
     ];
+  }
+
+  reset() {
+    this.initNewPicture();
+    this.getPictures();
+    this.getCategoryPictures();
   }
 
   initNewPicture() {
@@ -84,23 +89,22 @@ export class ManagementComponent implements OnInit {
   createNewPicture() {
     if (!this.canCreatePicture()) { return; }
     this.paintingApiService.create(this.newPicture).subscribe(res => {
-      this.initNewPicture();
-      this.getPictures();
+      this.reset();
     }, err => {
       console.log(err);
     });
     this.paintingApiService.postFile(this.fileToUpload).subscribe(res => {
-      this.fileToUpload = null;
     }, err => {
-      console.log(err);
+      this.toastService.success(err.error.text);
     });
+    this.fileToUpload = null;
+    this.upload.nativeElement.value = '';
   }
 
   createNewCategoryPicture() {
     if (!this.canCreateCategoryPicture()) { return; }
     this.categoryPaintingApiService.create(this.newCategoryPicture).subscribe(res => {
-      this.initNewPicture();
-      this.getCategoryPictures();
+      this.reset();
     }, err => {
       console.log(err);
     });
@@ -136,7 +140,7 @@ export class ManagementComponent implements OnInit {
 
   deletePicture(p: Picture) {
     this.paintingApiService.delete(p.id).subscribe(res => {
-      this.getPictures();
+      this.reset();
     }, err => {
       console.log(err);
     });
@@ -147,7 +151,7 @@ export class ManagementComponent implements OnInit {
       this.toastService.error('Cette catégorie contient des peintures', 'Erreur');
     } else {
       this.categoryPaintingApiService.delete(c.id).subscribe(res => {
-        this.getCategoryPictures();
+        this.reset();
       }, err => {
         console.log(err);
       });

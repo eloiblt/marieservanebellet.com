@@ -20,7 +20,7 @@
             <input type="text" [(ngModel)]="newPicture.title" />
           </div>
           <div class="picture-line">
-            <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+            <input #upload type="file" id="file" (change)="handleFileInput($event.target.files)">
           </div>
           <div class="picture-line">
             <p>Technique</p>
@@ -47,7 +47,8 @@
           </div>
           <div class="picture-line">
             <p>Catégorie</p>
-            <input type="number" [(ngModel)]="newPicture.categoryId" />
+            <ng-select [items]="categoryPictures" bindLabel="name" bindValue="id" [(ngModel)]="newPicture.categoryId">
+            </ng-select>
           </div>
           <div class="picture-line">
             <p>Taille</p>
