@@ -1,60 +1,112 @@
 <div class="admin-management">
-  <div class="admin-management-content">
-    <div class="painting-row">
-      <div class="fields">
-        <h2>Id</h2>
-        <h2>Titre</h2>
-        <h2>Technique</h2>
-        <h2>Grid-row</h2>
-        <h2>Grid-column</h2>
-        <h2>Spécificités</h2>
-        <h2>Catégorie</h2>
-        <h2>Forme</h2>
-        <h2>Date</h2>
-        <h2>URL</h2>
-        <h2>Taille</h2>
-      </div>
-    </div>
-    <div class="paintings">
-      <div class="scrollable-paintings">
-        <div class="painting-row" *ngFor="let p of pictures">
-          <div class="fields">
-            <input type="number" (change)="update(p)" [(ngModel)]="p.id" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.title" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.technique" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.gridrow" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.gridColumn" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.spec" />
-            <input type="number" (change)="update(p)" [(ngModel)]="p.categoryId" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.shape" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.date" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.url" />
-            <input type="text" (change)="update(p)" [(ngModel)]="p.size" />
+  <div class="admin-management-content" *ngIf="pictures && categoryPictures">
+    <div class="add">
+      <div class="add-item">
+        <h1>Ajouter une catégorie :</h1>
+        <div class="picture">
+          <div class="picture-line">
+            <p>Nom</p>
+            <input type="text" [(ngModel)]="newCategoryPicture.name" />
           </div>
-          <div class="icon">
-            <i class="fas fa-minus-circle" (click)="delete(p)"></i>
-          </div>
+          <i class="fas fa-check" (click)="createNewCategoryPicture()" title="Créer"
+            [ngClass]='{"active": canCreateCategoryPicture()}'></i>
         </div>
-
-        <div class="painting-row">
-          <div class="fields">
-            <input type="number" [(ngModel)]="newPicture.id" />
+      </div>
+      <div class="add-item">
+        <h1>Ajouter une peinture :</h1>
+        <div class="picture">
+          <div class="picture-line">
+            <p>Titre</p>
             <input type="text" [(ngModel)]="newPicture.title" />
+          </div>
+          <div class="picture-line">
+            <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+          </div>
+          <div class="picture-line">
+            <p>Technique</p>
             <input type="text" [(ngModel)]="newPicture.technique" />
+          </div>
+          <div class="picture-line"
+            title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la ligne 1 à la ligne 2">
+            <p>Ligne</p>
             <input type="text" [(ngModel)]="newPicture.gridrow" />
+          </div>
+          <div class="picture-line"
+            title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la colonne 1 à la colonne 2">
+            <p>Colonne</p>
             <input type="text" [(ngModel)]="newPicture.gridColumn" />
-            <input type="text" [(ngModel)]="newPicture.spec" />
-            <input type="number" [(ngModel)]="newPicture.categoryId" />
-            <input type="text" [(ngModel)]="newPicture.shape" />
+          </div>
+          <div class="picture-line">
+            <p>Spécifications</p>
+            <ng-select [items]="specifications" bindLabel="name" bindValue="name" [(ngModel)]="newPicture.spec">
+            </ng-select>
+          </div>
+          <div class="picture-line">
+            <p>Année</p>
             <input type="text" [(ngModel)]="newPicture.date" />
-            <input type="text" [(ngModel)]="newPicture.url" />
+          </div>
+          <div class="picture-line">
+            <p>Catégorie</p>
+            <input type="number" [(ngModel)]="newPicture.categoryId" />
+          </div>
+          <div class="picture-line">
+            <p>Taille</p>
             <input type="text" [(ngModel)]="newPicture.size" />
           </div>
-          <div class="icon">
-            <i class="fas fa-check" (click)="createNewPicture()" [ngClass]='{"active": canCreate()}'></i>
+          <i class="fas fa-check" (click)="createNewPicture()" title="Créer"
+            [ngClass]='{"active": canCreatePicture()}'></i>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let category of categoryPictures" class="category">
+      <div class="category-actions">
+        <input type="text" class="category-name" (change)="updateCategoryPicture(category)"
+          [(ngModel)]="category.name" />
+        <i class="fas fa-minus-circle" title="Supprimer la catégorie" (click)="deleteCategoryPicture(category)"></i>
+      </div>
+      <div class="category-content">
+        <div class="picture" *ngFor="let picture of getPicturesByCategory(category.id)">
+          <div class="picture-line">
+            <p>Titre</p>
+            <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.title" />
           </div>
+          <img src="{{basePicturePath + picture.url}}" loading="lazy" (load)="loaded(picture.id)"
+            alt="{{ picture.title }}">
+          <div class="picture-line">
+            <p>Technique</p>
+            <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.technique" />
+          </div>
+          <div class="picture-line"
+            title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la ligne 1 à la ligne 2">
+            <p>Ligne</p>
+            <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.gridrow" />
+          </div>
+          <div class="picture-line"
+            title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la colonne 1 à la colonne 2">
+            <p>Colonne</p>
+            <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.gridColumn" />
+          </div>
+          <div class="picture-line">
+            <p>Spécifications</p>
+            <ng-select [items]="specifications" (change)="updatePicture(picture)" bindLabel="name" bindValue="name"
+              [(ngModel)]="picture.spec">
+            </ng-select>
+          </div>
+          <div class="picture-line">
+            <p>Année</p>
+            <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.date" />
+          </div>
+          <div class="picture-line">
+            <p>URL</p>
+            <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.url" />
+          </div>
+          <div class="picture-line">
+            <p>Taille</p>
+            <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.size" />
+          </div>
+          <i class="fas fa-minus-circle" title="Supprimer la peinture" (click)="deletePicture(picture)"></i>
         </div>
       </div>
     </div>
   </div>
-</div>

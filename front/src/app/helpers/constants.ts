@@ -1,0 +1,1 @@
+export const basePicturePath = 'https://marieservanebellet.com:5001/';

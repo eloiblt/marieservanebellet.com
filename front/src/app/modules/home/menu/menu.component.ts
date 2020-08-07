@@ -5,6 +5,7 @@ import { CategoryPicturesApiService } from 'src/app/services/api/categoryPicture
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { Router } from '@angular/router';
 import { identifierModuleUrl } from '@angular/compiler';
+import { basePicturePath } from '../../../helpers/constants';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +17,7 @@ export class MenuComponent implements OnInit {
   public picturesMenu: Picture[];
   public categoryPictures: CategoryPicture[];
   public loading = true;
-  public picturesPath = 'https://marieservanebellet.com:5001/';
+  public basePicturePath = basePicturePath;
   public show = [];
   public cptLoaded = 0;
 

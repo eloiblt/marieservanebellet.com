@@ -14,6 +14,7 @@ import categoryPicturesRouter from './routes/categoryPicturesRouter';
 import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
+import fileupload from 'express-fileupload';
 
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
@@ -34,6 +35,7 @@ app.use(rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 300 // limit each IP to 100 requests per windowMs
 }));
+app.use(fileupload());
 
 if (process.env.NODE_ENV === "development") {
   console.log('Development environnement');

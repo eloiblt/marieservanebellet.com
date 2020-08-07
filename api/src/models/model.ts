@@ -7,7 +7,6 @@ export class Picture {
   gridColumn!: string;
   gridrow!: string;
   categoryId!: number;
-  shape!: string;
   spec!: string; // ambiance // menu
   date!: string;
   url!: string;
@@ -17,6 +16,7 @@ export class Picture {
 export class CategoryPictures {
   id!: number;
   name!: string;
+  show!: boolean;
 }
 
 export class User {
@@ -31,7 +31,6 @@ export const PictureCollection = mongoose.model('pictures', new mongoose.Schema(
   gridColumn: String,
   gridrow: String,
   categoryId: Number,
-  shape: String,
   spec: String, // ambiance // menu
   date: String,
   url: String,
@@ -40,7 +39,8 @@ export const PictureCollection = mongoose.model('pictures', new mongoose.Schema(
 
 export const CategoryPicturesCollection = mongoose.model('categoryPictures', new mongoose.Schema({
   id: Number,
-  name: String
+  name: String,
+  show: Boolean
 }, { collection: 'categoryPictures' }));
 
 export const UserCollection = mongoose.model('users', new mongoose.Schema({

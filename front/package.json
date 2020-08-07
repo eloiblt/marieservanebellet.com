@@ -21,6 +21,7 @@
     "@angular/router": "~9.1.0",
     "@auth0/angular-jwt": "^4.0.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "@ng-select/ng-select": "^5.0.0",
     "@types/express": "^4.17.6",
     "body-parser": "^1.19.0",
     "ngx-loading": "^8.0.0",

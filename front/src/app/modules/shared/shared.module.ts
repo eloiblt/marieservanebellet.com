@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule
   ],
   exports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule
   ],
 })
 export class SharedModule { }

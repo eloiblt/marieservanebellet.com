@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { Picture, PictureCollection } from '../models/model';
 import { authenticateJWT } from '../middlewares/authenticate';
+import * as path from 'path';
 
 const router = express.Router();
 
@@ -56,6 +57,19 @@ router.delete('/:id', authenticateJWT, (req, res) => {
   PictureCollection.deleteOne({ id: req.params.id })
     .then(docs => res.status(200).send())
     .catch(err => res.status(500).send());
+});
+
+router.post('/peinture', authenticateJWT, (req: any, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  let sampleFile = req.files.peinture;
+
+  sampleFile.mv(path.join(__dirname, './../../../../pictures/public/', sampleFile.name), err => {
+    if (err) throw err;
+    res.send('File uploaded!');
+  });
 });
 
 export default router;
