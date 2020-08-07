@@ -15,7 +15,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     document.getElementById('top').scrollTo(0, 0);
-    this.photoPath = basePicturePath + 'Autres/photo.jpg'
+    this.photoPath = basePicturePath + 'photo.jpg'
   }
 
 }

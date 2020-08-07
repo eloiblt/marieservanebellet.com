@@ -74,7 +74,7 @@
           margin-right: 10px;
         }
 
-        input {
+        input:not([type="file"]) {
           flex: 1;
           min-width: 1px;
           border: 1px solid $anthraciteGrey;
