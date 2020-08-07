@@ -60,7 +60,6 @@ export class ManagementComponent implements OnInit {
       while (this.pictures.find(p => p.id === this.newPicture.id)) {
         this.newPicture.id++;
       }
-      console.log(this.pictures);
     }, err => {
       console.log(err);
     });
@@ -69,7 +68,6 @@ export class ManagementComponent implements OnInit {
   getCategoryPictures() {
     this.categoryPaintingApiService.get().subscribe(res => {
       this.categoryPictures = res;
-      console.log(this.categoryPictures);
       this.newCategoryPicture.id = 1;
       while (this.categoryPictures.find(p => p.id === this.newCategoryPicture.id)) {
         this.newCategoryPicture.id++;
@@ -92,7 +90,7 @@ export class ManagementComponent implements OnInit {
       console.log(err);
     });
     this.paintingApiService.postFile(this.fileToUpload).subscribe(res => {
-      this.fileToUpload
+      this.fileToUpload = null;
     }, err => {
       console.log(err);
     });
@@ -133,7 +131,6 @@ export class ManagementComponent implements OnInit {
   canCreatePicture() {
     return this.newPicture.id &&
       this.categoryPictures.find(c => c.id === this.newPicture.categoryId) &&
-      this.newPicture.url &&
       this.fileToUpload;
   }
 

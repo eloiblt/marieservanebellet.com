@@ -25,7 +25,7 @@ export class FooterComponent implements OnInit {
       console.log(err)
     });
 
-    this.instaPath = basePicturePath + '/Autres/instagram-logo.jpg'
+    this.instaPath = basePicturePath + '/instagram-logo.jpg'
   }
 
   redirectInstagram() {
