@@ -37,7 +37,7 @@
             <input type="text" [(ngModel)]="newPicture.gridColumn" />
           </div>
           <div class="picture-line">
-            <p>Spécifications</p>
+            <p>Tags</p>
             <ng-select [items]="specifications" bindLabel="name" bindValue="name" [(ngModel)]="newPicture.spec">
             </ng-select>
           </div>
@@ -72,8 +72,7 @@
             <p>Titre</p>
             <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.title" />
           </div>
-          <img src="{{basePicturePath + picture.url}}" loading="lazy" (load)="loaded(picture.id)"
-            alt="{{ picture.title }}">
+          <img src="{{basePicturePath + picture.url}}" (load)="loaded(picture.id)" alt="{{ picture.title }}">
           <div class="picture-line">
             <p>Technique</p>
             <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.technique" />
@@ -89,7 +88,7 @@
             <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.gridColumn" />
           </div>
           <div class="picture-line">
-            <p>Spécifications</p>
+            <p>Tags</p>
             <ng-select [items]="specifications" (change)="updatePicture(picture)" bindLabel="name" bindValue="name"
               [(ngModel)]="picture.spec">
             </ng-select>
