@@ -3,6 +3,7 @@ import { Picture, PictureCollection } from '../models/model';
 import { authenticateJWT } from '../middlewares/authenticate';
 import * as path from 'path';
 import * as fs from 'fs';
+import { exec } from 'child_process';
 
 const router = express.Router();
 
@@ -44,7 +45,14 @@ router.get('/getByCategory', (req, res) => {
 
 router.post('/', authenticateJWT, (req, res) => {
   PictureCollection.create(req.body)
-    .then(docs => res.status(200).send(req.body))
+    .then(docs => {
+      exec('jpegoptim --max=90 ' + path.join(__dirname, './../../../../pictures/public/*.jpg'), (err, stdout, stderr) => {
+        if (err) {
+          console.error(err)
+        }
+      });
+      res.status(200).send(req.body)
+    })
     .catch(err => res.status(500).send());
 });
 
