@@ -27,7 +27,7 @@ export class PicturesApiService extends GenericApiService<Picture> {
   }
 
   postFile(fileToUpload: File): Observable<any> {
-    const endPoint = '/peinture';
+    const endPoint = '/postFile';
     const formData: FormData = new FormData();
     formData.append('peinture', fileToUpload, fileToUpload.name);
     return this.http.post(this.apiUrl + this.controllerName + endPoint, formData);
