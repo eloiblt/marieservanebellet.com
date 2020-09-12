@@ -2,6 +2,7 @@ import * as express from 'express';
 import { Picture, PictureCollection } from '../models/model';
 import { authenticateJWT } from '../middlewares/authenticate';
 import * as path from 'path';
+import * as fs from 'fs';
 
 const router = express.Router();
 
@@ -54,14 +55,25 @@ router.put('/:id', authenticateJWT, (req, res) => {
 });
 
 router.delete('/:id', authenticateJWT, (req, res) => {
-  PictureCollection.deleteOne({ id: req.params.id })
-    .then(docs => res.status(200).send())
+  PictureCollection.findOne({ id: req.params.id }).lean()
+    .then(doc => {
+      const { _id, ...picture } = doc;
+      fs.unlink(__dirname + './../../../../pictures/public/' + (picture as Picture).url, function (err) {
+        if (err) {
+          res.status(500).send('Erreur lors de la suppression');
+        } else {
+          PictureCollection.deleteOne({ id: req.params.id })
+            .then(docs => res.status(200).send())
+            .catch(err => res.status(500).send());
+        }
+      })
+    })
     .catch(err => res.status(500).send());
 });
 
-router.post('/peinture', authenticateJWT, (req: any, res) => {
+router.post('/postFile', authenticateJWT, (req: any, res) => {
   if (process.env.NODE_ENV === "development") {
-    res.status(200).send("Opération non permise en développement");
+    res.status(500).send("Opération non permise en développement");
   } else {
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
