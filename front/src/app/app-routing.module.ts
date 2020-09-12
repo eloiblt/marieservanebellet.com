@@ -12,11 +12,11 @@ import { AboutComponent } from './modules/home/about/about.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'gallerie',
+    redirectTo: 'galerie',
     pathMatch: 'prefix'
   },
   {
-    path: 'gallerie',
+    path: 'galerie',
     component: HomeComponent,
     children: [
       {
@@ -52,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'gallerie',
+    redirectTo: 'galerie',
   }
 ];
 
