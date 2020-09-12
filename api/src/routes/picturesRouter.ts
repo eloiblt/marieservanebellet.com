@@ -58,7 +58,7 @@ router.delete('/:id', authenticateJWT, (req, res) => {
   PictureCollection.findOne({ id: req.params.id }).lean()
     .then(doc => {
       const { _id, ...picture } = doc;
-      fs.unlink(__dirname + './../../../../pictures/public/' + (picture as Picture).url, function (err) {
+      fs.unlink(path.join(__dirname, './../../../../pictures/public/', (picture as Picture).url), function (err) {
         if (err) {
           res.status(500).send('Erreur lors de la suppression');
         } else {
