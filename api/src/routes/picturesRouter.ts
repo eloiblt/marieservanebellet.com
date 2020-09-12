@@ -45,14 +45,7 @@ router.get('/getByCategory', (req, res) => {
 
 router.post('/', authenticateJWT, (req, res) => {
   PictureCollection.create(req.body)
-    .then(docs => {
-      exec('jpegoptim --max=90 ' + path.join(__dirname, './../../../../pictures/public/*.jpg'), (err, stdout, stderr) => {
-        if (err) {
-          console.error(err)
-        }
-      });
-      res.status(200).send(req.body)
-    })
+    .then(docs => res.status(200).send(req.body))
     .catch(err => res.status(500).send());
 });
 
@@ -87,7 +80,12 @@ router.post('/postFile', authenticateJWT, (req: any, res) => {
 
     sampleFile.mv(path.join(__dirname, './../../../../pictures/public/', sampleFile.name), err => {
       if (err) throw err;
-      res.status(200).send('File uploaded!');
+      exec('jpegoptim --max=90 ' + path.join(__dirname, './../../../../pictures/public/', sampleFile.name), (err, stdout, stderr) => {
+        if (err) {
+          console.error(err)
+        }
+        res.status(200).send('File uploaded!');
+      });
     });
   }
 });
