@@ -4,6 +4,7 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
 import { basePicturePath } from '../../../helpers/constants';
 import { ToastService } from '../../../services/toast.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-management',
@@ -129,13 +130,15 @@ export class ManagementComponent implements OnInit {
   }
 
   canCreateCategoryPicture() {
-    return this.newCategoryPicture.name?.trim()
+    return this.newCategoryPicture.name?.trim() &&
+      environment.production;
   }
 
   canCreatePicture() {
     return this.newPicture.id &&
       this.categoryPictures.find(c => c.id === this.newPicture.categoryId) &&
-      this.fileToUpload;
+      this.fileToUpload &&
+      environment.production;
   }
 
   deletePicture(p: Picture) {
@@ -161,5 +164,11 @@ export class ManagementComponent implements OnInit {
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
     this.newPicture.url = this.fileToUpload.name;
+    console.log(this.newPicture.url.split('.').pop())
+    if (this.newPicture.url.split('.').pop() !== 'jpg') {
+      this.toastService.error('Seuls les fichier JPG sont autorisés');
+      this.fileToUpload = null;
+      this.upload.nativeElement.value = '';
+    }
   }
 }
