@@ -78,9 +78,9 @@ router.post('/postFile', authenticateJWT, (req: any, res) => {
 
     let sampleFile = req.files.peinture;
 
-    sampleFile.mv('/var/www/marieservanebellet.com/pictures/' + sampleFile.name), err => {
+    sampleFile.mv('/var/www/marieservanebellet.com/pictures/' + sampleFile.name, err => {
       if (err) throw err;
-      exec('jpegoptim --max=90 /var/www/marieservanebellet.com/pictures/' + sampleFile.name), (err, stdout, stderr) => {
+      exec('jpegoptim --max=90 /var/www/marieservanebellet.com/pictures/' + sampleFile.name, (err, stdout, stderr) => {
         if (err) {
           console.error(err)
         }
