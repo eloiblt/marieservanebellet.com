@@ -1,5 +1,8 @@
 #!/bin/sh
 
+cd /var/www/marieservanebellet.com/marieservanebellet
+git pull
+
 cd /var/www/marieservanebellet.com/marieservanebellet/api
 rm -r node_modules
 npm install
