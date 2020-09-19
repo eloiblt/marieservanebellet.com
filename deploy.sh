@@ -4,11 +4,11 @@ cd /var/www/marieservanebellet.com/marieservanebellet
 git pull
 
 cd /var/www/marieservanebellet.com/marieservanebellet/api
-rm -r node_modules
+rm -rf node_modules
 npm install
 
 cd /var/www/marieservanebellet.com/marieservanebellet/front
-rm -r node_modules
+rm -rf node_modules
 npm install
 
 cd /var/www/marieservanebellet.com/marieservanebellet/front
