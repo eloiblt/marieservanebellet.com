@@ -51,23 +51,12 @@ if (process.env.NODE_ENV === "development") {
     origin: constants.frontUrl,
     optionsSuccessStatus: 200
   })); // allow front only
-
-  // Certificate
-  const privateKey = fs.readFileSync(path.join(__dirname, '../../../../../../etc/letsencrypt/live/marieservanebellet.com/privkey.pem'), 'utf8');
-  const certificate = fs.readFileSync(path.join(__dirname, '../../../../../../etc/letsencrypt/live/marieservanebellet.com/cert.pem'), 'utf8');
-  const chain = fs.readFileSync(path.join(__dirname, '../../../../../../etc/letsencrypt/live/marieservanebellet.com/chain.pem'), 'utf8');
-
-  const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: chain
-  };
-
-  const httpsServer = https.createServer(credentials, app);
-  httpsServer.listen(3000, () => {
-    console.log('HTTPS Server is listening on 3000');
-  });
 }
+
+const httpServer = http.createServer(app);
+httpServer.listen(3000, () => {
+  console.log('HTTP Server is listening on 3000');
+});
 
 app.use('/login', loginRouter);
 app.use('/pictures', picturesRouter);
