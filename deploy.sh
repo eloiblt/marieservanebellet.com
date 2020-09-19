@@ -14,11 +14,10 @@ ng build --prod
 cd /var/www/marieservanebellet.com/marieservanebellet/api
 tsc
 
-cd public_html
+cd /var/www/marieservanebellet.com/public_html
 rm -r *
 cp -r /var/www/marieservanebellet.com/marieservanebellet/front/dist/* .
 
-cd /var/www/marieservanebellet.com/marieservanebellet/api
 set NODE_ENV=production forever start ./dist/app.js
 
 
