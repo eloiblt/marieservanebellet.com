@@ -15,7 +15,6 @@ import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
 import fileupload from 'express-fileupload';
-
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
   authSource: "admin",
@@ -51,18 +50,17 @@ if (process.env.NODE_ENV === "development") {
     origin: constants.frontUrl,
     optionsSuccessStatus: 200
   })); // allow front only
-}
 
-const httpServer = http.createServer(app);
-httpServer.listen(3000, () => {
-  console.log('HTTP Server is listening on 3000');
-});
+  const httpServer = http.createServer(app);
+  httpServer.listen(3000, () => {
+    console.log('HTTP Server is listening on 3000');
+  });
 
-app.use('/login', loginRouter);
-app.use('/pictures', picturesRouter);
-app.use('/categoryPictures', categoryPicturesRouter);
-app.use('/contact', contactRouter);
+  app.use('/login', loginRouter);
+  app.use('/pictures', picturesRouter);
+  app.use('/categoryPictures', categoryPicturesRouter);
+  app.use('/contact', contactRouter);
 
-app.get('/status', (req, res) => {
-  res.send('API ON');
-});
+  app.get('/status', (req, res) => {
+    res.send('API ON');
+  });
