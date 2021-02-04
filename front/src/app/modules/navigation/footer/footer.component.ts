@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { Picture } from 'src/app/model/model';
+import { basePicturePath } from '../../../helpers/constants';
+
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +11,10 @@ import { Picture } from 'src/app/model/model';
 })
 export class FooterComponent implements OnInit {
 
+  public instaPath: string;
+  public show = 0;
   public logo: Picture;
+  public basePicturePath = basePicturePath;
 
   constructor(private pictureApiService: PicturesApiService) { }
 
@@ -17,8 +22,14 @@ export class FooterComponent implements OnInit {
     this.pictureApiService.getBySpec('Logo').subscribe(res => {
       this.logo = res[0];
     }, err => {
-      console.log(err);
+      console.log(err)
     });
+
+    this.instaPath = basePicturePath + '/instagram-logo.jpg'
+  }
+
+  redirectInstagram() {
+    window.open('https://www.instagram.com/marieservaneblt/', '_blank');
   }
 
 }

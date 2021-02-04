@@ -5,7 +5,6 @@ export class Picture {
   gridColumn: string;
   gridrow: string;
   categoryId: number;
-  shape: string;
   spec: string;   // ambiance // menu
   date: string;
   url: string;
@@ -15,6 +14,7 @@ export class Picture {
 export class CategoryPicture {
   id: number;
   name: string;
+  show: boolean;
 }
 
 export class User {

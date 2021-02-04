@@ -1,5 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { Picture, CategoryPicture } from 'src/app/model/model';
+import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
+import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
+import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import { Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
+import { basePicturePath } from '../../../helpers/constants';
 
 @Component({
   selector: 'app-menu',
@@ -8,34 +14,41 @@ import { Picture, CategoryPicture } from 'src/app/model/model';
 })
 export class MenuComponent implements OnInit {
 
-  @Output()
-  selectedCategory: EventEmitter<any> = new EventEmitter();
-  @Input()
-  categoryPictures: CategoryPicture[];
-  @Input()
-  picturesMenu: Picture[];
+  public picturesMenu: Picture[];
+  public categoryPictures: CategoryPicture[];
+  public loading = true;
+  public basePicturePath = basePicturePath;
+  public show = [];
+  public cptLoaded = 0;
 
-  public imagesLoaded = false;
-  public cptImagesLoaded = 0;
-
-  constructor() { }
+  constructor(
+    private pictureApiService: PicturesApiService,
+    private categoryPictureApiService: CategoryPicturesApiService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.show = [];
+    forkJoin({
+      pictures: this.pictureApiService.getBySpec('Menu'),
+      categoryPictures: this.categoryPictureApiService.get()
+    }).subscribe(res => {
+      this.picturesMenu = res.pictures;
+      this.categoryPictures = res.categoryPictures;
+      this.loading = false;
+    });
   }
 
   getMenuName(categoryid: number) {
     return this.categoryPictures.find(c => c.id === categoryid).name;
   }
 
-  select(categoryid: number) {
-    this.selectedCategory.emit(this.categoryPictures.find(c => c.id === categoryid));
+  loaded(id: number) {
+    this.show = [...this.show, id];
   }
 
-  imageLoaded() {
-    this.cptImagesLoaded++;
-    if (this.cptImagesLoaded === this.picturesMenu.length) {
-      this.imagesLoaded = true;
-    }
+  isLoaded(id: number) {
+    return this.show.includes(id);
   }
 
 }

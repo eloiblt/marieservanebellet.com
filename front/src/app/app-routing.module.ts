@@ -1,15 +1,42 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './modules/home/home/home.component';
+import { HomeComponent } from './modules/home/home.component';
 import { ManagementComponent } from './modules/admin/management/management.component';
 import { LoginComponent } from './modules/admin/login/login.component';
 import { AuthGuardService } from './services/authGuard.service';
-import { NotfoundComponent } from './modules/navigation/notfound/notfound.component';
+import { PicturesComponent } from './modules/home/pictures/pictures.component';
+import { MenuComponent } from './modules/home/menu/menu.component';
+import { ContactComponent } from './modules/home/contact/contact.component';
+import { AboutComponent } from './modules/home/about/about.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'galerie',
+    pathMatch: 'prefix'
+  },
+  {
+    path: 'galerie',
     component: HomeComponent,
+    children: [
+      {
+        path: '',
+        component: MenuComponent
+      },
+      {
+        path: 'peintures/:id',
+        component: PicturesComponent
+      }
+    ]
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
     pathMatch: 'full'
   },
   {
@@ -25,12 +52,12 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotfoundComponent
+    redirectTo: 'galerie',
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

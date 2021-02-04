@@ -1,16 +1,16 @@
 @import "../../../../colors.scss";
 
 .menu-container {
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   .menu-content {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     .unite {
       color: white;
@@ -19,9 +19,11 @@
       .img-container {
         position: absolute;
         top: 0;
-        bottom: 0%;
+        bottom: 0;
         left: 0;
         right: 0;
+        opacity: 0;
+        transition: opacity 0.7s;
 
         img {
           width: 100%;
@@ -39,10 +41,15 @@
           font-size: 16px;
           padding: 16px 32px;
           cursor: pointer;
+          text-align: center;
         }
 
         &:hover img {
           opacity: 0.6;
+        }
+
+        &.show {
+          opacity: 1;
         }
       }
     }
@@ -52,14 +59,16 @@
 @media screen and (min-width: 500px) {
   .menu-container {
     .menu-content {
-      width: 50%;
-      margin: 10px 0px;
+      width: 75%;
+      margin-top: 10px;
+      flex-wrap: wrap;
 
       .unite {
-        width: 50%;
+        width: calc((100% - 10px) / 2);
         padding-top: calc((100% - 10px) / 2);
+        margin-bottom: 10px;
 
-        &:not(:last-of-type) {
+        &:nth-child(odd) {
           margin-right: 10px;
         }
       }
@@ -69,10 +78,12 @@
 
 @media screen and (max-width: 500px) {
   .menu-container {
+    flex-direction: column;
+    padding: 30px;
+
     .menu-content {
       width: 100%;
       flex-direction: column;
-      padding: 30px;
 
       .unite {
         width: 100%;
@@ -80,34 +91,6 @@
 
         &:not(:last-of-type) {
           margin-bottom: 30px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .menu-container {
-    .menu-content {
-      .unite {
-        .img-container {
-          .middle {
-            font-size: 14px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .menu-container {
-    .menu-content {
-      .unite {
-        .img-container {
-          .middle {
-            font-size: 11px;
-          }
         }
       }
     }

@@ -7,29 +7,45 @@
   justify-content: center;
   align-items: center;
 
-  .go-back {
+  .grid-top-container {
+    position: relative;
     width: 100%;
-    margin: 20px 0px;
-    cursor: pointer;
     display: flex;
-    align-items: center;
+    justify-content: center;
 
-    i,
-    p {
-      color: white;
-    }
+    .go-back {
+      width: 100%;
 
-    i {
-      margin-right: 10px;
-    }
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.7s;
 
-    p:hover {
-      text-decoration: underline;
+      i,
+      p {
+        color: white;
+      }
+
+      i {
+        margin-right: 10px;
+      }
+
+      p:hover {
+        text-decoration: underline;
+      }
+
+      &.show {
+        opacity: 1;
+      }
     }
   }
 
   .grid {
+    transition: opacity 0.7s;
+
     .unite {
+      opacity: 0;
       width: 100%;
       position: relative;
 
@@ -78,14 +94,21 @@
           font-size: 16px;
         }
       }
+
+      &.show {
+        opacity: 1;
+      }
     }
   }
 }
 
 @media screen and (min-width: 500px) {
   .grid-content {
-    .go-back {
-      width: 80%;
+    .grid-top-container {
+      .go-back {
+        width: 80%;
+        margin: 20px 0px;
+      }
     }
 
     .grid {
@@ -98,7 +121,7 @@
       grid-gap: 20px;
 
       .unite {
-        padding-top: calc(100% * 1.1);
+        padding-top: calc(100% * (10 / 9)); // 9 + 1/9 = 1
 
         .img-container {
           position: absolute;
@@ -117,23 +140,74 @@
         }
 
         &.rectangle {
-          // hauteur = 2 fois largeur - 20px divisé par deux, + 1/10 pour légende
-          padding-top: calc((100% - 20px) * 1 / 2 * 1.1);
+          // hauteur = 2 fois largeur - 20px divisé par deux, + 1/9 pour légende
+          padding-top: calc((100% - 20px) * 1 / 2 * (10 / 9));
         }
 
         &.vertical {
           // hauteur = 2 fois (largeur + legende), + 20px
-          padding-top: calc(100% * 1.1 * 2 + 20px);
+          padding-top: calc(100% * (10 / 9) * 2 + 20px);
 
           .img-container {
-            bottom: 5%;
+            bottom: 4.9%;
           }
 
           .label {
-            top: 95%;
+            top: 95.1%;
+          }
+        }
+
+        &.hide-label {
+          padding-top: 100%;
+
+          .img-container {
+            bottom: 0;
+          }
+
+          &.rectangle {
+            padding-top: calc((100% - 20px) * 1 / 2);
+          }
+
+          &.vertical {
+            padding-top: calc(100% * 2 + 20px);
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .grid-content {
+    padding: 10px;
+
+    .grid-top-container {
+      .go-back {
+        margin: 10px 0px 20px 0px;
+      }
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .unite {
+        margin-bottom: 10px;
+
+        .label {
+          p {
+            font-size: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .modal {
+    .label {
+      margin-bottom: 10px;
     }
   }
 }
@@ -147,14 +221,26 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
 
   img {
-    width: 100%;
     height: 90%;
     object-fit: contain;
     transition: 0.3s;
+    margin: 10px;
+    opacity: 0;
+    transition: opacity 0.7s;
+
+    &.show {
+      opacity: 1;
+    }
+  }
+
+  &.hideLabel {
+    img {
+      height: 100%;
+    }
   }
 
   img,
@@ -190,7 +276,6 @@
   }
 
   .label {
-    height: 10%;
     align-self: center;
     display: flex;
     justify-content: center;
@@ -198,29 +283,6 @@
 
     p {
       color: white;
-    }
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .grid-content {
-    padding: 10px;
-
-    .grid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-
-      .unite {
-        margin-bottom: 10px;
-
-        .label {
-          p {
-            font-size: 8px;
-          }
-        }
-      }
     }
   }
 }
