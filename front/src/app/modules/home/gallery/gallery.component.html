@@ -1,9 +1,0 @@
-<div class="gallery-container" *ngIf="dataReceived">
-  <app-menu *ngIf="!selectedCategory" [picturesMenu]="picturesMenu" [categoryPictures]="categoryPictures"
-    (selectedCategory)="setCategory($event)">
-  </app-menu>
-  <app-pictures *ngIf="selectedCategory" [paintings]="paintingsByCategory" (clearCategory)="clearCategory()">
-  </app-pictures>
-</div>
-
-<ngx-loading [show]="!dataReceived"></ngx-loading>

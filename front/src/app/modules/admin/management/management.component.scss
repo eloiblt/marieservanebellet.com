@@ -12,87 +12,114 @@
     flex-direction: column;
     height: 100%;
 
-    .painting-row {
-      display: flex;
-      align-items: center;
+    h1 {
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
 
-      .fields {
-        width: 98%;
+    .category-name {
+      min-width: 1px;
+      border: 1px solid $anthraciteGrey;
+      border-radius: 3px;
+      height: 30px;
+      text-indent: 5px;
+      font-size: 30px;
+      width: fit-content;
+      font-weight: bold;
+    }
+
+    i {
+      &.fa-check {
+        opacity: 0.4;
+        margin-left: auto;
+
+        &.active {
+          opacity: 1;
+          color: green;
+          cursor: pointer;
+        }
+      }
+
+      &.fa-minus-circle {
+        margin-right: auto;
+        margin-top: auto;
+        color: red;
+        cursor: pointer;
+      }
+    }
+
+    .picture {
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      width: 300px;
+
+      img {
+        width: 300px;
+        align-self: center;
+        margin-bottom: 5px;
+      }
+
+      .picture-line {
         display: flex;
         align-items: center;
+        margin-bottom: 10px;
 
-        h2,
-        input {
-          flex: 1;
-
-          &:not(:last-of-type) {
-            margin-right: 10px;
-          }
+        p {
+          margin-right: 10px;
         }
 
-        input {
+        input:not([type="file"]) {
+          flex: 1;
           min-width: 1px;
           border: 1px solid $anthraciteGrey;
           border-radius: 3px;
           height: 30px;
           text-indent: 5px;
         }
-      }
 
-      .icon {
-        width: 2%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        ::ng-deep .ng-select {
+          flex: 1;
 
-        i {
-          cursor: pointer;
-
-          &.fa-check {
-            opacity: 0.4;
-
-            &.active {
-              opacity: 1;
-              color: green;
-            }
+          .ng-select-container {
+            border: 1px solid $anthraciteGrey;
           }
-
-          &.fa-minus-circle {
-            display: none;
-
-            &:hover {
-              color: red;
-            }
-          }
-        }
-      }
-
-      &:not(:last-of-type) {
-        margin-bottom: 10px;
-      }
-
-      &:hover {
-        .icon i.fa-minus-circle {
-          display: block;
-        }
-
-        .fields input {
-          font-weight: bold;
         }
       }
     }
 
-    .paintings {
-      flex: 1;
-      position: relative;
+    .add {
+      display: flex;
 
-      .scrollable-paintings {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        overflow: auto;
+      .add-item {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .category {
+      display: flex;
+      flex-direction: column;
+
+      .category-actions {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        i {
+          margin-top: unset;
+          margin-left: 10px;
+        }
+      }
+
+      .category-content {
+        display: flex;
+        flex-wrap: wrap;
       }
     }
   }

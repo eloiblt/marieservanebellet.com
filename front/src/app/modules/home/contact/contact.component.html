@@ -1,0 +1,43 @@
+<div class="contact-container">
+  <div class="contact">
+    <h1>Contact</h1>
+    <form [formGroup]="contactForm" (ngSubmit)="contact()">
+
+      <label for="name">Nom :</label>
+      <input id="name" type="text" formControlName="name" />
+
+      <div class="errors" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.required">
+          Veuillez renseigner votre nom
+        </div>
+      </div>
+
+      <label for="mail">Mail :</label>
+      <input id="mail" type="email" formControlName="mail" />
+
+      <div class="errors" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+        <div *ngIf="mail.errors.required">
+          Veuillez renseigner votre mail
+        </div>
+        <div *ngIf="mail.errors.email">
+          Le mail est invalide
+        </div>
+      </div>
+
+      <label for="message">Message :</label>
+      <textarea id="message" rows="7" formControlName="message"></textarea>
+
+      <div class="errors" *ngIf="message.invalid && (message.dirty || message.touched)">
+        <div *ngIf="message.errors.required">
+          Veuillez renseigner un contenu
+        </div>
+      </div>
+
+      <div class="error-mail" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <button [disabled]="!canContact()">Envoyer</button>
+    </form>
+  </div>
+</div>

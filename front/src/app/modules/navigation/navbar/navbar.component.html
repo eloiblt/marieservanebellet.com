@@ -1,13 +1,17 @@
 <div class="navbar">
-  <h1>Marie Servane Bellet</h1>
-  <div class="onglets">
-    <div class="onglet">
-      Ambiances
+  <div class="nav-top">
+    <i class="fas fa-bars" (click)="showMenu = !showMenu"></i>
+    <div [ngClass]="{'logo-left': true, 'show': show}" *ngIf="logo" (click)="showMenu = false" [routerLink]="['/']">
+      <img src="{{ basePicturePath + logo.url }}" loading="lazy" (load)="show = true" alt="Logo">
+      <h2>Marie-Servane Bellet</h2>
     </div>
-    <div class="onglet">
+  </div>
+
+  <div [ngClass]="{'onglets': true, 'showMenu': showMenu}">
+    <div class="onglet" (click)="showMenu = false" [routerLink]="['/about']">
       A propos
     </div>
-    <div class="onglet">
+    <div class="onglet" (click)="showMenu = false" [routerLink]="['/contact']">
       Contact
     </div>
   </div>

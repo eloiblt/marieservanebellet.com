@@ -1,33 +1,33 @@
-<div class="grid-content" [ngStyle]="!imagesLoaded ? {'display': 'none'} : ''">
-  <div class="go-back" (click)="backMenu()">
-    <i class="fas fa-arrow-left"></i>
-    <p> Choisir une autre catégorie</p>
+<div class="grid-content">
+  <div class="grid-top-container">
+    <div [ngClass]="{'go-back': true, 'show': show}" [routerLink]="['/galerie']">
+      <i class="fas fa-arrow-left"></i>
+      <p> Choisir une autre catégorie</p>
+    </div>
   </div>
-  <div class="grid">
 
-    <div *ngFor="let p of paintings"
-      [ngClass]="{'unite': true, 'rectangle': p.gridColumn === '1 / 3', 'vertical': p.gridrow === '1 / 3'}"
+  <div *ngIf="!loading" [ngClass]="{'grid': true }">
+    <div *ngFor="let p of pictures"
+      [ngClass]="{'unite': true, 'show': isLoaded(p.id), 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
       <div class="img-container">
-        <img src="{{p.url}}" alt="{{ p.title }}" (load)="imageLoaded()">
+        <img src="{{basePicturePath + p.url}}" loading="lazy" (load)="loaded(p.id)" alt="{{ p.title }}">
         <div class="middle" (click)="showImage(p)">Aperçu</div>
       </div>
-      <div class="label">
+      <div class="label" *ngIf="p.title">
         <p>{{ p.title }}</p>
-        <p>{{ p.date }}</p>
+        <p>{{ p.size }} - {{ p.date }}</p>
       </div>
     </div>
-
   </div>
 </div>
 
-<ngx-loading [show]="!imagesLoaded"></ngx-loading>
-
-<div *ngIf="clickedPicture" (click)="clickedPicture = null" class="modal">
-  <span (click)="clickedPicture = null" class="close">&times;</span>
-  <img src="{{ clickedPicture.url }}" alt="{{ clickedPicture.title }}">
-  <div class="label">
+<div *ngIf="clickedPicture" (click)="closeModal()" [ngClass]="{'modal': true, 'hideLabel': !clickedPicture.title}">
+  <span (click)="closeModal()" class="close">&times;</span>
+  <img src="{{basePicturePath + clickedPicture.url}}" alt="{{ clickedPicture.title }}" (load)="showModal = true"
+    [ngClass]="{'show': showModal}">
+  <div class="label" *ngIf="clickedPicture.title">
     <p>{{ clickedPicture.title }}</p>
-    <p>{{ clickedPicture.date }}</p>
+    <p>{{ clickedPicture.size }} - {{ clickedPicture.date }}</p>
   </div>
 </div>
