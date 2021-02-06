@@ -1,3 +1,7 @@
+User-agent: Googlebot-Image
+Disallow: /
+
 User-agent: *
 Disallow:
-Sitemap: https://marieservanebellet.com/msb_map.xml
+
+Sitemap: https://marieservanebellet.com/sitemap.xml
