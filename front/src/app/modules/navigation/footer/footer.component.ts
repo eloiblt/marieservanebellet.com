@@ -32,4 +32,8 @@ export class FooterComponent implements OnInit {
     window.open('https://www.instagram.com/marieservaneblt/', '_blank');
   }
 
+  redirectProfile() {
+    window.open('https://github.com/eloiblt', '_blank');
+  }
+
 }

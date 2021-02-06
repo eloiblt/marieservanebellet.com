@@ -1,7 +1,6 @@
 .footer {
   padding: 10px;
   background-color: white;
-  height: 75px;
 
   .footer-content {
     width: 100%;
@@ -12,13 +11,13 @@
     opacity: 0;
     transform: opacity 0.7s;
 
-    .footer-top {
+    .footer-line {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
 
-      p {
+      .link {
         cursor: pointer;
       }
 
@@ -28,20 +27,26 @@
         margin: 0px 10px;
         cursor: pointer;
       }
-    }
 
-    .footer-bottom {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
+      .insta {
         margin-top: 5px;
         width: 20px;
         height: 20px;
         cursor: pointer;
         margin-right: 2px;
+      }
+
+      &.profile {
+        justify-content: flex-end;
+
+        p {
+          font-size: 14px;
+        }
+
+        .link {
+          margin-left: 3px;
+          font-weight: bold;
+        }
       }
     }
 
@@ -54,20 +59,22 @@
 @media screen and (max-width: 500px) {
   .footer {
     padding: 5px;
-    height: 55px;
 
     .footer-content {
-      .footer-top {
+      .footer-line {
         .logo {
           width: 30px;
           height: 30px;
         }
-      }
 
-      .footer-bottom {
-        img {
+        .insta {
           width: 20px;
           height: 20px;
+        }
+
+        &.profile {
+          justify-content: center;
+          margin-top: 10px;
         }
       }
     }
