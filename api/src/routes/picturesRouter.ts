@@ -80,7 +80,7 @@ router.post('/postFile', authenticateJWT, (req: any, res) => {
 
     sampleFile.mv('/var/www/marieservanebellet.com/pictures/public/' + sampleFile.name, err => {
       if (err) throw err;
-      exec('jpegoptim --max=90 /var/www/marieservanebellet.com/pictures/public/' + sampleFile.name, (err, stdout, stderr) => {
+      exec('jpegoptim --max=50 --strip-all /var/www/marieservanebellet.com/pictures/public/' + sampleFile.name, (err, stdout, stderr) => {
         if (err) {
           console.error(err)
         }

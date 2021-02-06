@@ -1,14 +1,19 @@
 <div class="footer">
   <div [ngClass]="{'footer-content': true, 'show': show === 2}">
-    <div class="footer-top" *ngIf="logo">
-      <p [routerLink]="['/contact']">Contact</p>
+    <div class="footer-line" *ngIf="logo">
+      <p [routerLink]="['/contact']" class="link">Contact</p>
       <img class="logo" src="{{ basePicturePath + logo.url }}" loading="lazy" (load)="show = show + 1" alt="Logo"
         [routerLink]="['/']">
-      <p [routerLink]="['/about']">A propos</p>
+      <p [routerLink]="['/about']" class="link">A propos</p>
     </div>
 
-    <div class="footer-bottom" (click)="redirectInstagram()">
-      <img src="{{ instaPath }}" loading="lazy" (load)="show = show + 1" alt="Instagram">
+    <div class="footer-line" (click)="redirectInstagram()">
+      <img class="insta" src="{{ instaPath }}" loading="lazy" (load)="show = show + 1" alt="Instagram">
+    </div>
+
+    <div class="footer-line profile" (click)="redirectProfile()">
+      <p>Made with ❤️ by</p>
+      <p class="link">Eloi Bellet</p>
     </div>
   </div>
 </div>
