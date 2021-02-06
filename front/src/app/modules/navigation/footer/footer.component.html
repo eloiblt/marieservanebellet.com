@@ -7,13 +7,13 @@
       <p [routerLink]="['/about']" class="link">A propos</p>
     </div>
 
-    <div class="footer-line" (click)="redirectInstagram()">
-      <img class="insta" src="{{ instaPath }}" loading="lazy" (load)="show = show + 1" alt="Instagram">
+    <div class="footer-line">
+      <img class="insta" (click)="redirectInstagram()" src="{{ instaPath }}" loading="lazy" (load)="show = show + 1" alt="Instagram">
     </div>
 
-    <div class="footer-line profile" (click)="redirectProfile()">
+    <div class="footer-line profile">
       <p>Made with ❤️ by</p>
-      <p class="link">Eloi Bellet</p>
+      <p class="link" (click)="redirectProfile()">Eloi Bellet</p>
     </div>
   </div>
 </div>
