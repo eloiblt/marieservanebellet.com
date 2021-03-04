@@ -7,14 +7,14 @@ import * as http from 'http';
 import * as https from 'https';
 import mongoose from 'mongoose';
 import * as path from 'path';
+import * as dotenv from "dotenv";
+dotenv.config();
 import * as constants from './config/constants';
 import categoryPicturesRouter from './routes/categoryPicturesRouter';
 import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
 import fileupload from 'express-fileupload';
-import * as dotenv from "dotenv";
-dotenv.config();
 
 // DB connection
 mongoose.connect(constants.dataBaseUrl, {
