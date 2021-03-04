@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { Picture } from 'src/app/model/model';
-import { basePicturePath } from '../../../helpers/constants';
+import { basePicturePath, etsyUrl, githubUrl, instaUrl } from '../../../helpers/constants';
 
 
 @Component({
@@ -12,6 +12,7 @@ import { basePicturePath } from '../../../helpers/constants';
 export class FooterComponent implements OnInit {
 
   public instaPath: string;
+  public etsyPath: string;
   public show = 0;
   public logo: Picture;
   public basePicturePath = basePicturePath;
@@ -25,15 +26,20 @@ export class FooterComponent implements OnInit {
       console.log(err)
     });
 
-    this.instaPath = basePicturePath + '/instagram-logo.jpg'
+    this.instaPath = basePicturePath + '/instagram-logo.jpg';
+    this.etsyPath = basePicturePath + '/etsy-logo.jpg';
   }
 
   redirectInstagram() {
-    window.open('https://www.instagram.com/marieservaneblt/', '_blank');
+    window.open(instaUrl, '_blank');
+  }
+
+  redirectEtsy() {
+    window.open(etsyUrl, '_blank');
   }
 
   redirectProfile() {
-    window.open('https://github.com/eloiblt', '_blank');
+    window.open(githubUrl, '_blank');
   }
 
 }
