@@ -5,6 +5,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: $anthraciteGrey;
 
   .ambiance-painting {
     width: 100%;
@@ -32,8 +33,28 @@
     }
   }
 
+  .buying-site {
+    background-color: #f16519;
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      font-size: 22px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
   .content {
-    background-color: $anthraciteGrey;
     flex: 1;
   }
 }
@@ -49,6 +70,10 @@
           font-size: 15px;
         }
       }
+    }
+
+    .buying-site {
+      margin-top: 30px;
     }
   }
 }
