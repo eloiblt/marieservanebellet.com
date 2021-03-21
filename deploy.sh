@@ -1,27 +1,25 @@
 #!/bin/sh
 
-cd /var/www/marieservanebellet.com/marieservanebellet
+cd ~/marieservanebellet
 git pull
 
-cd /var/www/marieservanebellet.com/marieservanebellet/api
+cd ~/marieservanebellet/api
 rm -rf node_modules
 npm install
 
-cd /var/www/marieservanebellet.com/marieservanebellet/front
+cd ~/marieservanebellet/front
 rm -rf node_modules
 npm install
 
-cd /var/www/marieservanebellet.com/marieservanebellet/front
+cd ~/marieservanebellet/front
 ng build --prod
 
-cd /var/www/marieservanebellet.com/marieservanebellet/api
+cd ~/marieservanebellet/api
 tsc
 
-cd /var/www/marieservanebellet.com/public_html
+cd /var/www/marieservanebellet_front
 rm -r *
-cp -r /var/www/marieservanebellet.com/marieservanebellet/front/dist/* .
+cp -r ~/marieservanebellet/front/dist/* .
 
 forever stopall
-NODE_ENV=production forever start /var/www/marieservanebellet.com/marieservanebellet/api/dist/app.js
-cd /var/www/marieservanebellet.com/pictures/
-forever start ftp.js
+NODE_ENV=production forever start ~/marieservanebellet/api/dist/app.js

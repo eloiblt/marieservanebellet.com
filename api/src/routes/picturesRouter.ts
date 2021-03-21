@@ -59,7 +59,7 @@ router.delete('/:id', authenticateJWT, (req, res) => {
   PictureCollection.findOne({ id: req.params.id }).lean()
     .then(doc => {
       const { _id, ...picture } = doc;
-      fs.unlink('/var/www/marieservanebellet.com/pictures/public/' + (picture as Picture).url, function (err) {
+      fs.unlink('/var/www/marieservanebellet_pictures/' + (picture as Picture).url, function (err) {
         PictureCollection.deleteOne({ id: req.params.id })
           .then(docs => res.status(200).send())
           .catch(err => res.status(500).send());
@@ -78,9 +78,9 @@ router.post('/postFile', authenticateJWT, (req: any, res) => {
 
     let sampleFile = req.files.peinture;
 
-    sampleFile.mv('/var/www/marieservanebellet.com/pictures/public/' + sampleFile.name, err => {
+    sampleFile.mv('/var/www/marieservanebellet_pictures/' + sampleFile.name, err => {
       if (err) throw err;
-      exec('jpegoptim --max=50 --strip-all /var/www/marieservanebellet.com/pictures/public/' + sampleFile.name, (err, stdout, stderr) => {
+      exec('jpegoptim --max=50 --strip-all /var/www/marieservanebellet_pictures/' + sampleFile.name, (err, stdout, stderr) => {
         if (err) {
           console.error(err)
         }
