@@ -12,10 +12,10 @@ rm -rf node_modules
 npm install
 
 cd ~/marieservanebellet/front
-ng build --prod
+npx ng build --prod
 
 cd ~/marieservanebellet/api
-tsc
+npx tsc
 
 cd /var/www/marieservanebellet_front
 rm -r *
