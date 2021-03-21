@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Picture } from 'src/app/model/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { basePicturePath } from '../../../helpers/constants';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-pictures',
@@ -19,10 +20,13 @@ export class PicturesComponent implements OnInit {
   public showModal = false;
   public cptLoaded = 0;
 
+  @ViewChild("myElem") MyProp: ElementRef;
+
   constructor(
     private route: ActivatedRoute,
     private pictureApiService: PicturesApiService,
-    private router: Router
+    private router: Router,
+    private viewPortScroller: ViewportScroller
   ) { }
 
   ngOnInit(): void {
