@@ -19,7 +19,7 @@ router.post('/', [
     req.body.message = req.body.message.replace(/&#x27;/g, '\'').replace(/&quot;/g, '\"');
 
     let transporter = nodeMailer.createTransport({
-      host: "in-v3.mailjet.com:",
+      host: "in-v3.mailjet.com",
       port: 465,
       secure: true,
       auth: {
