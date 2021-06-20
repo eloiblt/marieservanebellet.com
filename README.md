@@ -139,14 +139,19 @@ Redémarrer le back et apache après cela.
 ## .zshrc
 
 ```sh
-export FRONT_URL="https://marieservanebellet.com"
-export DATABASE_URL="mongodb://eloiblt:10bLt!mo731\$@193.70.40.152:27017/marieservanebellet"
-export JWT_SECRET="1341K3;/3/.3DSFDfsdf"
-export SMTP_MAIL="marieservanebellet.site@gmail.com"
-export SMTP_PASSWORD="MwebSitB!"
-export MAIL_TO="eloi.bellet@gmail.com"
-export MAIL_BCC="eloi.bellet@gmail.com"
+FRONT_URL='https://marieservanebellet.com'
+DATABASE_URL='mongodb://eloiblt:10bLt!mo731$@193.70.40.152:27017/marieservanebellet'
+JWT_SECRET='1341K3;/3/.3DSFDfsdf'
+SMTP_USER='60bbed0d58887a4b43a7fea769ffd756'
+SMTP_PASSWORD='4d13e8169dd6bff0551e1a86bd4b698e'
+MAIL_TO='mms.bellet@laposte.net'
+MAIL_BCC='eloi.bellet@gmail.com'
 ```
+
+Informations du compte Google :
+
+marieservanebellet.site@gmail.com  
+MwebSitB!  
 
 # Développement local
 
@@ -160,6 +165,25 @@ sudo ufw status numbered
 sudo ufw delete [x]
 ```
 
+- créer le fichier .env suivant dans api : 
+
+```txt
+FRONT_URL='https://marieservanebellet.com'
+DATABASE_URL='mongodb://eloiblt:10bLt!mo731$@193.70.40.152:27017/marieservanebellet'
+JWT_SECRET='1341K3;/3/.3DSFDfsdf'
+SMTP_USER='60bbed0d58887a4b43a7fea769ffd756'
+SMTP_PASSWORD='4d13e8169dd6bff0551e1a86bd4b698e'
+MAIL_TO='eloi.bellet@gmail.com'
+MAIL_BCC='eloi.bellet@gmail.com'
+```
+
 - npm start sur les deux projets
 
+# Mails
 
+Utilisation de mailjet
+
+Host : in-v3.mailjet.com:465  
+User : 60bbed0d58887a4b43a7fea769ffd756  
+Password : 4d13e8169dd6bff0551e1a86bd4b698e  
+TLS true
