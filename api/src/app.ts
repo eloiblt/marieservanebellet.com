@@ -1,22 +1,20 @@
 import cors from 'cors';
+import * as dotenv from "dotenv";
+dotenv.config({ path: `.env.${process.env.NODE_ENV}`});
 import express from 'express';
+import fileupload from 'express-fileupload';
 import rateLimit from 'express-rate-limit';
 import fs from 'fs';
 import helmet from 'helmet';
 import * as http from 'http';
 import * as https from 'https';
 import mongoose from 'mongoose';
-import * as path from 'path';
-import * as dotenv from "dotenv";
-dotenv.config();
 import * as constants from './config/constants';
 import categoryPicturesRouter from './routes/categoryPicturesRouter';
 import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
-import fileupload from 'express-fileupload';
 
-// DB connection
 mongoose.connect(constants.dataBaseUrl, {
   authSource: "admin",
   useNewUrlParser: true,
@@ -47,6 +45,8 @@ if (process.env.NODE_ENV === "development") {
     console.log('HTTP Server is listening on 3000');
   });
 } else if (process.env.NODE_ENV === "production") {
+  console.log('Production environnement');
+
   app.use(cors({
     origin: constants.frontUrl,
     optionsSuccessStatus: 200
