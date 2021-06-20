@@ -2,6 +2,6 @@ User-agent: Googlebot-Image
 Disallow: /
 
 User-agent: *
-Disallow:
+Disallow: /
 
 Sitemap: https://marieservanebellet.com/sitemap.xml
