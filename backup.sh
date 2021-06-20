@@ -5,7 +5,7 @@ cd ~/marieservanebellet/
 rm -r mongodump
 rm -r photosdump
 
-mongodump --db marieservanebellet -o mongodump --authenticationDatabase admin --username eloiblt
+mongodump --db marieservanebellet -o mongodump --authenticationDatabase admin --username eloiblt -p "10bLt\!mo731$"
 
 zip -r mongodump.zip mongodump
 rm -r mongodump
