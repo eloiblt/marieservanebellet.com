@@ -1,6 +1,12 @@
 import cors from 'cors';
 import * as dotenv from "dotenv";
-dotenv.config({ path: `.env.${process.env.NODE_ENV}`});
+
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: `/home/eloiblt/marieservanebellet/api/.env.production` });
+} else if (process.env.NODE_ENV === 'development') {
+  dotenv.config({ path: `.env.development` });
+}
+
 import express from 'express';
 import fileupload from 'express-fileupload';
 import rateLimit from 'express-rate-limit';
