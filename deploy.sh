@@ -22,4 +22,4 @@ rm -r *
 cp -r ~/marieservanebellet/front/dist/* .
 
 forever stopall
-NODE_ENV=production forever start ~/marieservanebellet/api/dist/app.js%
+NODE_ENV=production forever start ~/marieservanebellet/api/dist/app.js
