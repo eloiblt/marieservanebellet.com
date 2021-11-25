@@ -2,8 +2,8 @@
 
 cd ~/marieservanebellet/
 
-rm -r mongodump
-rm -r photosdump
+rm mongodump.zip
+rm photosdump.zip
 
 mongodump --db marieservanebellet -o mongodump --authenticationDatabase admin --username eloiblt -p "10bLt\!mo731$"
 
