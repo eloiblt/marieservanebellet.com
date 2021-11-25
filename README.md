@@ -163,3 +163,13 @@ Informations du compte Google :
 
 marieservanebellet.site@gmail.com  
 MwebSitB!  
+
+# Cronjobs 
+
+Backups of database and pictures every Sunday at 8am
+
+```sh
+crontab -e
+
+0 8 * * Sun sh ~/marieservanebellet/backup.sh
+```
