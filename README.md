@@ -169,7 +169,17 @@ MwebSitB!
 Backups of database and pictures every Sunday at 8am
 
 ```sh
+// user crontab
 crontab -e
 
 0 8 * * Sun sh ~/marieservanebellet/backup.sh
+```
+
+Renew certbot and reboot back and apache every Sunday at 8am
+
+```sh
+// root crontab
+sudo crontab -e
+
+0 8 * * Sun bash /home/eloiblt/marieservanebellet/renewCertbotAndRebootBack.sh
 ```
