@@ -1,0 +1,56 @@
+version: '3.3'
+services:
+
+  front-service:
+    container_name: front-service
+    build:
+      context: ../../
+      dockerfile: ./front/
+    networks:
+      - front-network
+
+  api-service:
+    container_name: api-service
+    build:
+      context: ../../
+      dockerfile: ./api/
+    networks:
+      - api-network
+    depends_on:
+      - mongo-service
+
+  mongo-service:
+    image: mongo
+    container_name: mongo-service
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: marieservanebellet
+    volumes:
+      - ./mongo-seeder/:/docker-entrypoint-initdb.d/
+    networks:
+      - api-network
+
+  reverse-proxy:
+    container_name: reverse-proxy
+    build:
+      context: ../../
+      dockerfile: ./reverse-proxy/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - api-network
+      - front-network
+    depends_on:
+      - front-service
+      - api-service
+
+networks:
+  api-network:
+    driver: bridge
+  front-network:
+    driver: bridge
