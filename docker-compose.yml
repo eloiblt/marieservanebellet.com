@@ -1,0 +1,54 @@
+version: '3.3'
+services:
+
+  front-service:
+    container_name: front-service
+    build: front
+    # ports:
+    #   - "80:80"
+    networks:
+      - front-network
+
+  api-service:
+    container_name: api-service
+    build: api
+    # ports:
+    #   - "8080:8080"
+    networks:
+      - api-network
+    depends_on:
+      - mongo-service
+
+  mongo-service:
+    image: mongo
+    container_name: mongo-service
+    restart: always
+    # ports:
+    #   - "27017:27017"
+    volumes:
+      - ./mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: marieservanebellet
+    networks:
+      - api-network
+
+  reverse-proxy:
+    container_name: reverse-proxy
+    build: reverse-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - api-network
+      - front-network
+    depends_on:
+      - front-service
+      - api-service
+
+networks:
+  api-network:
+    driver: bridge
+  front-network:
+    driver: bridge
