@@ -5,7 +5,7 @@ services:
     container_name: front-service
     build:
       context: ../../
-      dockerfile: ./front/
+      dockerfile: ./front/Dockerfile
     networks:
       - front-network
 
@@ -13,7 +13,7 @@ services:
     container_name: api-service
     build:
       context: ../../
-      dockerfile: ./api/
+      dockerfile: ./api/Dockerfile
     networks:
       - api-network
     depends_on:

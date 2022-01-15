@@ -1,7 +1,11 @@
 
 FROM node:16 as build
-WORKDIR /usr/local/app
-COPY ./ /usr/local/app/
+
+ENV home /usr/src/app
+
+WORKDIR $home
+
+COPY ./front/ $home
 RUN npm install
 RUN npm run build
 
