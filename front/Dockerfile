@@ -16,6 +16,6 @@ ENV home /usr/src/app
 
 WORKDIR $home
 
-COPY ./front/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./front/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build $home/dist /usr/share/nginx/html
 EXPOSE 80

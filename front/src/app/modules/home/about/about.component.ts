@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { basePicturePath } from '../../../helpers/constants';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-about',
@@ -14,7 +14,7 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.photoPath = basePicturePath + 'photo.jpg'
+    this.photoPath = environment.picturesUrl + 'photo.jpg'
   }
 
   ngAfterViewInit() {

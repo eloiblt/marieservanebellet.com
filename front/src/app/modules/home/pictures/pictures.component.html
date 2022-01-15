@@ -11,7 +11,7 @@
       [ngClass]="{'unite': true, 'show': isLoaded(p.id), 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
       <div class="img-container">
-        <img src="{{basePicturePath + p.url}}" loading="lazy" (load)="loaded(p.id)" alt="{{ p.title }}">
+        <img src="{{ environment.picturesUrl + p.url }}" loading="lazy" (load)="loaded(p.id)" alt="{{ p.title }}">
         <div class="middle" (click)="showImage(p)">Aperçu</div>
       </div>
       <div class="label" *ngIf="p.title">
@@ -24,7 +24,7 @@
 
 <div *ngIf="clickedPicture" (click)="closeModal()" [ngClass]="{'modal': true, 'hideLabel': !clickedPicture.title}">
   <span (click)="closeModal()" class="close">&times;</span>
-  <img src="{{basePicturePath + clickedPicture.url}}" alt="{{ clickedPicture.title }}" (load)="showModal = true"
+  <img src="{{ environment.picturesUrl + clickedPicture.url }}" alt="{{ clickedPicture.title }}" (load)="showModal = true"
     [ngClass]="{'show': showModal}">
   <div class="label" *ngIf="clickedPicture.title">
     <p>{{ clickedPicture.title }}</p>

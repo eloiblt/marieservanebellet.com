@@ -1,7 +1,7 @@
 <div class="home">
   <div class="ambiance-painting">
     <div class="img-amb-container" *ngIf="bandeau" [ngClass]="{'show': show}">
-      <img src="{{ basePicturePath + bandeau.url }}" (load)="show = true" alt="Image d'ambiance">
+      <img src="{{ environment.picturesUrl + bandeau.url }}" (load)="show = true" alt="Image d'ambiance">
     </div>
   </div>
 

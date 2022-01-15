@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Picture } from 'src/app/model/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
-import { basePicturePath } from '../../../helpers/constants';
 import { ViewportScroller } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-pictures',
@@ -15,10 +15,10 @@ export class PicturesComponent implements OnInit {
   public pictures: Picture[] = [];
   public clickedPicture: Picture;
   public loading = true;
-  public basePicturePath = basePicturePath;
   public show = [];
   public showModal = false;
   public cptLoaded = 0;
+  public environment = environment;
 
   @ViewChild("myElem") MyProp: ElementRef;
 
