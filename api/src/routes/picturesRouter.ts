@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/getBySpec', (req, res) => {
+  console.log(req.query.spec);
   PictureCollection.find({ spec: req.query.spec }).lean()
     .then(docs => {
       const pictures: Picture[] = docs.map(d => {
@@ -89,6 +90,5 @@ router.post('/postFile', authenticateJWT, (req: any, res) => {
     });
   }
 });
-
 
 export default router;
