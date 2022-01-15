@@ -35,6 +35,7 @@ app.use(helmet());
 app.use(rateLimit({ windowMs: 1 * 60 * 1000, max: 300 }));
 app.use(fileupload());
 
+let port: number;
 if (process.env.NODE_ENV === "production") {
   console.log('Production environnement');
 
@@ -43,14 +44,17 @@ if (process.env.NODE_ENV === "production") {
     optionsSuccessStatus: 200
   }));
 
-  const httpServer = http.createServer(app);
-  httpServer.listen(80, () => {
-    console.log('HTTP Server is listening on port 80');
-  });
+  port = 80;
 } else {
   console.log('Development environnement');
   app.use(cors());
+  port = 3000;
 }
+
+const httpServer = http.createServer(app);
+httpServer.listen(port, () => {
+  console.log(`HTTP Server is listening on port ${port}`);
+});
 
 app.use('/login', loginRouter);
 app.use('/pictures', picturesRouter);
