@@ -10,5 +10,5 @@ RUN npm install
 RUN npm install -g typescript
 RUN tsc
 
-EXPOSE 8080
+EXPOSE 80
 CMD [ "node", "./dist/app.js" ]
