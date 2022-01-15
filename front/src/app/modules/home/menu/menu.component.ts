@@ -4,8 +4,7 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { Router } from '@angular/router';
-import { identifierModuleUrl } from '@angular/compiler';
-import { basePicturePath } from '../../../helpers/constants';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -17,9 +16,9 @@ export class MenuComponent implements OnInit {
   public picturesMenu: Picture[];
   public categoryPictures: CategoryPicture[];
   public loading = true;
-  public basePicturePath = basePicturePath;
   public show = [];
   public cptLoaded = 0;
+  public environment = environment;
 
   constructor(
     private pictureApiService: PicturesApiService,

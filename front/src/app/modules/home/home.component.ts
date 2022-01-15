@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { Picture } from '../../model/model';
-import { basePicturePath, etsyUrl } from '../../helpers/constants';
+import { etsyUrl } from '../../helpers/constants';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,8 @@ export class HomeComponent implements OnInit {
 
   public show = false;
   public bandeau: Picture;
-  public basePicturePath = basePicturePath;
   public etsyUrl = etsyUrl;
+  public environment = environment;
 
   constructor(private pictureApiService: PicturesApiService) { }
 

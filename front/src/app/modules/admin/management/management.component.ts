@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Picture, CategoryPicture as CategoryPicture } from 'src/app/model/model';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
-import { basePicturePath } from '../../../helpers/constants';
 import { ToastService } from '../../../services/toast.service';
 import { environment } from '../../../../environments/environment';
 
@@ -18,10 +17,10 @@ export class ManagementComponent implements OnInit {
   public pictures: Picture[];
   public newCategoryPicture: CategoryPicture;
   public categoryPictures: CategoryPicture[];
-  public basePicturePath = basePicturePath;
   public show = [];
   public specifications: any[];
   public fileToUpload: File = null;
+  public environment = environment;
 
   constructor(
     private paintingApiService: PicturesApiService,

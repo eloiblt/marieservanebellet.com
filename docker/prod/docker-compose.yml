@@ -28,17 +28,19 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: marieservanebellet
     volumes:
-      - ./../conf/mongo-seeder/:/docker-entrypoint-initdb.d/
+      - ./../dev/mongo-seeder/:/docker-entrypoint-initdb.d/     # remove prod
     networks:
       - api-network
 
   pictures-service:
     container_name: pictures-service
     image: nginx
+    ports:
+      - "3000:80"
     networks:
       - pictures-network
     volumes:
-      - ./../conf/pictures:/usr/share/nginx/html
+      - ./../dev/pictures:/usr/share/nginx/html          # remove prod
 
   reverse-proxy:
     container_name: reverse-proxy
@@ -47,7 +49,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./../conf/reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - api-network
       - front-network
@@ -55,6 +57,7 @@ services:
     depends_on:
       - front-service
       - api-service
+      - pictures-service
 
 networks:
   api-network:

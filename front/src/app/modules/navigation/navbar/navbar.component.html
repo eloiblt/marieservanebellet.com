@@ -2,7 +2,7 @@
   <div class="nav-top">
     <i class="fas fa-bars" (click)="showMenu = !showMenu"></i>
     <div [ngClass]="{'logo-left': true, 'show': show}" *ngIf="logo" (click)="showMenu = false" [routerLink]="['/']">
-      <img src="{{ basePicturePath + logo.url }}" loading="lazy" (load)="show = true" alt="Logo">
+      <img src="{{ environment.picturesUrl + logo.url }}" loading="lazy" (load)="show = true" alt="Logo">
       <h2>Marie-Servane Bellet</h2>
     </div>
   </div>

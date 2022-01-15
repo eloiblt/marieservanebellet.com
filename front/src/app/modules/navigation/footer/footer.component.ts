@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { Picture } from 'src/app/model/model';
-import { basePicturePath, etsyUrl, githubUrl, instaUrl } from '../../../helpers/constants';
-
+import { etsyUrl, githubUrl, instaUrl } from '../../../helpers/constants';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +15,7 @@ export class FooterComponent implements OnInit {
   public etsyPath: string;
   public show = 0;
   public logo: Picture;
-  public basePicturePath = basePicturePath;
+  public environment = environment;
 
   constructor(private pictureApiService: PicturesApiService) { }
 
@@ -26,8 +26,8 @@ export class FooterComponent implements OnInit {
       console.log(err)
     });
 
-    this.instaPath = basePicturePath + '/instagram-logo.jpg';
-    this.etsyPath = basePicturePath + '/etsy-logo.jpg';
+    this.instaPath = environment.picturesUrl + '/instagram-logo.jpg';
+    this.etsyPath = environment.picturesUrl + '/etsy-logo.jpg';
   }
 
   redirectInstagram() {

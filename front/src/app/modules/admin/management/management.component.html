@@ -72,7 +72,7 @@
             <p>Titre</p>
             <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.title" />
           </div>
-          <img src="{{basePicturePath + picture.url}}" (load)="loaded(picture.id)" alt="{{ picture.title }}">
+          <img src="{{ environment.picturesUrl + picture.url}}" (load)="loaded(picture.id)" alt="{{ picture.title }}">
           <div class="picture-line">
             <p>Technique</p>
             <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.technique" />
