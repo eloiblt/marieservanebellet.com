@@ -35,8 +35,6 @@ services:
   pictures-service:
     container_name: pictures-service
     image: nginx
-    ports:
-      - "3000:80"
     networks:
       - pictures-network
     volumes:

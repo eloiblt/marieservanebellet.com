@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class GenericApiService<T> {
-  protected apiUrl = environment.apiUrl + '/';
+  protected apiUrl = environment.apiUrl;
   protected controllerName = '';
 
   constructor(
