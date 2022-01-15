@@ -1,7 +1,6 @@
 import * as express from 'express';
 import { Picture, PictureCollection } from '../models/model';
 import { authenticateJWT } from '../middlewares/authenticate';
-import * as path from 'path';
 import * as fs from 'fs';
 import { exec } from 'child_process';
 
@@ -60,7 +59,7 @@ router.delete('/:id', authenticateJWT, (req, res) => {
   PictureCollection.findOne({ id: req.params.id }).lean()
     .then(doc => {
       const { _id, ...picture } = doc;
-      fs.unlink('/var/www/marieservanebellet_pictures/' + (picture as Picture).url, function (err) {
+      fs.unlink('/usr/share/nginx/html/' + (picture as Picture).url, function (err) {
         PictureCollection.deleteOne({ id: req.params.id })
           .then(docs => res.status(200).send())
           .catch(err => res.status(500).send());
@@ -79,9 +78,9 @@ router.post('/postFile', authenticateJWT, (req: any, res) => {
 
     let sampleFile = req.files.peinture;
 
-    sampleFile.mv('/var/www/marieservanebellet_pictures/' + sampleFile.name, err => {
+    sampleFile.mv('/usr/share/nginx/html/' + sampleFile.name, err => {
       if (err) throw err;
-      exec('jpegoptim --max=50 --strip-all /var/www/marieservanebellet_pictures/' + sampleFile.name, (err, stdout, stderr) => {
+      exec('jpegoptim --max=50 --strip-all /usr/share/nginx/html/' + sampleFile.name, (err, stdout, stderr) => {
         if (err) {
           console.error(err)
         }
