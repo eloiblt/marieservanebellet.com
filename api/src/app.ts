@@ -44,8 +44,8 @@ if (process.env.NODE_ENV === "production") {
   }));
 
   const httpServer = http.createServer(app);
-  httpServer.listen(8080, () => {
-    console.log('HTTP Server is listening on 8080');
+  httpServer.listen(80, () => {
+    console.log('HTTP Server is listening on port 80');
   });
 } else {
   console.log('Development environnement');
