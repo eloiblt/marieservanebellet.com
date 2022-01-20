@@ -9,10 +9,10 @@ Le projet est clone dans `/home/eloiblt/marieservanebellet`
 
 # Sonar 
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=alert_status)](https://sonarcloud.io/overall/new_code?id=marieservanebellet)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=bugs)](https://sonarcloud.io/overall/new_code?id=marieservanebellet)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=code_smells)](https://sonarcloud.io/overall/new_code?id=marieservanebellet)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=vulnerabilities)](https://sonarcloud.io/overall/new_code?id=marieservanebellet)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=alert_status)](https://sonarcloud.io/summary/overall?id=marieservanebellet)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=bugs)](https://sonarcloud.io/summary/overall?id=marieservanebellet)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=code_smells)](https://sonarcloud.io/summary/overall?id=marieservanebellet)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=vulnerabilities)](https://sonarcloud.io/summary/overall?id=marieservanebellet)
 
 # Mails
 
