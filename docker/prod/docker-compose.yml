@@ -2,6 +2,7 @@ version: '3.3'
 services:
 
   front-service:
+    image: "ghcr.io/eloiblt/marieservanebellet-front:latest"
     container_name: front-service
     build:
       context: ../../
@@ -10,6 +11,7 @@ services:
       - front-network
 
   api-service:
+    image: "ghcr.io/eloiblt/marieservanebellet-api:latest"
     container_name: api-service
     build:
       context: ../../
