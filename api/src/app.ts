@@ -1,11 +1,7 @@
 import cors from 'cors';
 import * as dotenv from "dotenv";
 
-if (process.env.NODE_ENV === 'production') {
-  dotenv.config({ path: `.env.production` });
-} else {
-  dotenv.config({ path: `.env.development` });
-}
+dotenv.config({ path: `.env.${process.env.NODE_ENV?.trim()}` });
 
 import express from 'express';
 import fileupload from 'express-fileupload';
