@@ -44,6 +44,7 @@ jobs:
       - name: copy file via ssh password
         working-directory: ./docker/prod
         run: | 
+          sshpass
           echo scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }} | sed 's/./& /g'
           scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }}
 
