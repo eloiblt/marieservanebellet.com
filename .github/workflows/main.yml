@@ -28,11 +28,11 @@ jobs:
   #       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin  
 
   #     - name: Build the stack
-  #       working-directory: ./docker/prod
+  #       working-directory: docker/prod
   #       run: docker-compose build
 
   #     - name: Push the stack
-  #       working-directory: ./docker/prod
+  #       working-directory: docker/prod
   #       run: docker-compose push
         
   deploy:
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: copy file via ssh password
-        working-directory: ./docker/prod
+        working-directory: docker/prod
         run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }}
 
       # - name: remove old docker-compose
