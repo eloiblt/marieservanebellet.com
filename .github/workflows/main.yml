@@ -20,6 +20,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build-and-push:
+    needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,7 +37,7 @@ jobs:
         run: docker-compose push
         
   deploy:
-    name: Build
+    needs: build-and-push
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
