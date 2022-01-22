@@ -29,28 +29,19 @@ jobs:
 
       - name: Build the stack
         working-directory: ./docker/prod
-        run: |
-          echo ${{ secrets.FRONT_URL }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.DATABASE_URL }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.JWT_SECRET }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.SMTP_HOST }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.SMTP_PORT }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.SMTP_TLS }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.SMTP_USER }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.SMTP_PASSWORD }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.MAIL_TO }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.MAIL_BCC }} | sed -e 's/\(.\)/\1 /g'
+        run:
+          # echo ${{ secrets.MAIL_BCC }} | sed -e 's/\(.\)/\1 /g'       # debug
           docker-compose build \
-            --build-arg FRONT_URL=${{ secrets.FRONT_URL }} \
-            --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
-            --build-arg JWT_SECRET=${{ secrets.JWT_SECRET }} \
-            --build-arg SMTP_HOST=${{ secrets.SMTP_HOST }}' \
-            --build-arg SMTP_PORT=${{ secrets.SMTP_PORT }} \
-            --build-arg SMTP_TLS=${{ secrets.SMTP_TLS }} \
-            --build-arg SMTP_USER=${{ secrets.SMTP_USER }} \
-            --build-arg SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} \
-            --build-arg MAIL_TO=${{ secrets.MAIL_TO }} \
-            --build-arg MAIL_BCC=${{ secrets.MAIL_BCC }}
+          --build-arg FRONT_URL=${{ secrets.FRONT_URL }} \
+          --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
+          --build-arg JWT_SECRET=${{ secrets.JWT_SECRET }} \
+          --build-arg SMTP_HOST=${{ secrets.SMTP_HOST }}' \
+          --build-arg SMTP_PORT=${{ secrets.SMTP_PORT }} \
+          --build-arg SMTP_TLS=${{ secrets.SMTP_TLS }} \
+          --build-arg SMTP_USER=${{ secrets.SMTP_USER }} \
+          --build-arg SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} \
+          --build-arg MAIL_TO=${{ secrets.MAIL_TO }} \
+          --build-arg MAIL_BCC=${{ secrets.MAIL_BCC }}
 
       # - name: Push the stack
       #   working-directory: ./docker/prod
