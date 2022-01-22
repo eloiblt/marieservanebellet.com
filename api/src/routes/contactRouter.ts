@@ -1,7 +1,6 @@
 import * as express from 'express';
 import { body, validationResult } from 'express-validator';
 import * as nodeMailer from 'nodemailer';
-import * as constants from '../config/constants';
 
 const router = express.Router();
 
@@ -19,19 +18,19 @@ router.post('/', [
     req.body.message = req.body.message.replace(/&#x27;/g, '\'').replace(/&quot;/g, '\"');
 
     let transporter = nodeMailer.createTransport({
-      host: "in-v3.mailjet.com",
-      port: 465,
-      secure: true,
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      secure: process.env.SMTP_TLS,
       auth: {
-        user: constants.smtpUser,
-        pass: constants.smtpPassword,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
       },
     });
 
     const mailOptions = {
       from: 'marieservanebellet.site@gmail.com',
-      to: constants.mailTo,
-      bcc: constants.mailBcc,
+      to: process.env.MAIL_TO,
+      bcc: process.env.MAIL_BCC,
       subject: 'Nouveau mail reçu de ' + req.body.name + ', <' + req.body.mail + '>',
       text: req.body.message
     };
