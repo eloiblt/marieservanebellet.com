@@ -41,6 +41,8 @@ jobs:
     steps:
       - name: copy file via ssh password
         run: |
+          pwd
+          cd docker/prod
           pwd 
           ls -la
 
