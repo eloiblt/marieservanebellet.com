@@ -1,7 +1,9 @@
 import cors from 'cors';
 import * as dotenv from "dotenv";
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV?.trim()}` });
+if (process.env.NODE_ENV?.trim() === 'development') {
+  dotenv.config();
+}
 
 import express from 'express';
 import fileupload from 'express-fileupload';
@@ -9,13 +11,12 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import * as http from 'http';
 import mongoose from 'mongoose';
-import * as constants from './config/constants';
 import categoryPicturesRouter from './routes/categoryPicturesRouter';
 import contactRouter from './routes/contactRouter';
 import loginRouter from './routes/loginRouter';
 import picturesRouter from './routes/picturesRouter';
 
-mongoose.connect(constants.dataBaseUrl, {
+mongoose.connect(process.env.DATABASE_URL, {
   authSource: "admin",
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -36,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
   console.log('Production environnement');
 
   app.use(cors({
-    origin: constants.frontUrl,
+    origin: process.env.FRONT_URL,
     optionsSuccessStatus: 200
   }));
 
