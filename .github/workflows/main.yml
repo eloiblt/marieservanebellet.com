@@ -7,34 +7,34 @@ on:
 
 jobs:
 
-  # sonarcloud:
-  #   name: SonarCloud
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: SonarCloud Scan
-  #       uses: SonarSource/sonarcloud-github-action@master
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  # build-and-push:
-  #   needs: sonarcloud
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
+  build-and-push:
+    needs: sonarcloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Login to GitHub Container Registry
-  #       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin  
+      - name: Login to GitHub Container Registry
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin  
 
-  #     - name: Build the stack
-  #       working-directory: ./docker/prod
-  #       run: docker-compose build
+      - name: Build the stack
+        working-directory: ./docker/prod
+        run: docker-compose build
 
-  #     - name: Push the stack
-  #       working-directory: ./docker/prod
-  #       run: docker-compose push
+      - name: Push the stack
+        working-directory: ./docker/prod
+        run: docker-compose push
         
   deploy:
     # needs: build-and-push
