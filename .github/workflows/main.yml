@@ -40,6 +40,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: change directory
+        working-directory: ./docker/prod
       
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
@@ -48,8 +51,9 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
-          source: "docker/prod/docker-compose.yml"
+          source: "docker-compose.yml"
           target: "~"
+          rm: true
 
       # - name: remove old docker-compose
       #   uses: appleboy/ssh-action@master
