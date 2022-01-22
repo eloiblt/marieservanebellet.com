@@ -40,14 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: copy file via ssh password
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.VPS_IP }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PWD }}
-          port: ${{ secrets.VPS_PORT }}
-          source: "*"
-          target: "/home/ubuntu"
+        working-directory: ./docker/prod
+        run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }}
 
       # - name: remove old docker-compose
       #   uses: appleboy/ssh-action@master
