@@ -43,7 +43,10 @@ jobs:
       
       - name: copy file via ssh password
         working-directory: ./docker/prod
-        run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }} 
+        run: |
+          ls
+          echo ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }}
+          scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }} 
 
       # - name: remove old docker-compose
       #   uses: appleboy/ssh-action@master
