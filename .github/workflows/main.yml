@@ -5,6 +5,9 @@ on:
     branches: [master]
   workflow_dispatch:
 
+env:
+  test: ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }}
+
 jobs:
 
   # sonarcloud:
@@ -40,20 +43,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: change directory
-        run: cd ./docker/prod
       
       - name: copy file via ssh password
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.VPS_IP }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PWD }}
-          port: ${{ secrets.VPS_PORT }}
-          source: "docker-compose.yml"
-          target: "~"
-          rm: true
+        working-directory: ./docker/prod
+        run: |
+          echo $test
+          scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }} 
 
       # - name: remove old docker-compose
       #   uses: appleboy/ssh-action@master
