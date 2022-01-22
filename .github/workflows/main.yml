@@ -28,17 +28,19 @@ jobs:
   #       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin  
 
   #     - name: Build the stack
-  #       working-directory: docker/prod
+  #       working-directory: ./docker/prod
   #       run: docker-compose build
 
   #     - name: Push the stack
-  #       working-directory: docker/prod
+  #       working-directory: ./docker/prod
   #       run: docker-compose push
         
   deploy:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      
       - name: copy file via ssh password
         run: |
           pwd
