@@ -35,7 +35,7 @@ jobs:
           --build-arg FRONT_URL=${{ secrets.FRONT_URL }} \
           --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
           --build-arg JWT_SECRET=${{ secrets.JWT_SECRET }} \
-          --build-arg SMTP_HOST=${{ secrets.SMTP_HOST }}' \
+          --build-arg SMTP_HOST=${{ secrets.SMTP_HOST }} \
           --build-arg SMTP_PORT=${{ secrets.SMTP_PORT }} \
           --build-arg SMTP_TLS=${{ secrets.SMTP_TLS }} \
           --build-arg SMTP_USER=${{ secrets.SMTP_USER }} \
