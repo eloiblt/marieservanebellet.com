@@ -36,8 +36,8 @@ services:
       - api-network
 
   pictures-service:
-    container_name: pictures-service
     image: nginx
+    container_name: pictures-service
     networks:
       - pictures-network
     volumes:
@@ -45,14 +45,15 @@ services:
       - pictures-volume:/usr/share/nginx/html          # always after
 
   reverse-proxy:
+    image: "ghcr.io/eloiblt/marieservanebellet-reverse-proxy:latest"
     container_name: reverse-proxy
-    image: nginx
+    build:
+      context: ./reverse-proxy
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
-      - ./ssl/conf:/etc/nginx/ssl
+      - ./ssl/conf:/etc/nginx/ssl      # only in prod
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done &
       nginx -g \"daemon off;\"'"
     networks:
