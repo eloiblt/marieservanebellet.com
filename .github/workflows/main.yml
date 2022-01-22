@@ -45,7 +45,7 @@ jobs:
         working-directory: ./docker/prod
         run: echo "$test"
         env:
-          test: eloi
+          test: ${{ secrets.VPS_USERNAME }
 
       # - name: remove old docker-compose
       #   uses: appleboy/ssh-action@master
