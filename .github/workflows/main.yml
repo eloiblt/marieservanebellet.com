@@ -22,7 +22,7 @@ jobs:
   build and push:
     runs-on: ubuntu-latest
     steps:
-      - name test
+      - name: test
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin  
       # - uses: actions/checkout@v2
       # - name: Login to GitHub Container Registry
