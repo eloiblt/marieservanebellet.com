@@ -50,7 +50,6 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           source: "docker/prod/docker-compose.yml"
           target: "~"
-          rm: true
 
       - name: remove old docker-compose
         uses: appleboy/ssh-action@master
