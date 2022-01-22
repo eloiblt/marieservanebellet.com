@@ -30,17 +30,17 @@ jobs:
       - name: Build the stack
         working-directory: ./docker/prod
         run: |
-          echo ${{ secrets.FRONT_URL }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.DATABASE_URL }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.JWT_SECRET }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.SMTP_HOST }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.SMTP_PORT }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.SMTP_TLS }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.SMTP_USER }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.SMTP_PASSWORD }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.SMTP_PASSWORD }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.MAIL_TO }} | sed -e 's/\(.\)/\1 /g
-          echo ${{ secrets.MAIL_BCC }} | sed -e 's/\(.\)/\1 /g
+          echo ${{ secrets.FRONT_URL }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.DATABASE_URL }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.JWT_SECRET }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.SMTP_HOST }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.SMTP_PORT }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.SMTP_TLS }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.SMTP_USER }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.SMTP_PASSWORD }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.SMTP_PASSWORD }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.MAIL_TO }} | sed -e 's/\(.\)/\1 /g'
+          echo ${{ secrets.MAIL_BCC }} | sed -e 's/\(.\)/\1 /g'
           docker-compose build \
             --build-arg FRONT_URL=${{ secrets.FRONT_URL }} \
             --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
