@@ -38,7 +38,6 @@ jobs:
           echo ${{ secrets.SMTP_TLS }} | sed -e 's/\(.\)/\1 /g'
           echo ${{ secrets.SMTP_USER }} | sed -e 's/\(.\)/\1 /g'
           echo ${{ secrets.SMTP_PASSWORD }} | sed -e 's/\(.\)/\1 /g'
-          echo ${{ secrets.SMTP_PASSWORD }} | sed -e 's/\(.\)/\1 /g'
           echo ${{ secrets.MAIL_TO }} | sed -e 's/\(.\)/\1 /g'
           echo ${{ secrets.MAIL_BCC }} | sed -e 's/\(.\)/\1 /g'
           docker-compose build \
