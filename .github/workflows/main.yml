@@ -47,7 +47,7 @@ jobs:
           password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
           source: "./docker/prod/docker-compose.yml"
-          target: "~"
+          target: "/home/ubuntu"
           rm: true
 
       # - name: remove old docker-compose
