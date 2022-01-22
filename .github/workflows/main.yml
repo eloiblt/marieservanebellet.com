@@ -49,18 +49,18 @@ jobs:
           password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
           source: "docker/prod/docker-compose.yml"
-          target: "~"
+          target: "docker"
 
-      - name: remove old docker-compose
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.VPS_IP }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PWD }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            cp ~/docker/prod/docker-compose.yml ~
-            rm -r docker
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
-            whoami
-            ls -al
+      # - name: remove old docker-compose
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.VPS_IP }}
+      #     username: ${{ secrets.VPS_USERNAME }}
+      #     password: ${{ secrets.VPS_PWD }}
+      #     port: ${{ secrets.VPS_PORT }}
+      #     script: |
+      #       cp ~/docker/prod/docker-compose.yml ~
+      #       rm -r docker
+      #       echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
+      #       whoami
+      #       ls -al
