@@ -46,7 +46,7 @@ jobs:
         run: | 
           ls
           echo sshpass -p '${{ secrets.VPS_PWD }}' scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }} | sed 's/./& /g'
-          sshpass -p '${{ secrets.VPS_PWD }}' scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/home/${{ secrets.VPS_USERNAME }}
+          sshpass -p efhPDErZx64X scp docker-compose.yml ubuntu@193.70.40.152:/home/ubuntu
 
       # - name: remove old docker-compose
       #   uses: appleboy/ssh-action@master
