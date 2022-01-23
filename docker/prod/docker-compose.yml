@@ -26,13 +26,12 @@ services:
     container_name: mongo-service
     restart: always
     ports:
-      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: marieservanebellet
     volumes:
-      - ../dev/mongo-seeder/:/data/db/
+      - mongo-volume:/data/db/
     networks:
       - api-network
 
@@ -42,8 +41,7 @@ services:
     networks:
       - pictures-network
     volumes:
-      # - ./dev/pictures-seeder/:/usr/share/nginx/html    # first time, init
-      - pictures-volume:/usr/share/nginx/html          # always after
+      - pictures-volume:/usr/share/nginx/html
 
   reverse-proxy:
     image: "ghcr.io/eloiblt/marieservanebellet-reverse-proxy:latest"
@@ -54,9 +52,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./ssl/conf:/etc/nginx/ssl      # only in prod
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done &
-      nginx -g \"daemon off;\"'"
+      - ./etc/letsencrypt/live/marieservanebellet.com/:/etc/nginx/ssl # only in prod
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     networks:
       - api-network
       - front-network
