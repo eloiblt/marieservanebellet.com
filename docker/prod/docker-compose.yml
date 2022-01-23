@@ -25,13 +25,14 @@ services:
     image: mongo
     container_name: mongo-service
     restart: always
+    ports:
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: marieservanebellet
     volumes:
-      # - ./mongo-seeder/:/docker-entrypoint-initdb.d/     # first time, init
-      - mongo-volume:/data/db/
+      - ../dev/mongo-seeder/:/data/db/
     networks:
       - api-network
 
