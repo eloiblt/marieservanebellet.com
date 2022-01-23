@@ -66,5 +66,5 @@ jobs:
             cp scp/docker/prod/docker-compose.yml .
             rm -r scp
             echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u "${GITHUB_ACTOR}" --password-stdin
-            whoami
-            ls -al
+            docker-compose pull
+            docker-compose up -d --no-build
