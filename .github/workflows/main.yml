@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
-          script:
+          script: |
             cd ~
             rm docker-compose.yml
             cp scp/docker/prod/docker-compose.yml .
