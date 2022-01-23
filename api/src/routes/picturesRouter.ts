@@ -78,9 +78,9 @@ router.post('/postFile', authenticateJWT, (req: any, res) => {
 
     let sampleFile = req.files.peinture;
 
-    sampleFile.mv('/usr/share/nginx/html/' + sampleFile.name, err => {
+    sampleFile.mv('/pictures/' + sampleFile.name, err => {
       if (err) throw err;
-      exec('jpegoptim --max=50 --strip-all /usr/share/nginx/html/' + sampleFile.name, (err, stdout, stderr) => {
+      exec('jpegoptim --max=50 --strip-all /pictures/' + sampleFile.name, (err, stdout, stderr) => {
         if (err) {
           console.error(err)
         }

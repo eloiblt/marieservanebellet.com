@@ -3,7 +3,7 @@
     <div class="unite" *ngFor="let p of picturesMenu">
       <div class="img-container" [ngClass]="{'show': isLoaded(p.id)}">
         <img src="{{ environment.picturesUrl + p.url }}" (load)="loaded(p.id)" alt="{{p.title}}">
-        <div class="middle" [routerLink]="['/galerie/peintures/' + p.categoryId]">
+        <div class="middle" [routerLink]="['/peintures/' + p.categoryId]">
           {{ getMenuName(p.categoryId) }}</div>
       </div>
     </div>
