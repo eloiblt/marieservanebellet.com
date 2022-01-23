@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
   console.log('Production environnement');
 
   app.use(cors({
-    origin: [ process.env.FRONT_URL, `www.${process.env.FRONT_URL}` ],
+    origin: [ `https://${process.env.FRONT_URL}`, `https://www.${process.env.FRONT_URL}` ],
     optionsSuccessStatus: 200
   }));
 
