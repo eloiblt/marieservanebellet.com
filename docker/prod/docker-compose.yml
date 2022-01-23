@@ -46,7 +46,8 @@ services:
     image: "ghcr.io/eloiblt/marieservanebellet-reverse-proxy:latest"
     container_name: reverse-proxy
     build:
-      context: ./reverse-proxy
+      context: ../../
+      dockerfile: ./docker/prod/reverse-proxy/Dockerfile
     ports:
       - "80:80"
       - "443:443"
