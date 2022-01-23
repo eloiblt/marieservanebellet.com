@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Login to GitHub Container Registry
-        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u ${{ secrets.GITHUB_ACTOR }} --password-stdin
 
       - name: Build the stack
         working-directory: ./docker/prod
@@ -65,6 +65,6 @@ jobs:
             rm docker-compose.yml
             cp scp/docker/prod/docker-compose.yml .
             rm -r scp
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u ${{ secrets.GITHUB_ACTOR }} --password-stdin
             whoami
             ls -al
