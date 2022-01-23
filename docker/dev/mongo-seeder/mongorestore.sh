@@ -1,3 +1,0 @@
-mongorestore -p 27017 -u root -p root --db marieservanebellet --collection categoryPictures ./docker-entrypoint-initdb.d/categoryPictures.bson --authenticationDatabase "admin"
-mongorestore -p 27017 -u root -p root --db marieservanebellet --collection pictures ./docker-entrypoint-initdb.d/pictures.bson --authenticationDatabase "admin"
-mongorestore -p 27017 -u root -p root --db marieservanebellet --collection users ./docker-entrypoint-initdb.d/users.bson --authenticationDatabase "admin"
