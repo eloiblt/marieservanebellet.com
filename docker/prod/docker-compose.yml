@@ -4,6 +4,7 @@ services:
   front-service:
     image: "ghcr.io/eloiblt/marieservanebellet-front:latest"
     container_name: front-service
+    restart: always
     build:
       context: ../../
       dockerfile: ./front/Dockerfile
@@ -13,9 +14,12 @@ services:
   api-service:
     image: "ghcr.io/eloiblt/marieservanebellet-api:latest"
     container_name: api-service
+    restart: always
     build:
       context: ../../
       dockerfile: ./api/Dockerfile
+    volumes:
+      - pictures-volume:/pictures
     networks:
       - api-network
     depends_on:
@@ -37,6 +41,7 @@ services:
   pictures-service:
     image: nginx
     container_name: pictures-service
+    restart: always
     networks:
       - pictures-network
     volumes:
@@ -45,6 +50,7 @@ services:
   reverse-proxy:
     image: "ghcr.io/eloiblt/marieservanebellet-reverse-proxy:latest"
     container_name: reverse-proxy
+    restart: always
     build:
       context: ../../
       dockerfile: ./docker/prod/reverse-proxy/Dockerfile
