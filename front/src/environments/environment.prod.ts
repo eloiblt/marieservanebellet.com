@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://marieservanebellet.com/api/',
-  picturesUrl: 'http://marieservanebellet.com/pictures/'
+  apiUrl: 'https://marieservanebellet.com/api/',
+  picturesUrl: 'https://marieservanebellet.com/pictures/'
 };
