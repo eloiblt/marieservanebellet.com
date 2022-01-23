@@ -1,4 +1,4 @@
 FROM nginx:latest
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./docker/prod/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80 443
