@@ -12,6 +12,14 @@ smBkpY5fGfJq
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=code_smells)](https://sonarcloud.io/summary/overall?id=marieservanebellet)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marieservanebellet&metric=vulnerabilities)](https://sonarcloud.io/summary/overall?id=marieservanebellet)
 
+# Renouvellement certificats 
+
+```sh
+docker-compose down
+sudo certbot renew --force-renewal
+docker-compose up -d
+```
+
 # Mails
 
 Utilisation de mailjet
