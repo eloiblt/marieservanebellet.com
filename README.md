@@ -2,7 +2,7 @@
 
 ```sh
 ssh ubuntu@193.70.40.152
-efhPDErZx64X
+smBkpY5fGfJq
 ```
 
 # Sonar
