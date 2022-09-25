@@ -27,7 +27,7 @@
         color: white;
       }
 
-      i {
+      em {
         margin-right: 10px;
       }
 
@@ -227,7 +227,6 @@
   img {
     height: 90%;
     object-fit: contain;
-    transition: 0.3s;
     margin: 10px;
     opacity: 0;
     transition: opacity 0.7s;

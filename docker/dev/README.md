@@ -19,8 +19,8 @@ docker volume ls
 - Exporter ces 2 volumes en .tar
 
 ```sh
-docker run --rm   --volume [mongo-volume-name]:/dbdata   --volume $(pwd):/backup   ubuntu   tar cvf /backup/mongo-volume.tar /dbdata
-docker run --rm   --volume [pictures-volume-name]:/dbdata   --volume $(pwd):/backup   ubuntu   tar cvf /backup/pictures-volume.tar /dbdata
+docker run --rm --volume [mongo-volume-name]:/dbdata --volume $(pwd):/backup ubuntu tar cvf /backup/mongo-volume.tar /dbdata
+docker run --rm --volume [pictures-volume-name]:/dbdata --volume $(pwd):/backup ubuntu tar cvf /backup/pictures-volume.tar /dbdata
 ```
 
 - De retour sur la machine cliente, télécharger ces 2 .tar :
@@ -33,8 +33,8 @@ scp [name]@[IP]:pictures-volume.tar .
 - Restaurer ces volumes dans docker :
 
 ```sh
-docker run --rm  --volume mongo-volume:/dbdata --volume $(pwd):/backup ubuntu  tar xvf /backup/mongo-volume.tar -C /dbdata --strip 1
-docker run --rm  --volume pictures-volume:/dbdata --volume $(pwd):/backup ubuntu  tar xvf /backup/pictures-volume.tar -C /dbdata --strip 1
+docker run --rm --volume mongo-volume:/dbdata --volume $(pwd):/backup ubuntu tar xvf /backup/mongo-volume.tar -C /dbdata --strip 1
+docker run --rm --volume pictures-volume:/dbdata --volume $(pwd):/backup ubuntu tar xvf /backup/pictures-volume.tar -C /dbdata --strip 1
 ```
 
 - Lancer le docker compose
