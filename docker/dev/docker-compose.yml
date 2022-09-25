@@ -12,7 +12,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: marieservanebellet
     volumes:
-      - ./mongo-seeder/:/data/db
+      - mongo-volume:/data/db
 
   pictures-service:
     container_name: pictures-service
@@ -20,7 +20,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./pictures-seeder/:/usr/share/nginx/html/
+      - pictures-volume:/usr/share/nginx/html/
 
   mail-catcher:
     image: schickling/mailcatcher
@@ -28,3 +28,9 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
+
+volumes:
+  mongo-volume:
+    external: true
+  pictures-volume:
+    external: true
