@@ -1,7 +1,7 @@
 import * as express from "express";
 import { CategoryPictures, CategoryPicturesCollection } from "../models/model";
 import { authenticateJWT } from "../middlewares/authenticate";
-import { body, check, validationResult } from "express-validator";
+import { body, validationResult } from "express-validator";
 
 const router = express.Router();
 
@@ -21,15 +21,24 @@ router.get("/", (req, res) => {
 router.post(
   "/",
   authenticateJWT,
+  body("id").isInt(),
+  body("name").isString().not().isEmpty().trim().escape(),
+  body("show").isBoolean(),
   (req, res) => {
-    const categoryPictures: CategoryPictures = {
-      id: Number(req.body.id),
-      name: req.body.name.toString(),
-      show: req.body.show.toString()
-    } as CategoryPictures;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-    CategoryPicturesCollection.create(categoryPictures)
-      .then(() => res.status(200).send(categoryPictures))
+    // const categoryPictures: CategoryPictures = {
+    //   id: req.body.id,
+    //   name: req.body.name,
+    //   show: req.body.show
+    // } as CategoryPictures;
+    const a: CategoryPictures = JSON.parse(req.body);
+
+    CategoryPicturesCollection.create(a)
+      .then(() => res.status(200).send(a))
       .catch(() => res.status(500).send());
   }
 );
