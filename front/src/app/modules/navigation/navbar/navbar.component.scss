@@ -13,7 +13,7 @@
     justify-content: center;
     position: relative;
 
-    em {
+    fa-icon {
       display: none;
     }
 
@@ -43,6 +43,10 @@
         opacity: 1;
       }
     }
+  }
+
+  > .ng-fa-icon {
+    color: red;
   }
 
   .onglets {
@@ -78,7 +82,7 @@
       width: 100%;
       position: relative;
 
-      em {
+      fa-icon {
         font-size: 20px;
         display: inline-block;
         position: absolute;

@@ -28,8 +28,8 @@
       font-weight: bold;
     }
 
-    em {
-      &.fa-check {
+    fa-icon {
+      &.check {
         opacity: 0.4;
         margin-left: auto;
 
@@ -40,7 +40,7 @@
         }
       }
 
-      &.fa-minus-circle {
+      &.minus-circle {
         margin-right: auto;
         margin-top: auto;
         color: red;
@@ -111,7 +111,7 @@
         align-items: center;
         margin-bottom: 10px;
 
-        em {
+        fa-icon {
           margin-top: unset;
           margin-left: 10px;
         }

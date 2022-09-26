@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
-declare var gtag;
+declare let gtag;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

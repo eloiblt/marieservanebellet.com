@@ -129,15 +129,13 @@ export class ManagementComponent implements OnInit {
   }
 
   canCreateCategoryPicture() {
-    return this.newCategoryPicture.name?.trim() &&
-      environment.production;
+    return this.newCategoryPicture.name?.trim();
   }
 
   canCreatePicture() {
     return this.newPicture.id &&
       this.categoryPictures.find(c => c.id === this.newPicture.categoryId) &&
-      this.fileToUpload &&
-      environment.production;
+      this.fileToUpload;
   }
 
   deletePicture(p: Picture) {
@@ -160,7 +158,9 @@ export class ManagementComponent implements OnInit {
     }
   }
 
-  handleFileInput(files: FileList) {
+  handleFileInput(event: any) {
+    const files: FileList = (event as HTMLInputElement).files;
+
     this.fileToUpload = files.item(0);
     this.newPicture.url = this.fileToUpload.name;
     console.log(this.newPicture.url.split('.').pop())

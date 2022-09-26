@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { Picture } from 'src/app/model/model';
 import { environment } from '../../../../environments/environment';
