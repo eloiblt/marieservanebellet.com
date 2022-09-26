@@ -1,7 +1,7 @@
 import * as express from "express";
 import { CategoryPictures, CategoryPicturesCollection } from "../models/model";
 import { authenticateJWT } from "../middlewares/authenticate";
-import { body } from "express-validator";
+import { body, validationResult } from "express-validator";
 
 const router = express.Router();
 
@@ -25,11 +25,17 @@ router.post(
   body("name").isString(),
   body("show").isBoolean(),
   (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     // const categoryPictures: CategoryPictures = {
     //   id: req.body.id,
     //   name: req.body.name,
     //   show: req.body.show
     // } as CategoryPictures;
+
 
     CategoryPicturesCollection.create(req.body)
       .then((docs) => res.status(200).send(req.body))
