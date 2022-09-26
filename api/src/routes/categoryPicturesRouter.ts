@@ -1,7 +1,8 @@
 import * as express from "express";
 import { CategoryPictures, CategoryPicturesCollection } from "../models/model";
 import { authenticateJWT } from "../middlewares/authenticate";
-import { body, validationResult } from "express-validator";
+import { body, check, validationResult } from "express-validator";
+import { Request, Response, NextFunction } from "express";
 
 const router = express.Router();
 
@@ -18,30 +19,26 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(500).send());
 });
 
-router.post(
-  "/",
-  authenticateJWT,
-  body("id").isInt(),
-  body("name").isString().not().isEmpty().trim().escape(),
-  body("show").isBoolean(),
-  (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+router.post("/", authenticateJWT, async (req: Request, res: Response) => {
+  await check("id").isInt().run(req);
+  await check("name").isString().trim().escape().run(req);
+  await check("show").isBoolean().run(req);
 
-    // const categoryPictures: CategoryPictures = {
-    //   id: req.body.id,
-    //   name: req.body.name,
-    //   show: req.body.show
-    // } as CategoryPictures;
-    const a: CategoryPictures = JSON.parse(req.body);
-
-    CategoryPicturesCollection.create(a)
-      .then(() => res.status(200).send(a))
-      .catch(() => res.status(500).send());
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
-);
+
+  const categoryPictures: CategoryPictures = {
+    id: req.body.id,
+    name: req.body.name,
+    show: req.body.show,
+  } as CategoryPictures;
+
+  CategoryPicturesCollection.create(categoryPictures)
+    .then(() => res.status(200).send(categoryPictures))
+    .catch(() => res.status(500).send());
+});
 
 router.put("/:id", authenticateJWT, (req, res) => {
   const categoryPictures: CategoryPictures = {
