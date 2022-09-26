@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { Picture } from 'src/app/model/model';
-import { etsyUrl, githubUrl, instaUrl } from '../../../helpers/constants';
+import { githubUrl, instaUrl } from '../../../helpers/constants';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -12,7 +12,6 @@ import { environment } from '../../../../environments/environment';
 export class FooterComponent implements OnInit {
 
   public instaPath: string;
-  public etsyPath: string;
   public show = 0;
   public logo: Picture;
   public environment = environment;
@@ -27,15 +26,10 @@ export class FooterComponent implements OnInit {
     });
 
     this.instaPath = environment.picturesUrl + '/instagram-logo.jpg';
-    this.etsyPath = environment.picturesUrl + '/etsy-logo.jpg';
   }
 
   redirectInstagram() {
     window.open(instaUrl, '_blank');
-  }
-
-  redirectEtsy() {
-    window.open(etsyUrl, '_blank');
   }
 
   redirectProfile() {

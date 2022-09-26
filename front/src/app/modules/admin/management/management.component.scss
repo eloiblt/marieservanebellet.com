@@ -28,7 +28,7 @@
       font-weight: bold;
     }
 
-    i {
+    em {
       &.fa-check {
         opacity: 0.4;
         margin-left: auto;
@@ -111,7 +111,7 @@
         align-items: center;
         margin-bottom: 10px;
 
-        i {
+        em {
           margin-top: unset;
           margin-left: 10px;
         }

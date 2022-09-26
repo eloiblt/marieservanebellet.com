@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Picture, CategoryPicture } from 'src/app/model/model';
 import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
-import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-menu',

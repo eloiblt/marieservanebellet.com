@@ -17,14 +17,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', authenticateJWT, (req, res) => {
-  CategoryPicturesCollection.create(req.body)
-    .then(docs => res.status(200).send(req.body))
+  const categoryPictures: CategoryPictures = req.body;
+
+  CategoryPicturesCollection.create(categoryPictures)
+    .then(docs => res.status(200).send(categoryPictures))
     .catch(err => res.status(500).send());
 });
 
 router.put('/:id', authenticateJWT, (req, res) => {
-  CategoryPicturesCollection.updateOne({ id: req.body.id }, req.body)
-    .then(docs => res.status(200).send({ id: req.params.id, ...req.body }))
+  const categoryPictures: CategoryPictures = req.body;
+
+  CategoryPicturesCollection.updateOne({ id: categoryPictures.id }, categoryPictures)
+    .then(docs => res.status(200).send({ id: req.params.id, ...categoryPictures }))
     .catch(err => res.status(500).send());
 });
 
