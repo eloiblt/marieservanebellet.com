@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { GenericApiService } from './generic-api.service';
 import { CategoryPicture } from 'src/app/model/model';
 import { ToastService } from '../toast.service';

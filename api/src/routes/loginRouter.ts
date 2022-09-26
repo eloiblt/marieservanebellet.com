@@ -2,10 +2,20 @@ import * as express from 'express';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { User, UserCollection } from '../models/model'
+import { Request, Response } from "express";
+import { check, validationResult } from 'express-validator';
 
 const router = express.Router();
 
-router.post('', (req, res) => {
+router.post('', async (req: Request, res: Response) => {
+  await check("mail").isString().trim().escape().isEmail().run(req);
+  await check("password").isString().trim().run(req);
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   UserCollection.find({ mail: req.body.mail}).lean()
     .then(docs => {
       const users: User[] = docs.map(d => {

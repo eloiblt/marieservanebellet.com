@@ -10,6 +10,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './modules/shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SharedModule } from './modules/shared/shared.module';
     HomeModule,
     NavigationModule,
     AdminModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ],
   exports: [
     AppRoutingModule

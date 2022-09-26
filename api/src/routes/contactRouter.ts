@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { body, validationResult } from 'express-validator';
 import * as nodeMailer from 'nodemailer';
+import { Request, Response } from "express";
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.post('/', [
   body('mail').not().isEmpty().isEmail().normalizeEmail().escape(),
   body('message').not().isEmpty().trim().escape()
 ],
-  (req, res) => {
+  (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });

@@ -11,8 +11,6 @@ export class AboutComponent implements OnInit {
   public photoPath: string;
   public show = false;
 
-  constructor() { }
-
   ngOnInit(): void {
     this.photoPath = environment.picturesUrl + 'photo.jpg'
   }

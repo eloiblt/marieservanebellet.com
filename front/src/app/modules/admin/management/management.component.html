@@ -8,8 +8,8 @@
             <p>Nom</p>
             <input type="text" [(ngModel)]="newCategoryPicture.name" />
           </div>
-          <em class="fas fa-check" (click)="createNewCategoryPicture()" title="Créer"
-            [ngClass]='{"active": canCreateCategoryPicture()}'></em>
+          <fa-icon [icon]="'check'" class="check" (click)="createNewCategoryPicture()" title="Créer"
+            [ngClass]='{"active": canCreateCategoryPicture()}'></fa-icon>
         </div>
       </div>
       <div class="add-item">
@@ -20,7 +20,7 @@
             <input type="text" [(ngModel)]="newPicture.title" />
           </div>
           <div class="picture-line">
-            <input #upload type="file" id="file" (change)="handleFileInput($event.target.files)">
+            <input #upload type="file" id="file" (change)="handleFileInput($event.target)">
           </div>
           <div class="picture-line">
             <p>Technique</p>
@@ -54,8 +54,9 @@
             <p>Taille</p>
             <input type="text" [(ngModel)]="newPicture.size" />
           </div>
-          <em class="fas fa-check" (click)="createNewPicture()" title="Créer"
-            [ngClass]='{"active": canCreatePicture()}'></em>
+
+          <fa-icon [icon]="'check'" class="check" (click)="createNewPicture()" title="Créer"
+            [ngClass]='{"active": canCreatePicture()}'></fa-icon>
         </div>
       </div>
     </div>
@@ -64,7 +65,8 @@
       <div class="category-actions">
         <input type="text" class="category-name" (change)="updateCategoryPicture(category)"
           [(ngModel)]="category.name" />
-        <em class="fas fa-minus-circle" title="Supprimer la catégorie" (click)="deleteCategoryPicture(category)"></em>
+        <fa-icon [icon]="'minus-circle'" class="minus-circle" title="Supprimer la catégorie"
+          (click)="deleteCategoryPicture(category)"></fa-icon>
       </div>
       <div class="category-content">
         <div class="picture" *ngFor="let picture of getPicturesByCategory(category.id)">
@@ -105,7 +107,8 @@
             <p>Taille</p>
             <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.size" />
           </div>
-          <em class="fas fa-minus-circle" title="Supprimer la peinture" (click)="deletePicture(picture)"></em>
+          <fa-icon [icon]="'minus-circle'" class="minus-circle" title="Supprimer la peinture"
+            (click)="deletePicture(picture)"></fa-icon>
         </div>
       </div>
     </div>
