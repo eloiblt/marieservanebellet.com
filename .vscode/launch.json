@@ -5,10 +5,25 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Express",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/api",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "start"],
+      "sourceMaps": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "presentation": {
+        "hidden": false,
+        "group": "Back",
+        "order": 1
+      }
+    },
+    {
       "name": "Angular",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: start",
+      "preLaunchTask": "Build front",
       "url": "http://localhost:4200/#",
       "webRoot": "${workspaceFolder}/front",
       "sourceMapPathOverrides": {
@@ -17,7 +32,12 @@
         "/src/*": "${webRoot}/*",
         "/*": "*",
         "/./~/*": "${webRoot}/node_modules/*"
+      },
+      "presentation": {
+        "hidden": false,
+        "group": "Front",
+        "order": 2
       }
-    },
+    }
   ]
 }
