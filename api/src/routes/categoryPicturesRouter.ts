@@ -17,7 +17,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', authenticateJWT, (req, res) => {
-  const categoryPictures: CategoryPictures = req.body;
+  const categoryPictures: CategoryPictures = {
+    id: req.body.id,
+    name: req.body.name,
+    show: req.body.show
+  } as CategoryPictures;
 
   CategoryPicturesCollection.create(categoryPictures)
     .then(docs => res.status(200).send(categoryPictures))
@@ -25,7 +29,11 @@ router.post('/', authenticateJWT, (req, res) => {
 });
 
 router.put('/:id', authenticateJWT, (req, res) => {
-  const categoryPictures: CategoryPictures = req.body;
+  const categoryPictures: CategoryPictures = {
+    id: req.body.id,
+    name: req.body.name,
+    show: req.body.show
+  } as CategoryPictures;
 
   CategoryPicturesCollection.updateOne({ id: categoryPictures.id }, categoryPictures)
     .then(docs => res.status(200).send({ id: req.params.id, ...categoryPictures }))
