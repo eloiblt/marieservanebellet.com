@@ -1,5 +1,5 @@
 <div class="footer">
-  <div [ngClass]="{'footer-content': true, 'show': show === 3}">
+  <div [ngClass]="{'footer-content': true, 'show': show === 2}">
     <div class="footer-line" *ngIf="logo">
       <p [routerLink]="['/contact']" class="link">Contact</p>
       <img class="logo" src="{{ environment.picturesUrl + logo.url }}" loading="lazy" (load)="show = show + 1" alt="Logo"
@@ -8,7 +8,6 @@
     </div>
 
     <div class="footer-line">
-      <img class="etsy" (click)="redirectEtsy()" src="{{ etsyPath }}" loading="lazy" (load)="show = show + 1" alt="Etsy">
       <img class="insta" (click)="redirectInstagram()" src="{{ instaPath }}" loading="lazy" (load)="show = show + 1" alt="Instagram">
     </div>
 
