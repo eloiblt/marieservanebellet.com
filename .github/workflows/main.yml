@@ -6,20 +6,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+  # sonarcloud:
+  #   name: SonarCloud
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #     - name: SonarCloud Scan
+  #       uses: SonarSource/sonarcloud-github-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build-and-push:
-    needs: sonarcloud
+    # needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,7 +30,6 @@ jobs:
       - name: Build the stack
         working-directory: ./docker/prod
         run:
-            # echo ${{ secrets.VPS_PORT }} | sed -e 's/\(.\)/\1 /g'       # debug
           docker-compose build --build-arg FRONT_URL=${{ secrets.FRONT_URL }} --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} --build-arg JWT_SECRET=${{ secrets.JWT_SECRET }} --build-arg SMTP_HOST=${{ secrets.SMTP_HOST }} --build-arg SMTP_PORT=${{ secrets.SMTP_PORT }} --build-arg SMTP_TLS=${{ secrets.SMTP_TLS }} --build-arg SMTP_USER=${{ secrets.SMTP_USER }} --build-arg SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} --build-arg MAIL_TO=${{ secrets.MAIL_TO }} --build-arg MAIL_BCC=${{ secrets.MAIL_BCC }}
 
       - name: Push the stack
