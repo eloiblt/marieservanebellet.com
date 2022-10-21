@@ -20,13 +20,11 @@ export class PicturesComponent implements OnInit {
   public cptLoaded = 0;
   public environment = environment;
 
-  @ViewChild("myElem") MyProp: ElementRef;
+  @ViewChild("goBack") goBack: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
-    private pictureApiService: PicturesApiService,
-    private router: Router,
-    private viewPortScroller: ViewportScroller
+    private pictureApiService: PicturesApiService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +37,8 @@ export class PicturesComponent implements OnInit {
         console.log(err);
       });
     });
+
+    setTimeout(() => this.goBack.nativeElement.scrollIntoView({ behavior: "smooth", block: 'start' }), 200)
   }
 
   showImage(p: Picture) {

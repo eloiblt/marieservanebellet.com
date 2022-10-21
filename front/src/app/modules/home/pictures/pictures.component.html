@@ -1,8 +1,8 @@
 <div class="grid-content">
   <div class="grid-top-container">
-    <div [ngClass]="{'go-back': true, 'show': show}" [routerLink]="['/']">
+    <div #goBack [ngClass]="{'go-back': true, 'show': show}" [routerLink]="['/']">
       <fa-icon [icon]="'arrow-left'" class="arrow-left"></fa-icon>
-      <p id="hello" #myElem > Choisir une autre catégorie</p>
+      <p id="hello"> Choisir une autre catégorie</p>
     </div>
   </div>
 
