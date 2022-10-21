@@ -1,10 +1,19 @@
 <div class="menu-container">
   <div class="menu-content" *ngIf="!loading">
     <div class="unite" *ngFor="let p of picturesMenu">
-      <div class="img-container" [ngClass]="{'show': isLoaded(p.id)}">
-        <img src="{{ environment.picturesUrl + p.url }}" (load)="loaded(p.id)" alt="{{p.title}}">
-        <div class="middle" [routerLink]="['/peintures/' + p.categoryId]">
-          {{ getMenuName(p.categoryId) }}</div>
+      <div
+        class="img-container"
+        [routerLink]="['/peintures/' + p.categoryId]"
+        [ngClass]="{ show: isLoaded(p.id) }"
+      >
+        <img
+          src="{{ environment.picturesUrl + p.url }}"
+          (load)="loaded(p.id)"
+          alt="{{ p.title }}"
+        />
+        <div class="middle">
+          {{ getMenuName(p.categoryId) }}
+        </div>
       </div>
     </div>
   </div>
