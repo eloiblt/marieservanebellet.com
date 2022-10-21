@@ -9,7 +9,7 @@
 
   .ambiance-painting {
     width: 100%;
-    padding-top: calc(75% / 2);
+    padding-top: 20%;
     position: relative;
 
     .img-amb-container {
@@ -20,6 +20,7 @@
       right: 0;
       opacity: 0;
       transition: opacity 0.7s;
+      overflow: hidden;
 
       img {
         width: 100%;
@@ -41,6 +42,8 @@
 @media screen and (max-width: 500px) {
   .home {
     .ambiance-painting {
+      padding-top: 33% !important;
+
       .welcome {
         padding: 8px 16px;
         top: 60%;

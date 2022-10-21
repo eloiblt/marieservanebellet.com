@@ -1,7 +1,7 @@
 <div class="grid-content">
   <div class="grid-top-container">
     <div [ngClass]="{'go-back': true, 'show': show}" [routerLink]="['/']">
-      <em class="fas fa-arrow-left"></em>
+      <fa-icon [icon]="'arrow-left'" class="arrow-left"></fa-icon>
       <p id="hello" #myElem > Choisir une autre catégorie</p>
     </div>
   </div>
@@ -11,8 +11,7 @@
       [ngClass]="{'unite': true, 'show': isLoaded(p.id), 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
       [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
       <div class="img-container">
-        <img src="{{ environment.picturesUrl + p.url }}" loading="lazy" (load)="loaded(p.id)" alt="{{ p.title }}">
-        <div class="middle" (click)="showImage(p)">Aperçu</div>
+        <img src="{{ environment.picturesUrl + p.url }}" loading="lazy" (click)="showImage(p)" (load)="loaded(p.id)" alt="{{ p.title }}">
       </div>
       <div class="label" *ngIf="p.title">
         <p>{{ p.title }}</p>
