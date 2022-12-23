@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $anthraciteGrey;
+  background-color: $backgroundColor;
 
   .contact {
     display: flex;
@@ -29,14 +29,14 @@
       }
 
       input {
-        border: 1px solid $anthraciteGrey;
+        border: 1px solid $backgroundColor;
         border-radius: 3px;
         padding: 5px;
         width: 50%;
       }
 
       textarea {
-        border: 1px solid $anthraciteGrey;
+        border: 1px solid $backgroundColor;
         border-radius: 3px;
         padding: 5px;
         resize: vertical;
