@@ -1,6 +1,18 @@
 version: '3.3'
 services:
 
+  db-service:
+    image: postgres
+    container_name: db-service
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=msb
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
   mongo-service:
     image: mongo
     container_name: mongo-service
@@ -13,6 +25,12 @@ services:
       MONGO_INITDB_DATABASE: marieservanebellet
     volumes:
       - mongo-volume:/data/db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
   pictures-service:
     container_name: pictures-service
