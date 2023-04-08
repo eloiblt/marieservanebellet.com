@@ -8,7 +8,7 @@ import {
   faCheck,
   faMinusCircle,
   faBars,
-  faArrowLeft
+  faArrowLeft, faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
@@ -33,6 +33,6 @@ import {
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faCheck, faMinusCircle, faBars, faArrowLeft);
+    library.addIcons(faCheck, faMinusCircle, faBars, faArrowLeft, faArrowRight);
   }
  }

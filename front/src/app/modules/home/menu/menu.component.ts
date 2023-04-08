@@ -13,7 +13,6 @@ import { forkJoin } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
 
-  public picturesMenu: Picture[];
   public categoryPictures: CategoryPicture[];
   public loading = true;
   public show = [];
@@ -27,18 +26,14 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.show = [];
-    forkJoin({
-      pictures: this.pictureApiService.getMenuPictures(),
-      categoryPictures: this.categoryPictureApiService.get()
-    }).subscribe(res => {
-      this.picturesMenu = res.pictures;
-      this.categoryPictures = res.categoryPictures;
+    this.categoryPictureApiService.get().subscribe(res => {
+      this.categoryPictures = res;
       this.loading = false;
     });
   }
 
-  getMenuTitle(categoryid: number) {
-    return this.categoryPictures.find(c => c.id === categoryid).title;
+  getMenuTitle(categoryId: number) {
+    return this.categoryPictures.find(c => c.id === categoryId).title;
   }
 
   loaded(id: number) {

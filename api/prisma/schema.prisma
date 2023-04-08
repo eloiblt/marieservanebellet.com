@@ -29,6 +29,7 @@ model Picture {
 model Category {
   id          Int      @id @default(autoincrement())
   title       String
+  order       Int?
   pictures    Picture[] @relation("CategoryPicture")
 }
 

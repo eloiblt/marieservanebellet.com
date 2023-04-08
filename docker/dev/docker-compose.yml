@@ -13,12 +13,6 @@ services:
     volumes:
       - db-volume:/var/lib/postgresql/data
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-
   pictures-service:
     container_name: pictures-service
     image: dceoy/nginx-autoindex    # if autoindex does not work, delete html files !

@@ -7,18 +7,11 @@ export class PictureService {
   constructor(private prisma: PrismaService) {}
 
   async getAll(): Promise<PictureDto[]> {
-    return await this.prisma.picture.findMany();
-  }
-
-  async getMenu(): Promise<PictureDto[]> {
-    return await this.prisma.picture.findMany({
-      where: { isMenu: true },
-      select: { url: true, categoryId: true },
-    });
+    return this.prisma.picture.findMany();
   }
 
   async getForCategory(id: number): Promise<PictureDto[]> {
-    return await this.prisma.picture.findMany({
+    return this.prisma.picture.findMany({
       where: { categoryId: id },
       select: {
         id: true,

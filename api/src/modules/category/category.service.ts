@@ -7,7 +7,20 @@ export class CategoryService {
   constructor(private prisma: PrismaService) {}
 
   async getAll(): Promise<CategoryDto[]> {
-    return await this.prisma.category.findMany();
+    const categories = await this.prisma.category.findMany({
+      orderBy: { order: 'asc' },
+    });
+
+    const menus = await this.prisma.picture.findMany({
+      where: { isMenu: true },
+    });
+
+    return categories.map((c) => {
+      return {
+        ...c,
+        coverUrl: menus.find((m) => m.categoryId === c.id)?.url,
+      } as CategoryDto;
+    });
   }
 
   async create(categoryDto: CategoryDto): Promise<void> {

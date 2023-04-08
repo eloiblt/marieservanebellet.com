@@ -14,6 +14,7 @@ export class CategoryPicture {
   id: number;
   title: string;
   show: boolean;
+  coverUrl: string;
 }
 
 export class User {

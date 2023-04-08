@@ -30,11 +30,6 @@ export class PictureController {
     return await this.pictureService.getAll();
   }
 
-  @Get('/menu')
-  async getMenu(): Promise<PictureDto[]> {
-    return await this.pictureService.getMenu();
-  }
-
   @Get('/category/:id')
   async getForCategory(@Param('id') id: string): Promise<PictureDto[]> {
     return await this.pictureService.getForCategory(+id);

@@ -4,6 +4,9 @@ export class CategoryDto {
   @ApiProperty()
   id: number;
 
-  @ApiProperty({ required: true })
+  @ApiProperty()
   title?: string;
+
+  @ApiProperty()
+  coverUrl?: string;
 }
