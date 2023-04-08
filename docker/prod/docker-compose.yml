@@ -28,8 +28,6 @@ services:
   db-service:
     image: postgres
     container_name: db-service
-    ports:
-      - 5432:5432
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
