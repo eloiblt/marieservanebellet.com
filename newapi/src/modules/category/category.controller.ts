@@ -6,12 +6,15 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CategoryDto } from './dto/category.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('category')
+@ApiBearerAuth()
 @ApiTags('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
@@ -22,11 +25,13 @@ export class CategoryController {
   }
 
   @Post()
+  @UseGuards(AuthGuard)
   async create(@Body() category: CategoryDto): Promise<void> {
     await this.categoryService.create(category);
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard)
   async update(
     @Param('id') id: string,
     @Body() category: CategoryDto,
@@ -35,6 +40,7 @@ export class CategoryController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
   async remove(@Param('id') id: string): Promise<void> {
     await this.categoryService.remove(+id);
   }
