@@ -1,6 +1,6 @@
 <div class="menu-container">
 
-  <p class="guide">Catégories de peintures à visiter :</p>
+  <p class="guide" *ngIf="!loading">Cliquez pour visiter une catégorie</p>
 
   <div class="menu-content" *ngIf="!loading">
     <div class="unite" *ngFor="let cat of categoryPictures">

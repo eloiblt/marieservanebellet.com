@@ -8,10 +8,8 @@
 
   .guide {
     color: white;
-    margin-top: 20px;
     margin-bottom: 10px;
     align-self: center;
-    font-size: 20px;
   }
 
   .menu-content {
@@ -91,6 +89,12 @@
 
 @media screen and (min-width: 500px) {
   .menu-container {
+
+    .guide {
+      margin-top: 20px;
+      font-size: 20px !important;
+    }
+
     .menu-content {
       width: 75%;
       margin: 10px 0;
