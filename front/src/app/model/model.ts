@@ -3,17 +3,16 @@ export class Picture {
   title: string;
   technique: string;
   gridColumn: string;
-  gridrow: string;
+  gridRow: string;
   categoryId: number;
-  spec: string;   // ambiance // menu
-  date: string;
+  year: string;
   url: string;
   size: string;
 }
 
 export class CategoryPicture {
   id: number;
-  name: string;
+  title: string;
   show: boolean;
 }
 

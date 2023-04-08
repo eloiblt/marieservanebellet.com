@@ -8,7 +8,7 @@ export class AuthService {
   private jwtHelper = new JwtHelperService();
 
   public isAuthenticated(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user && !this.jwtHelper.isTokenExpired(user.token);
+    const token = localStorage.getItem('token');
+    return token && !this.jwtHelper.isTokenExpired(token);
   }
 }

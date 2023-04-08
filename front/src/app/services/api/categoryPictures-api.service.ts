@@ -10,6 +10,6 @@ import { ToastService } from '../toast.service';
 export class CategoryPicturesApiService extends GenericApiService<CategoryPicture> {
   constructor(http: HttpClient, toastService: ToastService) {
     super(http, toastService);
-    this.controllerName = 'categoryPictures';
+    this.controllerName = 'category';
   }
 }

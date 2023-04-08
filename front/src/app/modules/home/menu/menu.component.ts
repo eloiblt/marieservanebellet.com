@@ -23,13 +23,12 @@ export class MenuComponent implements OnInit {
   constructor(
     private pictureApiService: PicturesApiService,
     private categoryPictureApiService: CategoryPicturesApiService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.show = [];
     forkJoin({
-      pictures: this.pictureApiService.getBySpec('Menu'),
+      pictures: this.pictureApiService.getMenuPictures(),
       categoryPictures: this.categoryPictureApiService.get()
     }).subscribe(res => {
       this.picturesMenu = res.pictures;
@@ -38,8 +37,8 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  getMenuName(categoryid: number) {
-    return this.categoryPictures.find(c => c.id === categoryid).name;
+  getMenuTitle(categoryid: number) {
+    return this.categoryPictures.find(c => c.id === categoryid).title;
   }
 
   loaded(id: number) {

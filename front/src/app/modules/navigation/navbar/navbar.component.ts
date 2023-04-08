@@ -12,7 +12,6 @@ export class NavbarComponent implements OnInit {
 
   public showMenu = false;
   public show = false;
-  public logo: Picture;
   public environment = environment;
 
   constructor(
@@ -20,11 +19,6 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pictureApiService.getBySpec('Logo').subscribe(res => {
-      this.logo = res[0];
-    }, err => {
-      console.log(err)
-    });
   }
 
 }

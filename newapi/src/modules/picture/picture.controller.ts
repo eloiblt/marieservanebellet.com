@@ -25,6 +25,11 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class PictureController {
   constructor(private readonly pictureService: PictureService) {}
 
+  @Get()
+  async getAll(): Promise<PictureDto[]> {
+    return await this.pictureService.getAll();
+  }
+
   @Get('/menu')
   async getMenu(): Promise<PictureDto[]> {
     return await this.pictureService.getMenu();

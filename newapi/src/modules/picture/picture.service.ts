@@ -6,10 +6,14 @@ import { PictureDto } from './dto/picture.dto';
 export class PictureService {
   constructor(private prisma: PrismaService) {}
 
+  async getAll(): Promise<PictureDto[]> {
+    return await this.prisma.picture.findMany();
+  }
+
   async getMenu(): Promise<PictureDto[]> {
     return await this.prisma.picture.findMany({
       where: { isMenu: true },
-      select: { id: true, url: true },
+      select: { url: true, categoryId: true },
     });
   }
 
@@ -23,6 +27,8 @@ export class PictureService {
         technique: true,
         year: true,
         size: true,
+        gridRow: true,
+        gridColumn: true,
       },
     });
   }

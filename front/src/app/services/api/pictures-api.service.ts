@@ -11,18 +11,16 @@ import { ToastService } from '../toast.service';
 export class PicturesApiService extends GenericApiService<Picture> {
   constructor(http: HttpClient, toastService: ToastService) {
     super(http, toastService);
-    this.controllerName = 'pictures';
+    this.controllerName = 'picture';
   }
 
-  getBySpec(spec: string): Observable<Picture[]> {
-    const endPoint = '/getBySpec?spec=' + spec;
-
+  getMenuPictures(): Observable<Picture[]> {
+    const endPoint = '/menu';
     return this.http.get<Picture[]>(this.apiUrl + this.controllerName + endPoint);
   }
 
   getByCategory(categoryId: number): Observable<Picture[]> {
-    const endPoint = '/getByCategory?categoryId=' + categoryId;
-
+    const endPoint = '/category/' + categoryId;
     return this.http.get<Picture[]>(this.apiUrl + this.controllerName + endPoint);
   }
 

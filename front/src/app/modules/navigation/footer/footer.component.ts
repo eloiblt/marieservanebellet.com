@@ -7,26 +7,15 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-
-  public instaPath: string;
   public show = 0;
-  public logo: Picture;
   public environment = environment;
 
-  constructor(private pictureApiService: PicturesApiService) { }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.pictureApiService.getBySpec('Logo').subscribe(res => {
-      this.logo = res[0];
-    }, err => {
-      console.log(err)
-    });
-
-    this.instaPath = environment.picturesUrl + '/instagram-logo.jpg';
-  }
+  ngOnInit(): void {}
 
   redirectInstagram() {
     window.open(instaUrl, '_blank');
@@ -35,5 +24,4 @@ export class FooterComponent implements OnInit {
   redirectProfile() {
     window.open(githubUrl, '_blank');
   }
-
 }
