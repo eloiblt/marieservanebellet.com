@@ -2,38 +2,38 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class PictureDto {
   @ApiProperty()
-  id: number;
+  id?: number;
 
   @ApiProperty()
-  year: number;
+  year?: number;
 
   @ApiProperty()
-  gridColumn: string;
+  gridColumn?: string;
 
   @ApiProperty()
-  gridRow: string;
+  gridRow?: string;
 
   @ApiProperty()
-  size: string;
+  size?: string;
 
   @ApiProperty()
-  spec: string;
+  isMenu?: boolean;
 
   @ApiProperty()
-  technique: string;
+  technique?: string;
 
   @ApiProperty()
-  title: string;
+  title?: string;
 
   @ApiProperty()
-  url: string;
+  url?: string;
 
   @ApiProperty()
-  createdAt: Date;
+  createdAt?: Date;
 
   @ApiProperty()
-  updatedAt: Date;
+  updatedAt?: Date;
 
   @ApiProperty()
-  categoryId: number;
+  categoryId?: number;
 }
