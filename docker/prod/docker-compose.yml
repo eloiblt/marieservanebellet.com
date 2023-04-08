@@ -80,4 +80,6 @@ networks:
 
 volumes:
   db-volume:
+    external: true
   pictures-volume:
+    external: true
