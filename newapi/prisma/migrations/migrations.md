@@ -10,7 +10,9 @@ npx prisma migrate dev --name "init"
 ### Crée une nouvelle migration vide
 ```sh
 npx prisma migrate dev --create-only
+npx prisma migrate dev # après edition
 ```
+Attention, pour les changements de structure (ajout de colonne etc), ne pas passer par une migration vide, mais modifier le schema.prisma
 
 ### Seed data in prisma/seed.ts (DEV only)
 ```sh

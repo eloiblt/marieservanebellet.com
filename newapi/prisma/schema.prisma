@@ -16,7 +16,7 @@ model Picture {
   gridColumn  String?
   gridRow     String?
   size        String?
-  spec        String?
+  isMenu      Boolean   @default(false)
   technique   String?
   title       String?
   url         String?
