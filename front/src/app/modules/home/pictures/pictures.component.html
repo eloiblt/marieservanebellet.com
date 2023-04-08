@@ -8,14 +8,14 @@
 
   <div *ngIf="!loading" [ngClass]="{'grid': true }">
     <div *ngFor="let p of pictures"
-      [ngClass]="{'unite': true, 'show': isLoaded(p.id), 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridrow)}"
-      [ngStyle]="{'grid-row': p.gridrow, 'grid-column': p.gridColumn}">
+      [ngClass]="{'unite': true, 'show': isLoaded(p.id), 'hide-label': !p.title, 'rectangle': isRectangleOrVertical(p.gridColumn), 'vertical': isRectangleOrVertical(p.gridRow)}"
+      [ngStyle]="{'grid-row': p.gridRow, 'grid-column': p.gridColumn}">
       <div class="img-container">
         <img src="{{ environment.picturesUrl + p.url }}" loading="lazy" (click)="showImage(p)" (load)="loaded(p.id)" alt="{{ p.title }}">
       </div>
       <div class="label" *ngIf="p.title">
         <p>{{ p.title }}</p>
-        <p>{{ p.size }} - {{ p.date }}</p>
+        <p>{{ p.size }} - {{ p.year }}</p>
       </div>
     </div>
   </div>
@@ -27,6 +27,6 @@
     [ngClass]="{'show': showModal}">
   <div class="label" *ngIf="clickedPicture.title">
     <p>{{ clickedPicture.title }}</p>
-    <p>{{ clickedPicture.size }} - {{ clickedPicture.date }}</p>
+    <p>{{ clickedPicture.size }} - {{ clickedPicture.year }}</p>
   </div>
 </div>

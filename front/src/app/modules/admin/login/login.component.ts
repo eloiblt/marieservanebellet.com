@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginApiService.login(this.loginForm.value).subscribe(res => {
-      localStorage.setItem('user', JSON.stringify(res));
+    this.loginApiService.login(this.loginForm.value).subscribe(jwt => {
+      localStorage.setItem('token', jwt);
       this.router.navigate(['adminManagement']);
     }, err => {
       this.error = true;

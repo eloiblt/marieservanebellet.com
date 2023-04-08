@@ -6,22 +6,13 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   public show = false;
-  public bandeau: Picture;
   public environment = environment;
 
-  constructor(private pictureApiService: PicturesApiService) { }
+  constructor(private pictureApiService: PicturesApiService) {}
 
-  ngOnInit(): void {
-    this.pictureApiService.getBySpec('Bandeau').subscribe(res => {
-      this.bandeau = res[0];
-    }, err => {
-      console.log(err)
-    });
-  }
-
+  ngOnInit(): void {}
 }

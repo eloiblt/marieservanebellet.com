@@ -23,18 +23,19 @@ services:
     networks:
       - api-network
     depends_on:
-      - mongo-service
+      - db-service
 
-  mongo-service:
-    image: mongo
-    container_name: mongo-service
-    restart: always
+  db-service:
+    image: postgres
+    container_name: db-service
+    ports:
+      - 5432:5432
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: marieservanebellet
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=msb
     volumes:
-      - mongo-volume:/data/db/
+      - db-volume:/var/lib/postgresql/data
     networks:
       - api-network
 
@@ -78,5 +79,5 @@ networks:
     driver: bridge
 
 volumes:
-  mongo-volume:
+  db-volume:
   pictures-volume:

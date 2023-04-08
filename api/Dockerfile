@@ -29,9 +29,9 @@ WORKDIR $home
 
 COPY ./api/ $home
 RUN npm install
-RUN npm install -g typescript
+RUN npm install -g @nestjs/cli
 RUN apt update && apt install jpegoptim
-RUN tsc
+RUN npm run build
 
 EXPOSE 80
-CMD [ "node", "./dist/app.js" ]
+CMD [ "npm", "run", "start:prod" ]

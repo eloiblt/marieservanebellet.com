@@ -1,26 +1,31 @@
 version: '3.3'
 services:
 
-  mongo-service:
-    image: mongo
-    container_name: mongo-service
+  db-service:
+    image: postgres
+    container_name: db-service
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=msb
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
     restart: always
     ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: marieservanebellet
-    volumes:
-      - mongo-volume:/data/db
+      - 8080:8080
 
   pictures-service:
     container_name: pictures-service
-    image: nginx
+    image: dceoy/nginx-autoindex    # if autoindex does not work, delete html files !
     ports:
       - 80:80
     volumes:
-      - pictures-volume:/usr/share/nginx/html/
+      - pictures-volume:/var/lib/nginx/html
 
   mail-catcher:
     image: schickling/mailcatcher
@@ -30,7 +35,7 @@ services:
       - 1025:1025
 
 volumes:
-  mongo-volume:
+  db-volume:
     external: true
   pictures-volume:
     external: true

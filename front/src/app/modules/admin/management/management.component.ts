@@ -48,14 +48,13 @@ export class ManagementComponent implements OnInit {
     this.newPicture.title = '';
     this.newPicture.technique = '';
     this.newPicture.gridColumn = '';
-    this.newPicture.gridrow = '';
+    this.newPicture.gridRow = '';
     this.newPicture.categoryId = null;
-    this.newPicture.spec = '';
-    this.newPicture.date = '';
+    this.newPicture.year = '';
     this.newPicture.url = '';
     this.newPicture.size = '';
     this.newCategoryPicture = new CategoryPicture();
-    this.newCategoryPicture.name = '';
+    this.newCategoryPicture.title = '';
   }
 
   getPictures() {
@@ -129,7 +128,7 @@ export class ManagementComponent implements OnInit {
   }
 
   canCreateCategoryPicture() {
-    return this.newCategoryPicture.name?.trim();
+    return this.newCategoryPicture.title?.trim();
   }
 
   canCreatePicture() {

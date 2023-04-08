@@ -16,6 +16,6 @@ export class LoginApiService extends GenericApiService<any> {
   login(data: string): Observable<any> {
     const endPoint = '';
 
-    return this.http.post(this.apiUrl + this.controllerName + endPoint, data);
+    return this.http.post(this.apiUrl + this.controllerName + endPoint, data, { responseType: 'text' });
   }
 }
