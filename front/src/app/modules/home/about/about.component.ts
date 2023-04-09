@@ -12,7 +12,7 @@ export class AboutComponent implements OnInit {
   public show = false;
 
   ngOnInit(): void {
-    this.photoPath = environment.picturesUrl + 'photo.jpg'
+    this.photoPath = environment.picturesUrl + 'photo.webp'
   }
 
   ngAfterViewInit() {
