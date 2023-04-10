@@ -54,9 +54,9 @@ export class ManagementComponent implements OnInit {
     const guuid = crypto.randomUUID();
 
     this.paintingApiService.create({ ...this.newPicture, url: `${guuid}.webp` }).pipe(
-      tap(async _ => await this.deleteOtherIsMenu(this.newPicture)),
       switchMap(_ => this.paintingApiService.postFile(this.fileToUpload, `${guuid}.${this.newPicture.url.split('.').pop()}`))
     ).subscribe(async _ => {
+      await this.deleteOtherIsMenu(this.newPicture)
       this.reset();
     });
 
