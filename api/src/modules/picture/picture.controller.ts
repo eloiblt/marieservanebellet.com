@@ -2,11 +2,8 @@ import {
   Body,
   Controller,
   Delete,
-  FileTypeValidator,
   Get,
-  MaxFileSizeValidator,
   Param,
-  ParseFilePipe,
   Post,
   Put,
   UploadedFile,
@@ -18,6 +15,9 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { PictureDto } from './dto/picture.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { cwebp } from 'webp-converter';
+import * as fs from 'fs';
 
 @Controller('picture')
 @ApiBearerAuth()
@@ -56,20 +56,30 @@ export class PictureController {
     await this.pictureService.remove(+id);
   }
 
-  // @Post('upload')
-  // @UseGuards(AuthGuard)
-  // @UseInterceptors(FileInterceptor('file'))
-  // uploadFile(
-  //   @UploadedFile(
-  //     new ParseFilePipe({
-  //       validators: [
-  //         new MaxFileSizeValidator({ maxSize: 1000 }),
-  //         new FileTypeValidator({ fileType: 'image/jpeg' }),
-  //       ],
-  //     }),
-  //   )
-  //   file: Express.Multer.File,
-  // ) {
-  //   console.log(file);
-  // }
+  @Post('upload')
+  @UseGuards(AuthGuard)
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: '/pictures/',
+        filename: async (req, file, cb) => {
+          cb(null, file.originalname);
+        },
+      }),
+    }),
+  )
+  async uploadFile(
+    @UploadedFile()
+    file: Express.Multer.File,
+  ) {
+    const path = '/pictures/';
+
+    await cwebp(
+      `${path}${file.originalname}`,
+      `${path}${file.originalname.split('.').slice(0, -1)}.webp`,
+      '-q 40 -resize 500 0',
+    );
+
+    fs.unlinkSync(`${path}${file.originalname}`);
+  }
 }

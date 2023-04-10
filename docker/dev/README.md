@@ -19,8 +19,8 @@ docker volume ls
 - Exporter ces 2 volumes en .tar
 
 ```sh
-docker run --rm --volume [db-volume-name]:/dbdata --volume $(pwd):/backup ubuntu tar cvf /backup/db-volume.tar /dbdata
-docker run --rm --volume [pictures-volume-name]:/dbdata --volume $(pwd):/backup ubuntu tar cvf /backup/pictures-volume.tar /dbdata
+docker run --rm --volume db-volume:/dbdata --volume $(pwd):/backup ubuntu tar cvf /backup/db-volume.tar /dbdata
+docker run --rm --volume pictures-volume:/dbdata --volume $(pwd):/backup ubuntu tar cvf /backup/pictures-volume.tar /dbdata
 ```
 
 - De retour sur la machine cliente, télécharger ces 2 .tar :

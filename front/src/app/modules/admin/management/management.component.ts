@@ -4,6 +4,7 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
 import { ToastService } from '../../../services/toast.service';
 import { environment } from '../../../../environments/environment';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-management',
@@ -28,74 +29,39 @@ export class ManagementComponent implements OnInit {
     protected toastService: ToastService
   ) { }
 
-  ngOnInit(): void {
-    this.reset();
-    this.specifications = [
-      { name: 'Menu' },
-      { name: 'Bandeau' },
-      { name: 'Logo' }
-    ];
+  async ngOnInit() {
+    await this.reset();
   }
 
-  reset() {
+  async reset() {
     this.initNewPicture();
-    this.getPictures();
-    this.getCategoryPictures();
+    this.pictures = await firstValueFrom(this.paintingApiService.get());
+    this.categoryPictures = await firstValueFrom(this.categoryPaintingApiService.get());
   }
 
   initNewPicture() {
     this.newPicture = new Picture();
-    this.newPicture.title = '';
-    this.newPicture.technique = '';
-    this.newPicture.gridColumn = '';
-    this.newPicture.gridRow = '';
-    this.newPicture.categoryId = null;
-    this.newPicture.year = '';
-    this.newPicture.url = '';
-    this.newPicture.size = '';
     this.newCategoryPicture = new CategoryPicture();
-    this.newCategoryPicture.title = '';
-  }
-
-  getPictures() {
-    this.paintingApiService.get().subscribe(res => {
-      this.pictures = res;
-      this.newPicture.id = 1;
-      while (this.pictures.find(p => p.id === this.newPicture.id)) {
-        this.newPicture.id++;
-      }
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getCategoryPictures() {
-    this.categoryPaintingApiService.get().subscribe(res => {
-      this.categoryPictures = res;
-      this.newCategoryPicture.id = 1;
-      while (this.categoryPictures.find(p => p.id === this.newCategoryPicture.id)) {
-        this.newCategoryPicture.id++;
-      }
-    }, err => {
-      console.log(err);
-    });
   }
 
   getPicturesByCategory(id: number) {
     return this.pictures.filter(p => p.categoryId === id);
   }
 
-  createNewPicture() {
+  async createNewPicture() {
     if (!this.canCreatePicture()) { return; }
-    this.paintingApiService.create(this.newPicture).subscribe(res => {
-      this.reset();
-    }, err => {
-      console.log(err);
-    });
-    this.paintingApiService.postFile(this.fileToUpload).subscribe(res => {
+
+    const guuid = crypto.randomUUID();
+
+    await firstValueFrom(this.paintingApiService.create({ ...this.newPicture, url: `${guuid}.webp` }));
+    await this.deleteOtherIsMenu(this.newPicture);
+
+    this.paintingApiService.postFile(this.fileToUpload, `${guuid}.${this.newPicture.url.split('.').pop()}`).subscribe(res => {
     }, err => {
       this.toastService.success(err.error.text);
     });
+
+    this.reset();
     this.fileToUpload = null;
     this.upload.nativeElement.value = '';
   }
@@ -113,11 +79,18 @@ export class ManagementComponent implements OnInit {
     this.show = [...this.show, id];
   }
 
-  updatePicture(p: Picture) {
-    this.paintingApiService.update(p.id, p).subscribe(res => {
-    }, err => {
-      console.log(err);
-    });
+  async updatePicture(p: Picture) {
+    await this.deleteOtherIsMenu(p);
+    await firstValueFrom(this.paintingApiService.update(p.id, p));
+  }
+
+  async deleteOtherIsMenu(p: Picture) {
+    if (p.isMenu) {
+      for (let pictureToUpdate of this.getPicturesByCategory(p.categoryId).filter(c => c.id !== p.id && c.isMenu)) {
+        pictureToUpdate.isMenu = false;
+        await firstValueFrom(this.paintingApiService.update(pictureToUpdate.id, pictureToUpdate, false));
+      }
+    }
   }
 
   updateCategoryPicture(c: CategoryPicture) {
@@ -132,9 +105,7 @@ export class ManagementComponent implements OnInit {
   }
 
   canCreatePicture() {
-    return this.newPicture.id &&
-      this.categoryPictures.find(c => c.id === this.newPicture.categoryId) &&
-      this.fileToUpload;
+    return this.newPicture.categoryId && this.newPicture.title && this.fileToUpload;
   }
 
   deletePicture(p: Picture) {
@@ -162,11 +133,5 @@ export class ManagementComponent implements OnInit {
 
     this.fileToUpload = files.item(0);
     this.newPicture.url = this.fileToUpload.name;
-    console.log(this.newPicture.url.split('.').pop())
-    if (this.newPicture.url.split('.').pop() !== 'jpg') {
-      this.toastService.error('Seuls les fichier JPG sont autorisés');
-      this.fileToUpload = null;
-      this.upload.nativeElement.value = '';
-    }
   }
 }

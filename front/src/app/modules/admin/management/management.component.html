@@ -42,12 +42,16 @@
           </div>
           <div class="picture-line">
             <p>Catégorie</p>
-            <ng-select [items]="categoryPictures" bindLabel="name" bindValue="id" [(ngModel)]="newPicture.categoryId">
+            <ng-select [items]="categoryPictures" bindLabel="title" bindValue="id" [(ngModel)]="newPicture.categoryId">
             </ng-select>
           </div>
           <div class="picture-line">
             <p>Taille</p>
             <input type="text" [(ngModel)]="newPicture.size" />
+          </div>
+          <div class="picture-line">
+            <p>Afficher en menu</p>
+            <input type="checkbox" [(ngModel)]="newPicture.isMenu" />
           </div>
 
           <fa-icon [icon]="'check'" class="check" (click)="createNewPicture()" title="Créer"
@@ -95,6 +99,10 @@
           <div class="picture-line">
             <p>Taille</p>
             <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.size" />
+          </div>
+          <div class="picture-line">
+            <p>Afficher en menu</p>
+            <input type="checkbox" [(ngModel)]="picture.isMenu" (change)="updatePicture(picture)"/>
           </div>
           <fa-icon [icon]="'minus-circle'" class="minus-circle" title="Supprimer la peinture"
             (click)="deletePicture(picture)"></fa-icon>

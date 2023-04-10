@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ToastService } from '../toast.service';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class GenericApiService<T> {
@@ -28,20 +28,14 @@ export class GenericApiService<T> {
       .get<T>(this.apiUrl + this.controllerName + endPoint);
   }
 
-  update(id: any, obj: any): Observable<any> {
+  update(id: any, obj: any, notif = true): Observable<any> {
     const endPoint = '/' + id;
 
     return this.http
       .put<T>(this.apiUrl + this.controllerName + endPoint, obj)
       .pipe(
-        map(res => {
-          this.toastService.success('Mise à jour effectuée');
-          return res;
-        }),
-        catchError(err => {
-          this.toastService.error('Erreur lors de la mise à jour');
-          return throwError(err);
-        })
+        tap(_ => notif ? this.toastService.success('Mise à jour effectuée') : false),
+        catchError(async (_) => this.toastService.error('Erreur lors de la mise à jour'))
       );
   }
 

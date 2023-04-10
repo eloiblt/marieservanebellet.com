@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { PictureDto } from './dto/picture.dto';
+import * as fs from 'fs';
 
 @Injectable()
 export class PictureService {
@@ -51,6 +52,8 @@ export class PictureService {
   }
 
   async remove(id: number): Promise<void> {
+    const picture = await this.prisma.picture.findUnique({ where: { id } });
+    fs.rmSync(`/pictures/${picture.url}`);
     await this.prisma.picture.delete({ where: { id } });
   }
 }
