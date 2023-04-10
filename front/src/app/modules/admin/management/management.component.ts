@@ -58,10 +58,9 @@ export class ManagementComponent implements OnInit {
     ).subscribe(async _ => {
       await this.deleteOtherIsMenu(this.newPicture)
       this.reset();
+      this.fileToUpload = null;
+      this.upload.nativeElement.value = '';
     });
-
-    this.fileToUpload = null;
-    this.upload.nativeElement.value = '';
   }
 
   createNewCategoryPicture() {
