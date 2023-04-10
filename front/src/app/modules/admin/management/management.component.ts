@@ -4,7 +4,7 @@ import { PicturesApiService } from 'src/app/services/api/pictures-api.service';
 import { CategoryPicturesApiService } from 'src/app/services/api/categoryPictures-api.service';
 import { ToastService } from '../../../services/toast.service';
 import { environment } from '../../../../environments/environment';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-management',
@@ -53,15 +53,13 @@ export class ManagementComponent implements OnInit {
 
     const guuid = crypto.randomUUID();
 
-    await firstValueFrom(this.paintingApiService.create({ ...this.newPicture, url: `${guuid}.webp` }));
-    await this.deleteOtherIsMenu(this.newPicture);
-
-    this.paintingApiService.postFile(this.fileToUpload, `${guuid}.${this.newPicture.url.split('.').pop()}`).subscribe(res => {
-    }, err => {
-      this.toastService.success(err.error.text);
+    this.paintingApiService.create({ ...this.newPicture, url: `${guuid}.webp` }).pipe(
+      switchMap(res => this.paintingApiService.postFile(this.fileToUpload, `${guuid}.${this.newPicture.url.split('.').pop()}`))
+    ).subscribe(async res => {
+      await this.deleteOtherIsMenu(this.newPicture);
+      this.reset();
     });
 
-    this.reset();
     this.fileToUpload = null;
     this.upload.nativeElement.value = '';
   }
