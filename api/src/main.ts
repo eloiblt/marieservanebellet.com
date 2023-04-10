@@ -18,7 +18,15 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/', app, document);
 
-  app.use(compression());
+  app.use(
+    compression({
+      filter: () => {
+        return true;
+      },
+      threshold: 0,
+    }),
+  );
+
   app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
