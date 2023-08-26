@@ -5,6 +5,7 @@ import { PrismaModule } from './modules/prisma/prisma.module';
 import { PictureModule } from './modules/picture/pictureModule';
 import { AuthModule } from './modules/auth/auth.module';
 import { ContactModule } from './modules/contact/contact.module';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { ContactModule } from './modules/contact/contact.module';
     AuthModule,
     PrismaModule,
     ContactModule,
+    LoggerModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [],
