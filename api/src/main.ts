@@ -6,7 +6,9 @@ import * as process from 'process';
 import * as compression from 'compression';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['log', 'error', 'warn', 'debug', 'verbose'],
+  });
 
   const config = new DocumentBuilder()
     .setTitle('MSB API')
