@@ -31,11 +31,8 @@ export class PicturesComponent implements OnInit {
       this.pictureApiService.getByCategory(Number(params['id'])).subscribe(
         (res) => {
           this.pictures = res;
-          console.log(this.pictures);
         },
-        (err) => {
-          console.log(err);
-        }
+        (err) => {}
       );
     });
 

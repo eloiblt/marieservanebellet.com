@@ -68,7 +68,6 @@ export class ManagementComponent implements OnInit {
     this.categoryPaintingApiService.create(this.newCategoryPicture).subscribe(res => {
       this.reset();
     }, err => {
-      console.log(err);
     });
   }
 
@@ -93,7 +92,6 @@ export class ManagementComponent implements OnInit {
   updateCategoryPicture(c: CategoryPicture) {
     this.categoryPaintingApiService.update(c.id, c).subscribe(res => {
     }, err => {
-      console.log(err);
     });
   }
 
@@ -109,7 +107,6 @@ export class ManagementComponent implements OnInit {
     this.paintingApiService.delete(p.id).subscribe(res => {
       this.reset();
     }, err => {
-      console.log(err);
     });
   }
 
@@ -120,7 +117,6 @@ export class ManagementComponent implements OnInit {
       this.categoryPaintingApiService.delete(c.id).subscribe(res => {
         this.reset();
       }, err => {
-        console.log(err);
       });
     }
   }

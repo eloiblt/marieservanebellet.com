@@ -28,9 +28,7 @@ export class PictureComponent {
   }
 
   emitClick() {
-    console.log('here')
     if (!this.loaded) return;
-    console.log('emit')
     this.onClick.emit();
   }
 }

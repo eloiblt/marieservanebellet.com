@@ -55,7 +55,6 @@ export class ContactComponent implements OnInit {
       this.toastService.success('Mail envoyé');
       this.contactForm.reset();
     }, err => {
-      console.log(err);
       if (err.status === 422) {
         this.error = 'Saisies invalides';
       } else {

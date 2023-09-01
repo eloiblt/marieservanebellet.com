@@ -1,7 +1,8 @@
 <div class="home">
   <div class="ambiance-painting">
-    <div class="img-amb-container" [ngClass]="{'show': show}">
-      <img src="{{ environment.picturesUrl + 'banner.webp' }}" (load)="show = true" alt="Image d'ambiance">
+    <div class="img-amb-container">
+      <!-- <img src="{{ environment.picturesUrl + 'banner.webp' }}" (load)="show = true" alt="Image d'ambiance"> -->
+      <picture src="banner.webp" title="Image d'ambiance"></picture>
     </div>
   </div>
 
