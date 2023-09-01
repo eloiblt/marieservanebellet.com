@@ -1,21 +1,15 @@
 <div class="menu-container">
-  <div class="menu-content" *ngIf="!loading">
-    <div class="unite" *ngFor="let cat of categoryPictures">
-      <div
-        class="img-container"
-        [routerLink]="['/peintures/' + cat.id]"
-        [ngClass]="{ show: isLoaded(cat.id) }"
-      >
-        <img
-          src="{{ environment.picturesUrl + cat.coverUrl }}"
-          (load)="loaded(cat.id)"
-          alt="{{ cat.title }}"
-        />
-        <div class="middle">
-          <p>{{ cat.title }}<p>
-          <p>Visiter
-          <fa-icon [icon]="'arrow-right'" class="arrow-right"></fa-icon></p>
-        </div>
+  <div class="unite" *ngFor="let cat of categoryPictures">
+    <div class="img-container" [routerLink]="['/peintures/' + cat?.id]">
+      <picture [src]="cat?.coverUrl" [title]="cat?.title" (onLoad)="loaded(cat?.id)"></picture>
+
+      <div class="middle" *ngIf="isLoaded(cat?.id)">
+        <p>{{ cat.title }}</p>
+        <p></p>
+        <p>
+          Visiter
+          <fa-icon [icon]="'arrow-right'" class="arrow-right"></fa-icon>
+        </p>
       </div>
     </div>
   </div>

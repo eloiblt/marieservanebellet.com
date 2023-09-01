@@ -1,0 +1,12 @@
+<ng-container *ngIf="src">
+  <img
+    [ngSrc]="environment.picturesUrl + src"
+    (load)="load()"
+    [alt]="title"
+    priority
+    fill
+    [ngClass]="{ loaded: loaded }"
+  />
+</ng-container>
+
+<div *ngIf="!loaded" class="placeholder"></div>

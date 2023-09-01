@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -10,9 +10,11 @@ import {
   faBars,
   faArrowLeft, faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
+import { PictureComponent } from './picture/picture.component';
 
 @NgModule({
   declarations: [
+    PictureComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import {
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgOptimizedImage
   ],
   exports: [
     CommonModule,
@@ -28,7 +31,8 @@ import {
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    PictureComponent
   ],
 })
 export class SharedModule {

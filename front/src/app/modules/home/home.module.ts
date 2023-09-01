@@ -22,7 +22,7 @@ import { AboutComponent } from './about/about.component';
     AboutComponent
   ],
   imports: [
-    SharedModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

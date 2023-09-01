@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './modules/shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgHttpCachingLocalStorage, NgHttpCachingModule } from 'ng-http-caching';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavigationModule,
     AdminModule,
     SharedModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgHttpCachingModule.forRoot({ lifetime: 86400000, store: new NgHttpCachingLocalStorage()})
   ],
   exports: [
     AppRoutingModule
