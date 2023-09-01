@@ -88,7 +88,7 @@
         "front": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/front.ts",
+            "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
