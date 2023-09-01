@@ -30,7 +30,7 @@ scp [name]@[IP]:db-volume.tar .
 scp [name]@[IP]:pictures-volume.tar .
 ```
 
-- Restaurer ces volumes dans docker :
+- Restaurer ces volumes dans docker, via WSL2 ! :
 
 ```sh
 docker run --rm --volume db-volume:/dbdata --volume $(pwd):/backup ubuntu tar xvf /backup/db-volume.tar -C /dbdata --strip 1

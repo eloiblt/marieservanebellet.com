@@ -14,6 +14,14 @@ export class PictureService {
   async getForCategory(id: number): Promise<PictureDto[]> {
     return this.prisma.picture.findMany({
       where: { categoryId: id },
+      orderBy: [
+        {
+          gridRow: 'asc',
+        },
+        {
+          gridColumn: 'asc',
+        },
+      ],
       select: {
         id: true,
         title: true,
