@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
 import { ManagementComponent } from './modules/admin/management/management.component';
 import { LoginComponent } from './modules/admin/login/login.component';
-import { AuthGuardService } from './services/authGuard.service';
+import { AuthGuard } from './services/authGuard.service';
 import { PicturesComponent } from './modules/home/pictures/pictures.component';
 import { MenuComponent } from './modules/home/menu/menu.component';
 import { ContactComponent } from './modules/home/contact/contact.component';
@@ -43,7 +43,7 @@ const routes: Routes = [
     path: 'adminManagement',
     component: ManagementComponent,
     pathMatch: 'full',
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
