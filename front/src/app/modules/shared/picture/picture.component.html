@@ -5,7 +5,7 @@
     [alt]="title"
     priority
     fill
-    [ngClass]="{ loaded: loaded }"
+    [ngClass]="{ loaded, 'can-zoom': canZoom }"
     (click)="emitClick()"
   />
 </ng-container>

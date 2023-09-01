@@ -8,12 +8,13 @@ img {
   opacity: 0;
   transition: opacity 1s, transform 0.7s;
   position: relative !important;
+  object-fit: cover;
 
   &.loaded {
     opacity: 1;
   }
 
-  &:hover {
+  &.can-zoom:hover {
     cursor: pointer;
     transform: scale(1.1);
   }

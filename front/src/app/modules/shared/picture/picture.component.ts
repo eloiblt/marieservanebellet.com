@@ -13,6 +13,9 @@ export class PictureComponent {
   @Input()
   title: string;
 
+  @Input()
+  canZoom = true;
+
   @Output()
   onLoad = new EventEmitter();
 
