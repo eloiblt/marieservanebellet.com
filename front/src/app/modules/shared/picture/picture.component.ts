@@ -16,11 +16,21 @@ export class PictureComponent {
   @Output()
   onLoad = new EventEmitter();
 
+  @Output()
+  onClick = new EventEmitter();
+
   public loaded = false;
   public environment = environment;
 
   load() {
     this.loaded = true;
     this.onLoad.emit();
+  }
+
+  emitClick() {
+    console.log('here')
+    if (!this.loaded) return;
+    console.log('emit')
+    this.onClick.emit();
   }
 }

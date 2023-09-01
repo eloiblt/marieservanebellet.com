@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
   constructor(private categoryPictureApiService: CategoryPicturesApiService) {}
 
   ngOnInit(): void {
-    this.categoryPictures = [].constructor(9);
+    this.categoryPictures = [].constructor(6);
 
     this.loadedImagesIds = [];
     this.categoryPictureApiService.get().subscribe((res) => {

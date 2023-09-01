@@ -1,11 +1,13 @@
 :host {
   flex: 1;
   display: flex;
+  width: 100%;
 }
 
 img {
   opacity: 0;
   transition: opacity 1s, transform 0.7s;
+  position: relative !important;
 
   &.loaded {
     opacity: 1;

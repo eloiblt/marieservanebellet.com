@@ -13,7 +13,6 @@
   position: relative;
 
   .unite {
-    color: white;
     position: relative;
 
     .img-container {
@@ -30,18 +29,16 @@
         transform: translate(-50%, -50%);
         background-color: white;
         color: $backgroundColor;
-        font-size: 18px;
         padding: 10px;
         text-align: center;
         transition: opacity 0.7s;
         display: flex;
         flex-direction: column;
         border-radius: 3px;
-        width: 40%;
+        width: 35%;
 
         p:first-of-type {
           font-weight: bold;
-          font-size: 20px;
         }
 
         fa-icon {
@@ -60,7 +57,7 @@
 
 @media screen and (min-width: 500px) {
   .menu-container {
-    padding: 0 110px;
+    padding: 0 10%;
     margin: 10px 0;
     flex-wrap: wrap;
     gap: 10px;
@@ -68,6 +65,10 @@
     .unite {
       width: calc((80% - 10px) / 3);
       padding-top: calc((80% - 10px) / 3);
+    }
+
+    .middle p {
+      font-size: 15px;
     }
   }
 }
@@ -77,25 +78,30 @@
     padding: 0 40px;
   }
 
-  .middle {
-    font-size: 15px !important;
+  .middle p {
+    font-size: 13px !important;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .middle {
-    padding: 7px 20px !important;
-    font-size: 12px !important;
+    padding: 5px 10px !important;
+
+    p {
+      font-size: 12px !important;
+    }
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .middle {
     padding: 4px 11px !important;
-    font-size: 10px !important;
+
+    p {
+      font-size: 10px !important;
+    }
   }
 }
-
 
 @media screen and (max-width: 500px) {
   .menu-container {
@@ -109,6 +115,10 @@
       .middle {
         padding: 10px 20px !important;
         font-size: 20px !important;
+
+        p {
+          font-size: 15px !important;
+        }
       }
 
       &:not(:last-of-type) {
