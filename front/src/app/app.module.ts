@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
@@ -11,12 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './modules/shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgHttpCachingLocalStorage, NgHttpCachingModule } from 'ng-http-caching';
+import {
+  NgHttpCachingLocalStorage,
+  NgHttpCachingModule,
+  NgHttpCachingStrategy,
+} from 'ng-http-caching';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,14 +30,16 @@ import { NgHttpCachingLocalStorage, NgHttpCachingModule } from 'ng-http-caching'
     AdminModule,
     SharedModule,
     FontAwesomeModule,
-    NgHttpCachingModule.forRoot({ lifetime: 86400000, store: new NgHttpCachingLocalStorage()})
+    NgHttpCachingModule.forRoot({
+      lifetime: 86400000,
+      cacheStrategy: NgHttpCachingStrategy.DISALLOW_ALL,  // pas de cache sauf pour les users non loggés en get
+      store: new NgHttpCachingLocalStorage(),
+    }),
   ],
-  exports: [
-    AppRoutingModule
-  ],
+  exports: [AppRoutingModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
