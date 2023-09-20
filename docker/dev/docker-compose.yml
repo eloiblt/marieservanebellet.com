@@ -2,7 +2,7 @@ version: '3.3'
 services:
 
   db-service:
-    image: postgres
+    image: postgres:15
     container_name: db-service
     ports:
       - 5432:5432
