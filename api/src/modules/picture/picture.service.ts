@@ -38,7 +38,7 @@ export class PictureService {
   async create(pictureDto: PictureDto): Promise<void> {
     await this.prisma.picture.create({
       data: {
-        year: Number(pictureDto.year),
+        year: pictureDto.year ? Number(pictureDto.year) : 0,
         gridColumn: pictureDto.gridColumn,
         gridRow: pictureDto.gridRow,
         size: pictureDto.size,

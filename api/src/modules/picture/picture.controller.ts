@@ -16,8 +16,8 @@ import { PictureDto } from './dto/picture.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { cwebp } from 'webp-converter';
 import * as fs from 'fs';
+import * as sharp from 'sharp';
 
 @Controller('picture')
 @ApiBearerAuth()
@@ -74,11 +74,11 @@ export class PictureController {
   ) {
     const path = '/pictures/';
 
-    await cwebp(
-      `${path}${file.originalname}`,
-      `${path}${file.originalname.split('.').slice(0, -1)}.webp`,
-      '-q 40 -resize 500 0',
-    );
+    await sharp(`${path}${file.originalname}`)
+      .resize(1000, null)
+      .webp({ quality: 40 })
+      .rotate()
+      .toFile(`${path}${file.originalname.split('.').slice(0, -1)}.webp`);
 
     fs.unlinkSync(`${path}${file.originalname}`);
   }
