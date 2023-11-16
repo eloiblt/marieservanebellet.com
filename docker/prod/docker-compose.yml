@@ -38,13 +38,13 @@ services:
     networks:
       - api-network
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    networks:
-      - api-network
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - api-network
 
   pictures-service:
     image: nginx
