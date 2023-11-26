@@ -62,5 +62,4 @@ jobs:
           script: |
             cd ~/msb/docker/prod
             echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
-            docker compose pull
-            docker compose up -d --no-build
+            docker compose up -d --no-build --pull=always
