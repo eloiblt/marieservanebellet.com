@@ -9,7 +9,7 @@ services:
       context: ../../
       dockerfile: ./front/Dockerfile
     ports:
-      - 3000:80
+      - 127.0.0.1:3000:80
     # networks:
     #   - front-network
 
@@ -23,7 +23,7 @@ services:
     volumes:
       - pictures-volume:/pictures
     ports:
-      - 3001:4000
+      - 127.0.0.1:3001:4000
     networks:
       - backend-network
     depends_on:
@@ -47,7 +47,7 @@ services:
     container_name: msb-pictures
     restart: always
     ports:
-      - 3002:80
+      - 127.0.0.1:3002:80
     volumes:
       - pictures-volume:/usr/share/nginx/html
     # networks:
