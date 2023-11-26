@@ -27,7 +27,7 @@ services:
     networks:
       - backend-network
     depends_on:
-      - db
+      - msb-db
 
   msb-db:
     image: postgres:15
