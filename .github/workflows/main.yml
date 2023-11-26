@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cd msb/docker/prod/docker-compose.yml
+            cd ~/msb/docker/prod
             echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
             docker compose pull
             docker compose up -d --no-build
