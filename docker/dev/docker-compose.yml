@@ -1,9 +1,9 @@
 version: '3.3'
 services:
 
-  db-service:
+  db:
     image: postgres:15
-    container_name: db-service
+    container_name: db
     ports:
       - 5432:5432
     environment:
@@ -13,8 +13,8 @@ services:
     volumes:
       - db-volume:/var/lib/postgresql/data
 
-  pictures-service:
-    container_name: pictures-service
+  pictures:
+    container_name: pictures
     image: dceoy/nginx-autoindex    # if autoindex does not work, delete html files !
     ports:
       - 80:80
