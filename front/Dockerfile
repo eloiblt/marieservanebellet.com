@@ -1,21 +1,19 @@
-FROM node:16 as build
+FROM node:16 as builder
 
-ENV home /usr/src/app
+WORKDIR /app
 
-WORKDIR $home
+COPY ./front/package*.json ./
+RUN npm ci
 
 COPY ./front/ $home
-RUN npm install
 RUN npm run build
 
 
-
-FROM nginx:latest
-
-ENV home /usr/src/app
-
-WORKDIR $home
+FROM nginx:alpine
 
 COPY ./front/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build $home/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
+
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

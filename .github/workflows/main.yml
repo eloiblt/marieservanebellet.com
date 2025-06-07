@@ -2,64 +2,73 @@ name: CI - CD
 
 on:
   push:
-    branches: [master]
+    tags:
+      - '*'
   workflow_dispatch:
 
 jobs:
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   build-and-push:
     runs-on: ubuntu-latest
+    permissions: write-all
+    outputs:
+      image_tag: ${{ steps.version.outputs.TAG }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Login to GitHub Container Registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
 
+      - name: Extract version
+        id: version
+        run: echo "TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
+
+      - name: Write version
+        working-directory: ./docker/prod
+        run: echo "IMAGE_TAG=${{ steps.version.outputs.TAG }}" > .env
+
       - name: Build the stack
         working-directory: ./docker/prod
         run:
-          docker compose build --build-arg FRONT_URL=${{ secrets.FRONT_URL }} --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} --build-arg JWT_SECRET=${{ secrets.JWT_SECRET }} --build-arg SMTP_HOST=${{ secrets.SMTP_HOST }} --build-arg SMTP_PORT=${{ secrets.SMTP_PORT }} --build-arg SMTP_TLS=${{ secrets.SMTP_TLS }} --build-arg SMTP_USER=${{ secrets.SMTP_USER }} --build-arg SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} --build-arg MAIL_TO=${{ secrets.MAIL_TO }} --build-arg MAIL_BCC=${{ secrets.MAIL_BCC }}
+          docker compose -f docker-compose.build.yml build
 
       - name: Push the stack
         working-directory: ./docker/prod
-        run: docker compose push
+        run: docker compose -f docker-compose.build.yml push
 
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: copy new docker compose via ssh
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.VPS_IP }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PWD }}
-          port: ${{ secrets.VPS_PORT }}
-          source: "docker/prod/docker-compose.yml"
-          target: "msb"
-          rm: "true"
+      - uses: actions/checkout@v4
 
       - name: docker login, pull, and up
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VPS_IP }}
           username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
+          key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd ~/msb/docker/prod
             echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
-            docker compose up -d --no-build --pull=always
+
+            cd ~/my-server/marieservanebellet.com
+            rm -f .env
+            touch .env
+
+            echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> .env
+            echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> .env
+            echo "SMTP_TLS=${{ secrets.SMTP_TLS }}" >> .env
+            echo "SMTP_USER=${{ secrets.SMTP_USER }}" >> .env
+            echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> .env
+
+            echo "MAIL_TO=${{ secrets.MAIL_TO }}" >> .env
+            echo "MAIL_BCC=${{ secrets.MAIL_BCC }}" >> .env
+
+            echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+            echo "FRONT_URL=${{ secrets.FRONT_URL }}" >> .env
+
+            echo "IMAGE_TAG=${{ needs.build-and-push.outputs.image_tag }}" >> .env
+
+            docker compose pull
+            docker compose up -d --force-recreate

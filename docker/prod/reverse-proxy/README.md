@@ -1,1 +1,0 @@
-Initialement, le reverse proxy était dockerisé. Pour le réactiver, décommenter les lignes du docker-compose.yml
