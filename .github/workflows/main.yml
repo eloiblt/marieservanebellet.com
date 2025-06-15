@@ -53,7 +53,7 @@ jobs:
           script: |
             echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
 
-            cd ~/my-server/marieservanebellet
+            cd ${{ secrets.INSTALL_PATH }}
             rm -f .env
             touch .env
 
