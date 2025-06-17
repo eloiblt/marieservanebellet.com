@@ -14,6 +14,6 @@ WORKDIR /app
 
 COPY --from=builder /app/dist/msb-front .
 
-EXPOSE 4000
+EXPOSE 80
 
 CMD ["node", "server/server.mjs"]
