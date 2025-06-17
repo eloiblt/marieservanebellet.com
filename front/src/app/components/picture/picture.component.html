@@ -1,0 +1,16 @@
+@if (src) {
+  <img
+    [ngSrc]="environment.picturesUrl + src"
+    (load)="load()"
+    [alt]="title"
+    fill
+    [priority]="priority"
+    [ngClass]="{ loaded, 'can-zoom': canZoom }"
+    (click)="emitClick()"
+  />
+}
+
+@if (!loaded) {
+  <div class="placeholder"></div>
+}
+

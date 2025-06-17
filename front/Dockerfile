@@ -1,19 +1,19 @@
-FROM node:16 as builder
+FROM node:22-alpine as builder
 
 WORKDIR /app
 
-COPY ./front/package*.json ./
+COPY ./package*.json ./
 RUN npm ci
 
-COPY ./front/ $home
+COPY ./ .
 RUN npm run build
 
+FROM node:22-alpine
 
-FROM nginx:alpine
+WORKDIR /app
 
-COPY ./front/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist/msb-front .
 
-EXPOSE 80
+EXPOSE 4000
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "server/server.mjs"]

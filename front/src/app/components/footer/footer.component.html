@@ -1,0 +1,37 @@
+<div class="footer">
+  <div [ngClass]="{ 'footer-content': true, show: true }">
+
+    <div class="footer-line">
+      <p [routerLink]="['/contact']" class="link">Contact</p>
+      <img
+        class="logo"
+        [ngSrc]="environment.picturesUrl + 'logo.webp'"
+        loading="lazy"
+        (load)="show = show + 1"
+        alt="Logo"
+        [routerLink]="['/']"
+        width="50"
+        height="50"
+      />
+      <p [routerLink]="['/about']" class="link">A propos</p>
+    </div>
+
+    <div class="footer-line">
+      <img
+        class="insta"
+        (click)="redirectInstagram()"
+        [ngSrc]="environment.picturesUrl + 'instagram-logo.webp'"
+        loading="lazy"
+        (load)="show = show + 1"
+        alt="Instagram"
+        width="50"
+        height="50"
+      />
+    </div>
+
+<!--    <div class="footer-line profile">-->
+<!--      <p>Made with ❤️ by</p>-->
+<!--      <p class="link" (click)="redirectProfile()">Eloi Blt</p>-->
+<!--    </div>-->
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="admin-management">
+  @if (pictures && categoryPictures) {
+    <div class="admin-management-content">
+      <div class="add">
+        <div class="add-item">
+          <h1>Ajouter une catégorie :</h1>
+          <div class="picture">
+            <div class="picture-line">
+              <p>Nom</p>
+              <input type="text" [(ngModel)]="newCategoryPicture.title" />
+            </div>
+            <fa-icon [icon]="faCheck" class="check" (click)="createNewCategoryPicture()" title="Créer"
+                     [ngClass]='{"active": canCreateCategoryPicture()}'></fa-icon>
+          </div>
+        </div>
+        <div class="add-item">
+          <h1>Ajouter une peinture :</h1>
+          <div class="picture">
+            <div class="picture-line">
+              <p>Titre</p>
+              <input type="text" [(ngModel)]="newPicture.title" />
+            </div>
+            <div class="picture-line">
+              <input #upload type="file" id="file" (change)="handleFileInput($event.target!)">
+            </div>
+            <div class="picture-line">
+              <p>Technique</p>
+              <input type="text" [(ngModel)]="newPicture.technique" />
+            </div>
+            <div class="picture-line"
+                 title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la ligne 1 à la ligne 2">
+              <p>Ligne</p>
+              <input type="text" [(ngModel)]="newPicture.gridRow" />
+            </div>
+            <div class="picture-line"
+                 title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la colonne 1 à la colonne 2">
+              <p>Colonne</p>
+              <input type="text" [(ngModel)]="newPicture.gridColumn" />
+            </div>
+            <div class="picture-line">
+              <p>Année</p>
+              <input type="text" [(ngModel)]="newPicture.year" />
+            </div>
+            <div class="picture-line">
+              <p>Catégorie</p>
+              <ng-select [items]="categoryPictures" bindLabel="title" bindValue="id" [(ngModel)]="newPicture.categoryId">
+              </ng-select>
+            </div>
+            <div class="picture-line">
+              <p>Taille</p>
+              <input type="text" [(ngModel)]="newPicture.size" />
+            </div>
+            <div class="picture-line">
+              <p>Afficher en menu</p>
+              <input type="checkbox" [(ngModel)]="newPicture.isMenu" />
+            </div>
+
+            <fa-icon [icon]="faCheck" class="check" (click)="createNewPicture()" title="Créer"
+                     [ngClass]='{"active": canCreatePicture()}'></fa-icon>
+          </div>
+        </div>
+      </div>
+
+      @for (category of categoryPictures; track $index) {
+        <div class="category">
+          <div class="category-actions">
+            <input type="text" class="category-name" (change)="updateCategoryPicture(category)"
+                   [(ngModel)]="category.title" />
+            <fa-icon [icon]="faMinusCircle" class="minus-circle" title="Supprimer la catégorie"
+                     (click)="deleteCategoryPicture(category)"></fa-icon>
+          </div>
+          <div class="category-content">
+            @for (picture of getPicturesByCategory(category.id); track $index) {
+              <div class="picture">
+
+                <div class="picture-line">
+                  <p>Titre</p>
+                  <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.title" />
+                </div>
+
+                <div class="img-container">
+                  <img [ngSrc]="environment.picturesUrl + picture.url" (load)="loaded(picture.id)" [alt]="picture.title" fill>
+                </div>
+
+                <div class="picture-line">
+                  <p>Technique</p>
+                  <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.technique" />
+                </div>
+
+                <div class="picture-line"
+                     title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la ligne 1 à la ligne 2">
+                  <p>Ligne</p>
+                  <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.gridRow" />
+                </div>
+                <div class="picture-line"
+                     title="Aide : soit un chiffre, soit deux chiffres de la forme 1 / 3 (avec des espaces autour de /). Le premier signifie le départ et le second l'arrivée + 1. Ex : 1 / 3 signifie de la colonne 1 à la colonne 2">
+                  <p>Colonne</p>
+                  <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.gridColumn" />
+                </div>
+                <div class="picture-line">
+                  <p>Année</p>
+                  <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.year" />
+                </div>
+                <div class="picture-line">
+                  <p>URL</p>
+                  <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.url" />
+                </div>
+                <div class="picture-line">
+                  <p>Taille</p>
+                  <input type="text" (change)="updatePicture(picture)" [(ngModel)]="picture.size" />
+                </div>
+                <div class="picture-line">
+                  <p>Afficher en menu</p>
+                  <input type="checkbox" [(ngModel)]="picture.isMenu" (change)="updatePicture(picture)"/>
+                </div>
+                <fa-icon [icon]="faMinusCircle" class="minus-circle" title="Supprimer la peinture"
+                         (click)="deletePicture(picture)"></fa-icon>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

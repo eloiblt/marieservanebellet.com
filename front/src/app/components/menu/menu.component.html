@@ -1,0 +1,20 @@
+<div class="menu-container">
+  @for (category of categoryPictures; track $index) {
+    <div class="unite">
+      <div class="img-container" [routerLink]="['/peintures/' + category?.id]">
+
+        <app-picture [src]="category?.coverUrl ?? ''" [title]="category?.title ?? ''" (pictureLoad)="loaded(category?.id)"></app-picture>
+
+        @if (isLoaded(category?.id!)) {
+          <div class="middle">
+            <p>{{ category?.title }}</p>
+            <p>
+              Visiter
+              <fa-icon [icon]="faArrowRight" class="arrow-right"></fa-icon>
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,18 @@
+<div class="navbar">
+  <div class="nav-top">
+    <fa-icon [icon]="faBars" (click)="showMenu = !showMenu"></fa-icon>
+    <div [ngClass]="{'logo-left': true, show}" (click)="showMenu = false" [routerLink]="['/']">
+      <img src="{{ environment.picturesUrl + 'logo.webp' }}" loading="lazy" (load)="show = true" alt="Logo">
+      <h2>Marie-Servane Bellet</h2>
+    </div>
+  </div>
+
+  <div [ngClass]="{'onglets': true, 'showMenu': showMenu}">
+    <div class="onglet" (click)="showMenu = false" [routerLink]="['/about']">
+      A propos
+    </div>
+    <div class="onglet" (click)="showMenu = false" [routerLink]="['/contact']">
+      Contact
+    </div>
+  </div>
+</div>

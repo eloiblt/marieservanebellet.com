@@ -1,0 +1,59 @@
+<div class="contact-container" id="contact">
+  <div class="contact">
+    <h1>Contact</h1>
+    <form [formGroup]="contactForm" (ngSubmit)="contact()">
+
+      <label for="name">Nom :</label>
+      <input id="name" type="text" formControlName="name" />
+
+      @if (name?.invalid && (name?.dirty || name?.touched)) {
+        <div class="errors">
+          @if (name?.errors?.['required']) {
+            <div>
+              Veuillez renseigner votre nom
+            </div>
+          }
+        </div>
+      }
+
+      <label for="mail">Mail :</label>
+      <input id="mail" type="email" formControlName="mail" />
+
+      @if (mail?.invalid && (mail?.dirty || mail?.touched)) {
+        <div class="errors">
+          @if (mail?.errors?.['required']) {
+            <div>
+              Veuillez renseigner votre mail
+            </div>
+          }
+          @if (mail?.errors?.['email']) {
+            <div>
+              Le mail est invalide
+            </div>
+          }
+        </div>
+      }
+
+      <label for="message">Message :</label>
+      <textarea id="message" rows="7" formControlName="message"></textarea>
+
+      @if (message?.invalid && (message?.dirty || message?.touched)) {
+        <div class="errors">
+          @if (message?.errors?.['required']) {
+            <div>
+              Veuillez renseigner un contenu
+            </div>
+          }
+        </div>
+      }
+
+      @if (error) {
+        <div class="error-mail">
+          {{ error }}
+        </div>
+      }
+
+      <button [disabled]="!canContact()">Envoyer</button>
+    </form>
+  </div>
+</div>

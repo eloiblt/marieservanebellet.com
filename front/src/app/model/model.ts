@@ -1,4 +1,4 @@
-export class Picture {
+export interface Picture {
   id: number;
   title: string;
   technique: string;
@@ -11,14 +11,14 @@ export class Picture {
   isMenu: boolean;
 }
 
-export class CategoryPicture {
+export interface CategoryPicture {
   id: number;
   title: string;
   show: boolean;
   coverUrl: string;
 }
 
-export class User {
+export interface User {
   mail: string;
   password: string;
 }

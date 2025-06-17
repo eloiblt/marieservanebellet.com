@@ -1,0 +1,44 @@
+:host {
+  flex: 1;
+  display: flex;
+  width: 100%;
+}
+
+img {
+  opacity: 0;
+  transition: opacity 1s, transform 0.7s;
+  position: relative !important;
+  object-fit: cover;
+
+  &.loaded {
+    opacity: 1;
+  }
+
+  &.can-zoom:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+.placeholder {
+  flex: 1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to right,
+      #818181,
+      rgba(180, 176, 176, 0.5) 50%,
+      #818181 100%
+  ),
+  #818181;
+  background-repeat: repeat-y;
+  background-size: 130px;
+  background-position: -50%;
+  animation: shine 1s infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 150%;
+  }
+}

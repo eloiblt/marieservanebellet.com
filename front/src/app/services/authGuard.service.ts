@@ -1,24 +1,33 @@
-import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { inject, Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivateFn,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-class AuthGuardService  {
+class AuthGuardService {
+  public auth: AuthService = inject(AuthService);
+  public router: Router = inject(Router);
 
-  constructor(public auth: AuthService, public router: Router) {
-  }
-
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(): boolean {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['adminLogin']);
+      void this.router.navigate(['adminLogin']);
       return false;
     }
     return true;
   }
 }
 
-export const AuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
-  return inject(AuthGuardService).canActivate(next, state);
-}
+export const AuthGuard: CanActivateFn = (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: ActivatedRouteSnapshot,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  state: RouterStateSnapshot,
+): boolean => {
+  return inject(AuthGuardService).canActivate();
+};

@@ -1,0 +1,71 @@
+<div class="grid-content">
+  <div class="grid-top-container">
+    <div
+      #goBack
+      class="go-back"
+      [routerLink]="['/']"
+      tabindex="0"
+      (keyup.enter)="goBack.click()"
+    >
+      <fa-icon [icon]="faArrowLeft" class="arrow-left"></fa-icon>
+      <p>Choisir une autre catégorie</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    @for (picture of pictures; track $index) {
+      <div
+        class="unite"
+        [ngClass]="{
+          'hide-label': !picture?.title,
+          rectangle: isRectangleOrVertical(picture?.gridColumn),
+          vertical: isRectangleOrVertical(picture?.gridRow)
+        }"
+        [ngStyle]="{ 'grid-row': picture?.gridRow, 'grid-column': picture?.gridColumn }"
+      >
+        <div class="img-container">
+          <app-picture [src]="picture?.url ?? ''" [title]="picture?.title  ?? ''" (pictureLoad)="loaded(picture?.id)" (pictureClick)="clickedPicture = picture"></app-picture>
+        </div>
+
+        @if (isLoaded(picture?.id)) {
+          <div class="label">
+            <p>{{ picture?.title }}</p>
+            <p>{{ picture?.size }} - {{ picture?.year }}</p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+@if (clickedPicture) {
+  <div
+    (click)="closeModal()"
+    class="modal"
+    [ngClass]="{ hideLabel: !clickedPicture.title }"
+    (keyup.enter)="closeModal()"
+  >
+    <span
+      (click)="closeModal()"
+      (keyup.enter)="closeModal()"
+      tabindex="0"
+      class="close"
+      role="button"
+      aria-label="Fermer"
+    >&times;
+    </span>
+
+    <img
+      [src]="environment.picturesUrl + clickedPicture.url "
+      alt="{{ clickedPicture.title }}"
+      (load)="showModal = true"
+      [ngClass]="{ show: showModal }"
+    />
+    @if (clickedPicture.title) {
+      <div class="label">
+        <p>{{ clickedPicture.title }}</p>
+        <p>{{ clickedPicture.size }} - {{ clickedPicture.year }}</p>
+      </div>
+    }
+  </div>
+}

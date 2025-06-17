@@ -1,0 +1,131 @@
+@use "variables" as *;
+
+.admin-management {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .admin-management-content {
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
+
+    .category-name {
+      min-width: 1px;
+      border: 1px solid $backgroundColor;
+      border-radius: 3px;
+      height: 30px;
+      text-indent: 5px;
+      font-size: 30px;
+      width: fit-content;
+      font-weight: bold;
+    }
+
+    fa-icon {
+      &.check {
+        opacity: 0.4;
+        margin-left: auto;
+
+        &.active {
+          opacity: 1;
+          color: green;
+          cursor: pointer;
+        }
+      }
+
+      &.minus-circle {
+        margin-right: auto;
+        margin-top: auto;
+        color: red;
+        cursor: pointer;
+      }
+    }
+
+    .picture {
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      width: 300px;
+
+      .img-container {
+        width: 300px;
+        height: 300px;
+        position: relative;
+
+        img {
+          align-self: center;
+          margin-bottom: 5px;
+        }
+      }
+
+      .picture-line {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        p {
+          margin-right: 10px;
+        }
+
+        input:not([type="file"]) {
+          flex: 1;
+          min-width: 1px;
+          border: 1px solid $backgroundColor;
+          border-radius: 3px;
+          height: 30px;
+          text-indent: 5px;
+        }
+
+        ::ng-deep .ng-select {
+          flex: 1;
+
+          .ng-select-container {
+            border: 1px solid $backgroundColor;
+          }
+        }
+      }
+    }
+
+    .add {
+      display: flex;
+
+      .add-item {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .category {
+      display: flex;
+      flex-direction: column;
+
+      .category-actions {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        fa-icon {
+          margin-top: unset;
+          margin-left: 10px;
+        }
+      }
+
+      .category-content {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
