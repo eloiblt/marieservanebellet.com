@@ -48,3 +48,8 @@ Thumbs.db
 **/dist/
 **/node_modules/
 front/.angular
+
+docker/dev/db-data
+docker/dev/pictures-data
+
+docker/dev/msb-*.sql

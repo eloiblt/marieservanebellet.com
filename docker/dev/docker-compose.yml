@@ -9,8 +9,8 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=msb
-    volumes:
-      - ./db-data:/var/lib/postgresql/data
+    # volumes:
+    #   - ./db-data:/var/lib/postgresql/data
 
   pictures:
     container_name: pictures
@@ -18,7 +18,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./pictures:/var/lib/nginx/html
+      - ./pictures-data:/var/lib/nginx/html
 
   mail-catcher:
     image: schickling/mailcatcher
