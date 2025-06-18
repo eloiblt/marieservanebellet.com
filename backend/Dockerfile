@@ -6,7 +6,6 @@ COPY ./package*.json .
 RUN npm ci
 
 COPY . .
-RUN tree prisma
 RUN npx prisma generate
 RUN npm run build
 

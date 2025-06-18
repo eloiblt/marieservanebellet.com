@@ -45,7 +45,7 @@ jobs:
       - name: Push
         run: |
           docker push ghcr.io/eloiblt/msb-frontend:${{ steps.version.outputs.TAG }}
-          docker push -t ghcr.io/eloiblt/msb-backend:${{ steps.version.outputs.TAG }}
+          docker push ghcr.io/eloiblt/msb-backend:${{ steps.version.outputs.TAG }}
 
   deploy:
     needs: build-and-push
