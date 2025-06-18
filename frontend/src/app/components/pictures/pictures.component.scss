@@ -170,6 +170,16 @@
 
       .unite {
         margin-bottom: 10px;
+        padding-top: 100%;
+
+        .img-container {
+          position: absolute;
+          top: 0;
+          bottom: 10%;
+          left: 0;
+          right: 0;
+          display: flex;
+        }
 
         .label {
           p {
@@ -208,7 +218,6 @@
   img {
     height: 90%;
     object-fit: contain;
-    margin: 10px;
     opacity: 0;
     transition: opacity 0.7s;
     margin: 0 auto;
