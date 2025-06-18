@@ -3,6 +3,9 @@
 ## Migrations
 
 ```bash
+# après avoir modifié schema.prisma 
+npx prisma generate 
+
 # generate migration dev
 npx prisma migrate dev --name <migration_name>
 

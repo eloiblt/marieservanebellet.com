@@ -8,6 +8,8 @@ RUN npm ci
 COPY ./front .
 RUN npm run build
 
+# --------------------------------------------------------
+
 FROM node:24-alpine
 
 WORKDIR /app
