@@ -39,7 +39,7 @@ jobs:
 
       - name: Build
         run: |
-          docker build --progress plain -t ghcr.io/eloiblt/msb-frontend:${{ steps.version.outputs.TAG }} front
+          docker build --progress plain -t ghcr.io/eloiblt/msb-frontend:${{ steps.version.outputs.TAG }} frontend
           docker build --progress plain -t ghcr.io/eloiblt/msb-backend:${{ steps.version.outputs.TAG }} backend
 
       - name: Push
