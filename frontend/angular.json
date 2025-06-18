@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "msb-front": {
+    "msb-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -79,10 +79,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "msb-front:build:production"
+              "buildTarget": "msb-frontend:build:production"
             },
             "development": {
-              "buildTarget": "msb-front:build:development"
+              "buildTarget": "msb-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

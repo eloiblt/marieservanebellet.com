@@ -1,5 +1,5 @@
 {
-  "name": "msb-front",
+  "name": "msb-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:msb-front": "node dist/msb-front/server/server.mjs",
+    "serve:ssr:msb-frontend": "node dist/msb-frontend/server/server.mjs",
     "lint": "ng lint"
   },
   "private": true,

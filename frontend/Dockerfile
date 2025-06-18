@@ -14,7 +14,7 @@ FROM node:24-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/dist/msb-front .
+COPY --from=builder /app/dist/msb-frontend .
 
 EXPOSE 80
 
