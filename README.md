@@ -1,3 +1,8 @@
+![Visiteurs](https://visitor-badge.laobi.icu/badge?page_id=monutilisateur.monprojet)
+![Forks](https://img.shields.io/github/forks/monutilisateur/monprojet?style=social)
+![Langage](https://img.shields.io/github/languages/top/monutilisateur/monprojet)
+![Taille du repo](https://img.shields.io/github/repo-size/monutilisateur/monprojet)
+![Dernier commit](https://img.shields.io/github/last-commit/monutilisateur/monprojet)
 
 [marieservanebellet.com](https://marieservanebellet.com)
 
