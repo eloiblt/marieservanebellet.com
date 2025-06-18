@@ -17,11 +17,9 @@ WORKDIR /app
 RUN apk add --no-cache openssl
 RUN npm install -g prisma
 
-COPY ./api/package*.json .
-COPY ./api/prisma ./prisma
-RUN npm ci --only=production
-
-COPY --from=builder /app/dist/ .
+COPY --from=builder /app/prisma prisma
+COPY --from=builder /app/dist dist
+COPY --from=builder /app/node_modules node_modules
 
 EXPOSE 4000
 
