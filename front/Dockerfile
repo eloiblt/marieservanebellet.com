@@ -2,10 +2,10 @@ FROM node:24-alpine as builder
 
 WORKDIR /app
 
-COPY ./front/package*.json .
+COPY ./package*.json .
 RUN npm ci
 
-COPY ./front .
+COPY . .
 RUN npm run build
 
 # --------------------------------------------------------
