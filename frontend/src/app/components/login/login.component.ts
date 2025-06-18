@@ -39,7 +39,7 @@ export class LoginComponent {
         this.loginApiService.login(this.loginForm.value),
       );
       localStorage.setItem('token', jwt);
-      await this.router.navigate(['adminManagement']);
+      await this.router.navigate(['admin-management']);
     } catch {
       this.error = true;
     }
