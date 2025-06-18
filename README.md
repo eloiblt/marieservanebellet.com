@@ -1,8 +1,9 @@
-![Visiteurs](https://visitor-badge.laobi.icu/badge?page_id=eloiblt.marieservanebellet.com)
+
 ![CI](https://github.com/eloiblt/marieservanebellet.com/actions/workflows/main.yml/badge.svg)
+![Dernier commit](https://img.shields.io/github/last-commit/eloiblt/marieservanebellet.com)
 ![Langage](https://img.shields.io/github/languages/top/eloiblt/marieservanebellet.com)
 ![Taille du repo](https://img.shields.io/github/repo-size/eloiblt/marieservanebellet.com)
-![Dernier commit](https://img.shields.io/github/last-commit/eloiblt/marieservanebellet.com)
+![Visiteurs](https://visitor-badge.laobi.icu/badge?page_id=eloiblt.marieservanebellet.com)
 
 [marieservanebellet.com](https://marieservanebellet.com)
 
