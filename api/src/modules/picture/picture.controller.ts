@@ -62,7 +62,7 @@ export class PictureController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: '/pictures/',
-        filename: async (req, file, cb) => {
+        filename: (req, file, cb) => {
           cb(null, file.originalname);
         },
       }),

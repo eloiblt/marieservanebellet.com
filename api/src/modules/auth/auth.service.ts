@@ -6,15 +6,23 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwtService: JwtService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async login(userDto: UserDto): Promise<string> {
     const user = await this.prisma.user.findFirst({
       where: { mail: userDto.mail },
     });
 
-    if (await bcrypt.compare(userDto?.password, user?.password)) {
-      const payload = { mail: user.mail };
+    const passwordEquals = await bcrypt.compare(
+      userDto.password ?? '',
+      user!.password,
+    );
+
+    if (passwordEquals) {
+      const payload = { mail: user!.mail };
       return await this.jwtService.signAsync(payload);
     }
 

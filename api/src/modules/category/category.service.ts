@@ -4,7 +4,7 @@ import { CategoryDto } from './dto/category.dto';
 
 @Injectable()
 export class CategoryService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async getAll(): Promise<CategoryDto[]> {
     const categories = await this.prisma.category.findMany({
@@ -24,7 +24,7 @@ export class CategoryService {
   }
 
   async create(categoryDto: CategoryDto): Promise<void> {
-    await this.prisma.category.create({ data: { title: categoryDto.title } });
+    await this.prisma.category.create({ data: { title: categoryDto.title! } });
   }
 
   async update(id: number, categoryDto: CategoryDto): Promise<void> {
