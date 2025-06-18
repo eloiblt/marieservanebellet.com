@@ -19,7 +19,6 @@ npx prisma generate
 
 ## Init
 
-
 ```bash
 # Crée un dossier prisma/ avec un fichier schema.prisma et configure .env.
 npx prisma init
