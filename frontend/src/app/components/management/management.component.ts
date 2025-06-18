@@ -159,7 +159,7 @@ export class ManagementComponent implements OnInit {
         'Erreur',
       );
     } else {
-      await firstValueFrom(this.picturesApiService.delete(c.id));
+      await firstValueFrom(this.categoryPicturesApiService.delete(c.id));
       await this.reset();
     }
   }
