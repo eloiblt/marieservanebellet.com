@@ -2,7 +2,7 @@ import {
   ApplicationConfig,
   importProvidersFrom,
   provideBrowserGlobalErrorListeners,
-  provideZoneChangeDetection,
+  provideZoneChangeDetection, isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -21,6 +21,7 @@ import {
 import { authInterceptor } from './helpers/auth.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { tokenGetter } from './services/auth.service';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,6 +42,9 @@ export const appConfig: ApplicationConfig = {
       withInterceptorsFromDi(),
       withInterceptors([authInterceptor]),
       withFetch(),
-    ),
+    ), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }),
   ],
 };
