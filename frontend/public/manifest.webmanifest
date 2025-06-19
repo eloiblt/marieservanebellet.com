@@ -1,6 +1,6 @@
 {
-  "name": "marieservanebellet.com",
-  "short_name": "marieservanebellet.com",
+  "name": "MSB",
+  "short_name": "MSB",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
