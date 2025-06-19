@@ -1,10 +1,15 @@
 <div class="navbar">
   <div class="nav-top">
-    <fa-icon [icon]="faBars" (click)="showMenu = !showMenu"></fa-icon>
+    <fa-icon class="menu-icon" [icon]="faBars" (click)="showMenu = !showMenu"></fa-icon>
     <div [ngClass]="{'logo-left': true, show}" (click)="showMenu = false" [routerLink]="['/']">
       <img src="{{ environment.picturesUrl + 'logo.webp' }}" loading="lazy" (load)="show = true" alt="Logo">
       <h2>Marie-Servane Bellet</h2>
     </div>
+
+    @if (canInstall) {
+      <button type="button" class="install-btn" (click)="installPwa()">Installer</button>
+    }
+
   </div>
 
   <div [ngClass]="{'onglets': true, 'showMenu': showMenu}">
